@@ -158,6 +158,10 @@ h1 {
     cursor: pointer;
 }
 
+.dropdown-content {
+    display: block;
+}
+
 
 
 

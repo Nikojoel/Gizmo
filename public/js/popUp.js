@@ -44,9 +44,9 @@ aside.innerHTML =
                 <li id="votes">
                     <a href="votes.html"><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Votes</a>
                 </li>
-                <li id="sort">
+                <li id="sort" onclick="showDropDown()">
                     <a><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Sort</a>
-                    <div class="dropdown-content">
+                    <div class="hidden" id="dropDownContent">
                         <a href="#">Most voted</a>
                         <a href="#">Trending</a>
                         <a href="#">New</a>
@@ -170,4 +170,10 @@ function showProfile() {
         `;
     model.style.display = "block";
     close();
+}
+
+function showDropDown() {
+    const dropDown = document.getElementById("dropDownContent");
+    dropDown.style.display = "block";
+
 }

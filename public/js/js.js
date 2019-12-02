@@ -7,7 +7,7 @@ const getPosts = async (url) => {
         const response = await fetch (url);
         const result = await response.json();
         console.log(result);
-
+/*
         result.forEach(it => {
             ul.innerHTML += `
     <li>
@@ -23,13 +23,15 @@ const getPosts = async (url) => {
         </div>
     </li>
     `;
+
         });
+ */
     } catch (e) {
         console.log(e);
     }
 };
 
-getPosts("../images.json");
+getPosts("http://localhost:3000/post");
 
 
 
