@@ -23,10 +23,12 @@ const getUser = async (params) => {
 };
 
 const addUser = async (params) => {
+    console.log(params);
     try {
-        const [rows] = await promisePool.execute('INSERT INTO user (user_name, user_firstname, user_lastname, password, user_role)  VALUES (?, ?, ?, ?,?)',
+        const [rows] = await promisePool.execute('INSERT INTO user (user_name, user_email, user_firstname, user_lastname, user_password, user_role)  VALUES (?, ?, ?, ?, ?, ?)',
             params,
         );
+        console.log(rows);
         return rows;
     } catch (e) {
         return {error: 'failed to add to db'};

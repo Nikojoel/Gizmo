@@ -12,9 +12,11 @@ app.use(express.static('uploads'));
 
 const userRoute = require('./routes/userRoute');
 const postRoute = require('./routes/postRoute');
+const autRoute = require('./routes/authRoute');
 
 app.use('/user', userRoute);
 app.use('/post', postRoute);
+app.use('/auth', autRoute);
 
 
 app.listen(port);
