@@ -1,0 +1,33 @@
+{
+  "name": "gizmo",
+  "version": "0.0.1",
+  "description": "gizmo social media",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mariinsky/gizmo.git"
+  },
+  "keywords": [
+    "gizmo",
+    "social",
+    "media",
+    "nodejs",
+    "express"
+  ],
+  "author": "Enar Mariinsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mariinsky/gizmo/issues"
+  },
+  "homepage": "https://github.com/Mariinsky/gizmo#readme"
+}
