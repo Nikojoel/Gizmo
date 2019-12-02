@@ -19,6 +19,7 @@ const user_register = async (req, res, next) => {
             req.body.lastname,
             hash,
             2,
+            req.file.filename,
         ];
         if (await userModel.addUser(params)) {
             params[4] = "";
