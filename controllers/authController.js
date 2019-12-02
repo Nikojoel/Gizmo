@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
 
 const user_register = async (req, res, next) => {
-    console.log('file?', req.file);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log('user create error', errors);
