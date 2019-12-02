@@ -35,7 +35,7 @@ const getPosts = async (url) => {
     }
 };
 
-getPosts("http://localhost:3000/post");
+getPosts(url + "/post");
 
 footer.innerHTML =
     `
@@ -109,19 +109,22 @@ document.getElementById("login").addEventListener("click", () => {
     model.innerHTML =
         `
          <div class="modelContent">
-                    <h1>Existing user</h1>
-                    <span class="close">&times</span>
-                    <h3>Email</h3>
-                    <input type="email" name="email" required>
-                    <h3>Password</h3>
-                    <input type="password" name="password" id="passwordText" required>
-                    <input type="checkbox" onclick="showPassword()">Show password
-                    <input type="submit" value="Login" name="login">
-                    <p id="register"><strong>Not registered? Register here</strong></p>
-                </div>
+            <form id="login-form" enctype="multipart/form-data">
+                <h1>Existing user</h1>
+                <span class="close">&times</span>
+                <h3>Email</h3>
+                <input type="email" name="email" required>
+                <h3>Password</h3>
+                <input type="password" name="password" id="passwordText" required>
+                <input type="checkbox" onclick="showPassword()">Show password
+                <input type="submit" value="Login" name="login">
+                <p id="register"><strong>Not registered? Register here</strong></p>
+            </form>
+        </div>     
         `;
     model.style.display = "block";
     close();
+
     document.getElementById("register").addEventListener("click", () => {
         model.innerHTML =
             `
@@ -179,6 +182,7 @@ function editProfile () {
         model.innerHTML =
             `
             <div class="modelContent">
+                <form id="edit-form" enctype="multipart/form-data">
                     <h1>Edit profile</h1>
                     <span class="close">&times</span>
                     <h3>Bio</h3>
@@ -186,9 +190,10 @@ function editProfile () {
                     <h3>Username</h3>
                     <input type="text" name="username" required>
                     <h3>Picture</h3>
-                    <input type="file" name="picture" required>
+                    <input type="file" name="profile" required>
                     <input type="submit" name="submit" value="Save">
-                </div>
+                </form>
+            </div>
             `;
         model.style.display = "block";
         close();
