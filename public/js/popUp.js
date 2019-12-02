@@ -142,7 +142,7 @@ document.getElementById("login").addEventListener("click", () => {
                     <input type="password" name="password" id="passwordText" required>
                     <input type="checkbox" onclick="showPassword()">Show password
                     <h3>Profile picture</h3>
-                    <input type="file" typeof="file" name="profile" required>
+                    <input type="file" name="profile" required>
                     <input type="submit" value="Register" name="submit">
                 </form>
                 </div>
@@ -150,13 +150,10 @@ document.getElementById("login").addEventListener("click", () => {
         const registerForm = document.getElementById("register-form");
         registerForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
-            const data =  serializeJson(registerForm);
+            const data = new FormData(registerForm);
             const fetchOptions = {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+                body: data,
             };
             const response = await fetch(url + "/auth/register", fetchOptions);
             const json = await response.json();
