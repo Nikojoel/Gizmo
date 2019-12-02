@@ -7,25 +7,25 @@ const getPosts = async (url) => {
         const response = await fetch (url);
         const result = await response.json();
         console.log(result);
-/*
+
         result.forEach(it => {
             ul.innerHTML += `
     <li>
         <div>
             <a href="post.html">
-                <img src="img/${it.pic}" alt="paskaa" width="150" height="150">
-                <h3>${it.title}</h3>
+                <img src="img/${it.post_file}" alt="paskaa" width="150" height="150">
+                <h3>${it.post_title}</h3>
             </a>
             <a id="postProfile" onclick=showProfile()>
-                <img src="img/${it.profPic}" class="profPic"><p><strong>by ${it.userName}</strong></p>
+                <img src="img/${it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
             </a>
-            <p><img src="img/ic_warning_black_48dp.png">${it.votes} votes <img src="img/ic_warning_black_48dp.png">${it.comments} comments</p>
+            <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
         </div>
     </li>
     `;
 
         });
- */
+
     } catch (e) {
         console.log(e);
     }
