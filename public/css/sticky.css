@@ -11,8 +11,11 @@ body {
     justify-content: space-between;
 }
 
-.main,
-.sidebar,
+.main {
+    border: 1px solid black;
+    padding: 15px 0 0 28px;
+    background-color: #fff;
+}
 .footer,
 .header{
     border: 1px solid black;
@@ -21,8 +24,17 @@ body {
 }
 
 .main {
-    width: 80%;
+    width: 70%;
+    padding-right: 100px;
     height: auto;
+}
+
+.sidebar {
+    width: 20%;
+    padding-left: 100px;
+    background-color: #fff;
+    padding-top: 10px;
+    padding-bottom: 50px;
 }
 
 .sidebar {
@@ -110,6 +122,7 @@ body {
     margin-left: 3rem;
 }
 
+
 ul {
     margin: 0;
     list-style: none;
@@ -159,12 +172,40 @@ h1 {
 }
 
 .dropdown-content {
-    display: block;
+    display: flex;
+
 }
 
-h2 {
-    color: red;
+#logo {
+    float: left;
+    display: block;
+    padding-left: 20px;
 }
+
+#loginImg {
+    float: right;
+    display: block;
+    padding-right: 20px;
+}
+
+#names {
+    font-weight: bold;
+    align-items: center;
+    display: inline-block;
+    padding-top: 17px;
+    padding-left: 20px;
+}
+
+#footerLinks {
+    float: right;
+    display: block;
+    padding-right: 20px;
+}
+
+
+
+
+
 
 
 
