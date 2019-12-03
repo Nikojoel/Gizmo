@@ -14,11 +14,10 @@ passport.use(new Strategy(
             if (user === undefined) {
                 return done(null, false, {message: 'Incorrect credential.'});
             }
-            if (!bcrypt.compareSync(password, user.password)) {
+            if (!bcrypt.compareSync(password, user.user_password)) {
                 return done(null, false, {message: 'Incorrect credential.'});
             }
-            delete user.password;
-            console.log({...user});
+            delete user.user_password;
             return done(null, {...user}, {message: 'Logged In Successfully'}); // use spread syntax to create shallow copy to get rid of binary row type
         } catch (err) {
             return done(err);
@@ -31,6 +30,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey   : process.env.JWT_SECRET
+
     },
     (jwtPayload, done) => {
                  done(null, jwtPayload);

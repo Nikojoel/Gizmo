@@ -34,9 +34,20 @@ const addUser = async (params) => {
         return {error: 'failed to add to db'};
     }
 }
+const getUserLogin = async (params) => {
+    try {
+        const [rows] = await promisePool.execute(
+            'SELECT * FROM user WHERE user_email = ?;',
+            params);
+        return rows;
+    } catch (e) {
+        console.log('error', e.message);
+    }
+};
 
 module.exports = {
     getAllUsers,
     getUser,
     addUser,
+    getUserLogin,
 };

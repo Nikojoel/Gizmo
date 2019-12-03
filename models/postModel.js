@@ -11,8 +11,6 @@ const getAllPosts = async () => {
             'user_name , user_id , user_picture ' +
             'FROM post JOIN user ON ' +
             'post_owner = user_id '
-
-
             );
         return rows;
     } catch (e) {
