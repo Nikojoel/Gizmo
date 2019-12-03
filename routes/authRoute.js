@@ -6,6 +6,8 @@ const authController = require('../controllers/authController');
 const multer = require('multer');
 const upload = multer ({dest:'uploads/'});
 
+router.post('/login', authController.login);
+router.get('/logout' , authController.logout);
 router.post('/register',upload.single('profile'),[
     body('username', 'minimum 3 characters').isLength({min: 3}),
     body('email', 'email is not valid').isEmail(),
