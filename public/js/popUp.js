@@ -33,7 +33,7 @@ header.innerHTML =
     <div>
         <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
     </div>
-    <div>
+    <div id="login">
         <a id="loginImg"><img src="img/icons/profile.png" width="48px" height="48px">Login/Register</a>
     </div>
     `;
