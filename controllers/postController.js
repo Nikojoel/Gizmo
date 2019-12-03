@@ -7,8 +7,8 @@ const get_all_post = async (req, res) => {
 };
 
 const get_post = async (req, res) => {
-    const post = await postModel.getPost([req.params.id]);
-    await res.json(post[0]);
+    const [post] = await postModel.getPost([req.params.id]);
+    await res.json(post);
 };
 
 const add_post = async (req, res) => {
