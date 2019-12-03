@@ -39,6 +39,10 @@ const getPost = async (id) => {
         const result = await response.json();
         console.log(result);
         ul.innerHTML = "";
+        main.innerHTML =
+            `
+            <h1>Post</h1>
+            `;
     } catch (e) {
         console.log(e);
     }
