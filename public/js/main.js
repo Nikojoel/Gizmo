@@ -17,7 +17,7 @@ const getPosts = async (url) => {
                 <img src="img/${it.post_file}" alt="paskaa" width="150" height="150">
                 <h3>${it.post_title}</h3>
             </div>
-            <div id="postProfile" onclick="showProfile()">
+            <div id="postProfile" onclick="showProfile(${it.user_id})">
                 <img src="img/${it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
             </div>
             <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
@@ -32,7 +32,7 @@ const getPosts = async (url) => {
 
 getPosts(url + "/post");
 
-// "${url}/${it.post_id}"
+
 const getPost = async (id) => {
     try {
         const options = {
