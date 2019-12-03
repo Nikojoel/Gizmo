@@ -21,7 +21,7 @@ const getAllPosts = async () => {
 const getPost = async (params) => {
     try {
         const [rows] = await promisePool.execute(
-            'SELECT post.*, user.user_name,' +
+            'SELECT post.*, user.user_name, user.user_picture, ' +
             '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments,' +
             '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote ' +
             'FROM post ' +
@@ -29,6 +29,7 @@ const getPost = async (params) => {
             'WHERE post.post_id = ?',
             params,
         );
+
         return rows;
     }  catch (e) {
         return {error: 'db error'};

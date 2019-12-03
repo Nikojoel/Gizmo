@@ -8,6 +8,7 @@ const get_all_post = async (req, res) => {
 
 const get_post = async (req, res) => {
     const [post] = await postModel.getPost([req.params.id]);
+    console.log(req.user);
     await res.json(post);
 };
 
