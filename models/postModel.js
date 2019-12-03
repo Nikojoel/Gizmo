@@ -5,14 +5,12 @@ const promisePool = pool.promise();
 const getAllPosts = async () => {
     try {
         const [rows] = await promisePool.execute(
-            'SELECT post_title, post_file, COUNT(comment_post_id) as count_comments, COUNT(vote_post_id) as count_vote, ' +
+            'SELECT post_id, post_title, post_file, ' +
+            '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
+            '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
             'user_name , user_id , user_picture ' +
             'FROM post JOIN user ON ' +
-            'post_owner = user_id ' +
-            'JOIN comment ON post_id = comment_post_id ' +
-            'JOIN vote ON post_id = vote_post_id ' +
-            'group by comment_post_id;'
-
+            'post_owner = user_id '
             );
         return rows;
     } catch (e) {
@@ -22,9 +20,17 @@ const getAllPosts = async () => {
 
 const getPost = async (params) => {
     try {
-        const [rows] = await promisePool.execute('SELECT * FROM post WHERE post_id = ?',
+        const [rows] = await promisePool.execute(
+            'SELECT post.*, user.user_name, user.user_picture, ' +
+            '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments,' +
+            '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote ' +
+            'FROM post ' +
+            'JOIN user ON user.user_id = post.post_owner ' +
+            'WHERE post.post_id = ?',
             params,
         );
+
+        return rows;
     }  catch (e) {
         return {error: 'db error'};
     }

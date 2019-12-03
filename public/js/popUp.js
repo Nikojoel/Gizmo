@@ -1,10 +1,12 @@
 'use strict';
 // All static element functionality
+const url = "http://localhost:3000";
 
 const model = document.getElementById("popUp");
 const aside = document.getElementsByClassName("sidebar")[0];
 const header = document.getElementsByClassName("header")[0];
 const footer = document.getElementsByClassName("footer")[0];
+
 
 footer.innerHTML =
     `
@@ -59,9 +61,9 @@ aside.innerHTML =
                 <li id="sort" onclick="showDropDown()">
                     <a><img src="img/icons/sort.png" width="36px" height="36px">Sort</a>
                     <div class="hidden" id="dropDownContent">
-                        <a href="#">Most voted</a>
-                        <a href="#">Trending</a>
-                        <a href="#">New</a>
+                        <a href="index.html" onclick="getMostVoted()">Most voted</a>
+                        <a href="index.html" onclick="getTrending()">Trending</a>
+                        <a href="index.html" onclick="getNew()">New</a>
                   </div>
                 </li>
             </ul>
@@ -90,37 +92,84 @@ document.getElementById("login").addEventListener("click", () => {
     model.innerHTML =
         `
          <div class="modelContent">
-                    <h1>Existing user</h1>
-                    <span class="close">&times</span>
-                    <h3>Username</h3>
-                    <input type="text" id="usernameText" required>
-                    <h3>Password</h3>
-                    <input type="password" id="passwordText" required>
-                    <input type="checkbox" onclick="showPassword()">Show password
-                    <input type="submit" value="Login" id="loginButton">
-                    <p id="register"><strong>Not registered? Register here</strong></p>
-                </div>
+            <form id="login-form" enctype="multipart/form-data">
+                <h1>Existing user</h1>
+                <span class="close">&times</span>
+                <h3>Email</h3>
+                <input type="email" name="username" required>
+                <h3>Password</h3>
+                <input type="password" name="password" id="passwordText" required>
+                <input type="checkbox" onclick="showPassword()">Show password
+                <input type="submit" value="Login" name="login">
+                <p id="register"><strong>Not registered? Register here</strong></p>
+            </form>
+        </div>     
         `;
     model.style.display = "block";
+    const loginForm = document.getElementById("login-form");
+
+    loginForm.addEventListener("submit", async (evt) => {
+        evt.preventDefault();
+        const data = serializeJson(loginForm);
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        };
+        const response = await fetch(url + '/auth/login', fetchOptions);
+        const json = await response.json();
+        console.log('login response', json);
+        if (!json.user) {
+            alert(json.message);
+        } else {
+            sessionStorage.setItem('token', json.token);
+            console.log(json.user.user_name);
+            model.style.display = "none";
+        }
+    });
     close();
+
     document.getElementById("register").addEventListener("click", () => {
         model.innerHTML =
             `
+            
            <div class="modelContent">
+                <form id="register-form" enctype="multipart/form-data">
                     <h1>New user</h1>
                     <span class="close">&times</span>
                     <h3>First name</h3>
-                    <input type="text" id="firstNameText" required>
+                    <input type="text" name="firstname" required>
                     <h3>Last name</h3>
-                    <input type="text" id="lastNameText" placeholder="optional" >
+                    <input type="text" name="lastname" placeholder="optional" >
+                    <h3>Email</h3>
+                    <input type="email" name="email" required>
                     <h3>Username</h3>
-                    <input type="text" id="usernameText" required>
+                    <input type="text" name="username" required>
                     <h3>Password</h3>
-                    <input type="password" id="passwordText" required>
+                    <input type="password" name="password" id="passwordText" required>
                     <input type="checkbox" onclick="showPassword()">Show password
-                    <input type="submit" value="Register" id="registerButton">
+                    <h3>Profile picture</h3>
+                    <input type="file" name="profile" required>
+                    <input type="submit" value="Register" name="submit">
+                </form>
                 </div>
            `;
+        const registerForm = document.getElementById("register-form");
+
+        registerForm.addEventListener("submit", async (evt) => {
+            evt.preventDefault();
+            const data = new FormData(registerForm);
+            const fetchOptions = {
+                method: 'POST',
+                body: data,
+            };
+            const response = await fetch(url + "/auth/register", fetchOptions);
+            const json = await response.json();
+            console.log(json);
+            model.style.display = "none";
+        });
         close();
     });
 });
@@ -141,16 +190,18 @@ function editProfile () {
         model.innerHTML =
             `
             <div class="modelContent">
+                <form id="edit-form" enctype="multipart/form-data">
                     <h1>Edit profile</h1>
                     <span class="close">&times</span>
                     <h3>Bio</h3>
-                    <input type="text" id="newBio" required>
+                    <input type="text" name="bio" required>
                     <h3>Username</h3>
-                    <input type="text" id="newUsername" required>
+                    <input type="text" name="username" required>
                     <h3>Picture</h3>
-                    <input type="file" id="newProfilePic" required>
-                    <input type="submit" id="submit" value="Save">
-                </div>
+                    <input type="file" name="profile" required>
+                    <input type="submit" name="submit" value="Save">
+                </form>
+            </div>
             `;
         model.style.display = "block";
         close();
@@ -185,7 +236,17 @@ function showProfile() {
 }
 
 function showDropDown() {
-    const dropDown = document.getElementById("dropDownContent");
-    dropDown.style.display = "block";
+    document.getElementById("dropDownContent").classList.toggle("hidden");
+}
+
+function getTrending() {
+
+}
+
+function getNew() {
+
+}
+
+function getMostVoted() {
 
 }
