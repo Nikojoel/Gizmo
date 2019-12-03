@@ -8,6 +8,143 @@ const header = document.getElementsByClassName("header")[0];
 const footer = document.getElementsByClassName("footer")[0];
 
 
+const createHeader = async () => {
+    document.getElementById("login").addEventListener("click", () => {
+        model.innerHTML =
+            `
+         <div class="modelContent">
+            <form id="login-form" enctype="multipart/form-data">
+                <h1>Existing user</h1>
+                <span class="close">&times</span>
+                <h3>Email</h3>
+                <input type="email" name="username" required>
+                <h3>Password</h3>
+                <input type="password" name="password" id="passwordText" required>
+                <input type="checkbox" onclick="showPassword()">Show password
+                <input type="submit" value="Login" name="login">
+                <p id="register"><strong>Not registered? Register here</strong></p>
+            </form>
+        </div>     
+        `;
+        model.style.display = "block";
+        const loginForm = document.getElementById("login-form");
+
+        loginForm.addEventListener("submit", async (evt) => {
+            evt.preventDefault();
+            const data = serializeJson(loginForm);
+            const fetchOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            };
+            const response = await fetch(url + '/auth/login', fetchOptions);
+            const json = await response.json();
+            console.log('login response', json);
+            if (!json.user) {
+                alert(json.message);
+            } else {
+                sessionStorage.setItem('token', json.token);
+                console.log(json.user.user_name);
+                model.style.display = "none";
+                location.reload();
+            }
+        });
+        close();
+
+        document.getElementById("register").addEventListener("click", () => {
+            model.innerHTML =
+                `
+            
+           <div class="modelContent">
+                <form id="register-form" enctype="multipart/form-data">
+                    <h1>New user</h1>
+                    <span class="close">&times</span>
+                    <h3>First name</h3>
+                    <input type="text" name="firstname" required>
+                    <h3>Last name</h3>
+                    <input type="text" name="lastname" placeholder="optional" >
+                    <h3>Email</h3>
+                    <input type="email" name="email" required>
+                    <h3>Username</h3>
+                    <input type="text" name="username" required>
+                    <h3>Password</h3>
+                    <input type="password" name="password" id="passwordText" required>
+                    <input type="checkbox" onclick="showPassword()">Show password
+                    <h3>Profile picture</h3>
+                    <input type="file" name="profile" required>
+                    <input type="submit" value="Register" name="submit">
+                </form>
+                </div>
+           `;
+            const registerForm = document.getElementById("register-form");
+
+            registerForm.addEventListener("submit", async (evt) => {
+                evt.preventDefault();
+                const data = new FormData(registerForm);
+                const fetchOptions = {
+                    method: 'POST',
+                    body: data,
+                };
+                const response = await fetch(url + "/auth/register", fetchOptions);
+                const json = await response.json();
+                console.log(json);
+                model.style.display = "none";
+            });
+            close();
+        });
+    });
+};
+
+
+const checkToken = async () => {
+    if (sessionStorage.getItem('token') != null) {
+        try {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                }
+            };
+            const response = await fetch (url + "/user/profile", options);
+            const result = await response.json();
+            console.log(result);
+            header.innerHTML =
+                `
+                <div>
+                    <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
+                </div>
+                <div>
+                    <a href="profile.html">
+                    <img src="${url + "/" + result.user_picture}" class="profPic">
+                    <h3>${result.user_name}</h3>
+                    </a>
+                    <a href="${url}/auth/logout">Log out</a>
+                </div>
+                `;
+        } catch (e) {
+            console.log(e);
+        }
+    } else {
+        header.innerHTML =
+            `
+            <div>
+                <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
+            </div>
+            <div id="login">
+                <a id="loginImg"><img src="img/icons/profile.png" width="48px" height="48px">Login/Register</a>
+            </div>
+        `;
+        createHeader();
+    }
+};
+
+checkToken();
+
+
+
+
 footer.innerHTML =
     `
     <div id="names">
@@ -27,17 +164,6 @@ footer.innerHTML =
     </ul>
     </div>
     `;
-
-header.innerHTML =
-    `
-    <div>
-        <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
-    </div>
-    <div id="login">
-        <a id="loginImg"><img src="img/icons/profile.png" width="48px" height="48px">Login/Register</a>
-    </div>
-    `;
-
 
 aside.innerHTML =
     `
@@ -88,92 +214,6 @@ document.getElementById("newPostBar").addEventListener("click", () => {
     close();
 });
 
-document.getElementById("login").addEventListener("click", () => {
-    model.innerHTML =
-        `
-         <div class="modelContent">
-            <form id="login-form" enctype="multipart/form-data">
-                <h1>Existing user</h1>
-                <span class="close">&times</span>
-                <h3>Email</h3>
-                <input type="email" name="username" required>
-                <h3>Password</h3>
-                <input type="password" name="password" id="passwordText" required>
-                <input type="checkbox" onclick="showPassword()">Show password
-                <input type="submit" value="Login" name="login">
-                <p id="register"><strong>Not registered? Register here</strong></p>
-            </form>
-        </div>     
-        `;
-    model.style.display = "block";
-    const loginForm = document.getElementById("login-form");
-
-    loginForm.addEventListener("submit", async (evt) => {
-        evt.preventDefault();
-        const data = serializeJson(loginForm);
-        const fetchOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        };
-        const response = await fetch(url + '/auth/login', fetchOptions);
-        const json = await response.json();
-        console.log('login response', json);
-        if (!json.user) {
-            alert(json.message);
-        } else {
-            sessionStorage.setItem('token', json.token);
-            console.log(json.user.user_name);
-            model.style.display = "none";
-        }
-    });
-    close();
-
-    document.getElementById("register").addEventListener("click", () => {
-        model.innerHTML =
-            `
-            
-           <div class="modelContent">
-                <form id="register-form" enctype="multipart/form-data">
-                    <h1>New user</h1>
-                    <span class="close">&times</span>
-                    <h3>First name</h3>
-                    <input type="text" name="firstname" required>
-                    <h3>Last name</h3>
-                    <input type="text" name="lastname" placeholder="optional" >
-                    <h3>Email</h3>
-                    <input type="email" name="email" required>
-                    <h3>Username</h3>
-                    <input type="text" name="username" required>
-                    <h3>Password</h3>
-                    <input type="password" name="password" id="passwordText" required>
-                    <input type="checkbox" onclick="showPassword()">Show password
-                    <h3>Profile picture</h3>
-                    <input type="file" name="profile" required>
-                    <input type="submit" value="Register" name="submit">
-                </form>
-                </div>
-           `;
-        const registerForm = document.getElementById("register-form");
-
-        registerForm.addEventListener("submit", async (evt) => {
-            evt.preventDefault();
-            const data = new FormData(registerForm);
-            const fetchOptions = {
-                method: 'POST',
-                body: data,
-            };
-            const response = await fetch(url + "/auth/register", fetchOptions);
-            const json = await response.json();
-            console.log(json);
-            model.style.display = "none";
-        });
-        close();
-    });
-});
-
 function close() {
     document.getElementsByClassName("close")[0].addEventListener("click", () => {
         model.style.display = "none";
@@ -216,28 +256,39 @@ function showPassword() {
     }
 }
 
-function showProfile() {
-    model.innerHTML =
-        `
+const showProfile = async (id) => {
+    try {
+
+        const response = await fetch (url + "/user/" + id);
+        const result = await response.json();
+        console.log(result);
+
+        model.innerHTML =
+            `
         <div class="modelContent">
-            <h1>Jenna's profile</h1>
+            <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
-            <h3>@Jenna</h3>
-            <p>Jenna Rowling</p>
-            <img src="img/prof.jpg" width="175px" height="250px">
+            <h3>@${result.user_name}</h3>
+            <img src="img/${result.user_picture}" width="150px" height="200px">
             <div id="bioTextSmall">
                     <h3>Bio</h3>
-                    <i>"Goats are like mushrooms, if you shoot a duck, I'm scared of toasters"</i>
+                    <i>${result.user_bio}</i>
             </div>
         </div>
         `;
-    model.style.display = "block";
-    close();
+
+        model.style.display = "block";
+        close();
+    } catch (e) {
+        console.log(e);
+    }
+
 }
 
 function showDropDown() {
     document.getElementById("dropDownContent").classList.toggle("hidden");
 }
+
 
 function getTrending() {
 
