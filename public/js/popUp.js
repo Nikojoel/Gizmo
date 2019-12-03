@@ -22,7 +22,7 @@ const getPosts = async (url) => {
                 <img src="img/${it.post_file}" alt="paskaa" width="150" height="150">
                 <h3>${it.post_title}</h3>
             </a>
-            <a id="postProfile" onclick=showProfile()>
+            <a id="postProfile" onclick="showProfile"()>
                 <img src="img/${it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
             </a>
             <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
@@ -36,6 +36,7 @@ const getPosts = async (url) => {
 };
 
 getPosts(url + "/post");
+
 
 footer.innerHTML =
     `
@@ -78,9 +79,9 @@ aside.innerHTML =
                 <li id="sort" onclick="showDropDown()">
                     <a><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Sort</a>
                     <div class="hidden" id="dropDownContent">
-                        <a href="index.html">Most voted</a>
-                        <a href="index.html">Trending</a>
-                        <a href="index.html">New</a>
+                        <a href="index.html" onclick="getMostVoted()">Most voted</a>
+                        <a href="index.html" onclick="getTrending()">Trending</a>
+                        <a href="index.html" onclick="getNew()">New</a>
                   </div>
                 </li>
             </ul>
@@ -113,7 +114,7 @@ document.getElementById("login").addEventListener("click", () => {
                 <h1>Existing user</h1>
                 <span class="close">&times</span>
                 <h3>Email</h3>
-                <input type="email" name="email" required>
+                <input type="email" name="username" required>
                 <h3>Password</h3>
                 <input type="password" name="password" id="passwordText" required>
                 <input type="checkbox" onclick="showPassword()">Show password
@@ -123,6 +124,29 @@ document.getElementById("login").addEventListener("click", () => {
         </div>     
         `;
     model.style.display = "block";
+    const loginForm = document.getElementById("login-form");
+
+    loginForm.addEventListener("submit", async (evt) => {
+        evt.preventDefault();
+        const data = serializeJson(loginForm);
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        };
+        const response = await fetch(url + '/auth/login', fetchOptions);
+        const json = await response.json();
+        console.log('login response', json);
+        if (!json.user) {
+            alert(json.message);
+        } else {
+            sessionStorage.setItem('token', json.token);
+            console.log(json.user.user_name);
+            model.style.display = "none";
+        }
+    });
     close();
 
     document.getElementById("register").addEventListener("click", () => {
@@ -151,6 +175,7 @@ document.getElementById("login").addEventListener("click", () => {
                 </div>
            `;
         const registerForm = document.getElementById("register-form");
+
         registerForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
             const data = new FormData(registerForm);
@@ -161,6 +186,7 @@ document.getElementById("login").addEventListener("click", () => {
             const response = await fetch(url + "/auth/register", fetchOptions);
             const json = await response.json();
             console.log(json);
+            model.style.display = "none";
         });
         close();
     });
@@ -229,4 +255,16 @@ function showProfile() {
 
 function showDropDown() {
     document.getElementById("dropDownContent").classList.toggle("hidden");
+}
+
+function getTrending() {
+
+}
+
+function getNew() {
+
+}
+
+function getMostVoted() {
+
 }
