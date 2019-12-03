@@ -33,6 +33,7 @@ passport.use(new JWTStrategy({
 
     },
     (jwtPayload, done) => {
+    //console.log('payload', jwtPayload);
                  done(null, jwtPayload);
     }
 ));

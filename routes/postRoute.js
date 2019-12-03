@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
 const postController = require('../controllers/postController');
+const passport = require('passport');
 
 router.get('/', postController.get_all_post);
 

@@ -38,7 +38,7 @@ const getPost = async (id) => {
         const options = {
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            },
+            }
         };
         const response = await fetch (url + "/post/" + id, options);
         const result = await response.json();

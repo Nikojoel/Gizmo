@@ -12,10 +12,12 @@ const getAllUsers = async () => {
 };
 
 const getUser = async (params) => {
+    console.log('params?', params);
     try{
         const [rows] = await promisePool.execute('SELECT * FROM user WHERE user_id = ?',
             params,
         );
+        delete rows[0].user_password;
         return rows;
     } catch (e) {
         return {error: 'db error'}
