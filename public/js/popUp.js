@@ -10,44 +10,56 @@ const footer = document.getElementsByClassName("footer")[0];
 
 footer.innerHTML =
     `
-    <p><strong>Developed by Niko Holopainen, Jalmari Espo, Enar Mariinsky</strong></p>
+    <div id="names">
+    <a>Developed by Niko Holopainen, Jalmari Espo, Enar Mariinsky</a>
+    </div>
+    <div id="footerLinks">
     <ul>
         <li id="github">
         <a href="https://github.com/">GitHub</a>
         </li>
+        <li id="twitter">
+        <a href="https://twitter.com">Twitter</a>
+        </li>
+        <li id="instagram">
+        <a href="https://instagram.com">Instagram</a>
+        </li>
     </ul>
+    </div>
     `;
 
 header.innerHTML =
     `
+    <div>
+        <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
+    </div>
     <div id="login">
-        <p><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Login/Register</p>
+        <a id="loginImg"><img src="img/icons/profile.png" width="48px" height="48px">Login/Register</a>
     </div>
     `;
 
 
 aside.innerHTML =
     `
-    <h1>Sticky</h1>
             <div id="newPostBar">
-                <p><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">New post</p>
+                <p id="newPost"><img src="img/icons/new_post.png">New post</p>
             </div>
             <ul>
                 <li>
-                    <img src="img/ic_warning_black_48dp.png" width="24px" height="24px">
+                    <img src="img/icons/search.png" width="36px" height="36px">
                     <input type="text" placeholder="Search...">
                 </li>
                 <li id="home">
-                    <a href="index.html"><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Home</a>
+                    <a href="index.html"><img src="img/icons/home.png" width="36px" height="36px">Home</a>
                 </li>
                 <li id="profile">
-                    <a href="profile.html"><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Profile</a>
+                    <a href="profile.html"><img src="img/icons/profile.png" width="36px" height="36px">Profile</a>
                 </li>
                 <li id="votes">
-                    <a href="votes.html"><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Votes</a>
+                    <a href="votes.html"><img src="img/icons/votes.png" width="30px" height="30px">Votes</a>
                 </li>
                 <li id="sort" onclick="showDropDown()">
-                    <a><img src="img/ic_warning_black_48dp.png" width="24px" height="24px">Sort</a>
+                    <a><img src="img/icons/sort.png" width="36px" height="36px">Sort</a>
                     <div class="hidden" id="dropDownContent">
                         <a href="index.html" onclick="getMostVoted()">Most voted</a>
                         <a href="index.html" onclick="getTrending()">Trending</a>

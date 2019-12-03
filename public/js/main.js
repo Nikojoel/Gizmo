@@ -21,7 +21,7 @@ const getPosts = async (url) => {
                 <img src="img/${it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
             </div>
             <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
-        
+
     </li>
     `;
         });
@@ -44,6 +44,26 @@ const getPost = async (id) => {
         const result = await response.json();
         console.log(result);
         ul.innerHTML = "";
+        main.innerHTML =
+            `
+            <h1>Post</h1>
+            <div>
+                <img src="img/${result.user_picture}" class="profPic"><p>by ${result.user_name}</p>
+                <h2>${result.post_title}</h2>
+                <div id="postPic">
+                    <img src="img/${result.post_file}" width="100%">
+                </div>
+                <p><strong>${result.post_text}</strong></p>
+                <div id="postVotes">
+                    <img src="img/icons/thumb_up.png"<p>${result.count_vote}</p>
+                </div>
+                <p>number of comments ${result.count_comments}</p>
+            </div>
+            <form id="comment-form" enctype="multipart/form-data">
+                <input type="text">
+                <input type="submit" value="Comment">
+            </form>
+            `;
     } catch (e) {
         console.log(e);
     }
