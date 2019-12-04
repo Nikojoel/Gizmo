@@ -204,8 +204,14 @@ h1 {
 
 #postPic {
     width: 50%;
-
 }
+
+.votePic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
 
 
 

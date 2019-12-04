@@ -39,7 +39,10 @@ const getProfile = async () => {
     } catch (e) {
         main.innerHTML =
             `
-            <p>Something went wrong</p>
+        <div class="errorPic">
+            <img src="img/icons/down_face.png">
+            <h3>Please login to use this feature</h3>
+        </div>
             `;
         console.log(e);
     }

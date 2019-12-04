@@ -254,17 +254,39 @@ document.getElementById("newPostBar").addEventListener("click", () => {
     model.innerHTML =
         `
         <div class="modelContent">
-                    <h1>New post</h1>
-                    <span class="close">&times</span>
-                    <h3>Title</h3>
-                    <input type="text" id="postTitle" required="">
-                    <h3>Text</h3>
-                    <input type="text" id="postText" required="">
-                    <h3>Picture</h3>
-                    <input type="file" id="postFile" required="">
-                    <input type="submit" value="Post" id="postButton">
-                </div>
+            <form id="post-form" enctype="multipart/form-data">
+                <h1>New post</h1>
+                <span class="close">&times</span>
+                <h3>Title</h3>
+                <input type="text" name="post_title" required="">
+                <h3>Text</h3>
+                <input type="text" name="post_text" required="">
+                <h3>Picture</h3>
+                <input type="file" name="post_file" required="">
+                <input type="submit" value="Post" id="postButton">
+            </form>
+        </div>
         `;
+    const postForm = document.getElementById("post-form");
+    postForm.addEventListener("submit", async (evt) => {
+       evt.preventDefault();
+       try {
+           const options = {
+               method: 'POST',
+               headers: {
+                   'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+               }
+           };
+           const response = await fetch (url + "/post", options);
+           const result = await response.json();
+           console.log(result);
+
+           //location.reload();
+       } catch (e) {
+         console.log(e);
+       }
+
+    });
     model.style.display = "block";
     close();
 });
@@ -308,12 +330,10 @@ function editProfile () {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
-        // async ->
-
-
-
-
-        location.reload();
+        const response = await fetch (url + "/jotain", options);
+        const result = await response.json();
+        console.log(result);
+        //location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -337,13 +357,19 @@ function showDropDown() {
 
 
 function getTrending() {
-
+    /*
+    getPosts(trending url);
+     */
 }
 
 function getNew() {
-
+    /*
+    getPosts(new url);
+    */
 }
 
 function getMostVoted() {
-
+    /*
+    getPosts(most voted url);
+    */
 }
