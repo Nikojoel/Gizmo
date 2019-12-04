@@ -47,6 +47,7 @@ const getUserLogin = async (params) => {
 };
 
 const updateProfile = async (params) => {
+    console.log(params);
     try {
         const [rows] = promisePool.execute(
             'UPDATE user SET user_name = ?, user_bio= ?, user_picture = ? WHERE user_id = ?',

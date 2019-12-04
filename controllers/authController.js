@@ -50,6 +50,7 @@ const user_register = async (req, res, next) => {
     }
 };
 const update_profile = async (req, res, next) => {
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log('user create error', errors);
