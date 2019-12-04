@@ -12,6 +12,7 @@ const get_post = async (req, res) => {
 };
 
 const add_post = async (req, res) => {
+    console.log(req.body);
     const params = [
         req.user.user_id,
         req.body.post_title,
