@@ -15,11 +15,11 @@ const getPosts = async (url, route) => {
     <li>
         <div>
             <div onclick="getPost(${it.post_id})">
-                <img src="img/${it.post_file}" alt="paskaa" width="150" height="150">
+                <img src="${url + "/" + it.post_file}" alt="paskaa" width="150" height="150">
                 <h3>${it.post_title}</h3>
             </div>
             <div id="postProfile" onclick="showProfile(${it.user_id})">
-                <img src="img/${it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
+                <img src="${url + "/" + it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
             </div>
             <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
 

@@ -345,13 +345,15 @@ function editProfile () {
     editForm.addEventListener("submit", async (evt) => {
         evt.preventDefault();
         try {
+            const data = new FormData(editForm);
             const options = {
                 method: 'PUT',
+                body: data,
                 headers: {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
-        const response = await fetch (url + "/jotain", options);
+        const response = await fetch (url + "/auth/update", options);
         const result = await response.json();
         console.log(result);
         //location.reload();
