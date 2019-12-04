@@ -44,31 +44,53 @@ const getPost = async (id) => {
         const response = await fetch (url + "/post/" + id, options);
         const result = await response.json();
         console.log(result);
+
         ul.innerHTML = "";
         main.innerHTML =
             `
-            <h1>Post</h1>
-            <div>
-                <img src="img/${result.user_picture}" class="profPic"><p>by ${result.user_name}</p>
-                <h2>${result.post_title}</h2>
+            <div id="postContent">
+                <img src="${url + "/" + result.post[0].user_picture}" class="profPic"><p>by ${result.post[0].user_name}</p>
+                <h2>${result.post[0].post_title}</h2>
                 <div id="postPic">
-                    <img src="img/${result.post_file}" width="100%">
+                    <img src="${url + "/" + result.post[0].post_file}" width="100%">
                 </div>
-                <p><strong>${result.post_text}</strong></p>
+                <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
-                    <img src="img/icons/thumb_up.png"<p>${result.count_vote}</p>
+                    <img src="img/icons/thumb_up.png"<p>${result.post[0].count_vote}</p>
+                    <img src="img/icons/message.png"<p>${result.post[0].count_comments}</p>
                 </div>
-                <p>number of comments ${result.count_comments}</p>
             </div>
+            
             <form id="comment-form" enctype="multipart/form-data">
                 <input type="text">
                 <input type="submit" value="Comment">
             </form>
+            <h1>Comments</h1>
             `;
+        result.commets.forEach(it => {
+            main.innerHTML +=
+                `
+            <div>
+                <img src="${url + "/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
+            </div>
+                `;
+           console.log(it);
+        });
+        const commentForm = document.getElementById("comment-form");
+        commentForm.addEventListener("submit", async (evt) => {
+           evt.preventDefault();
+           try {
+               // TODO
+           } catch (e) {
+             console.log(e);
+           }
+        });
     } catch (e) {
         console.log(e);
     }
 };
+
+
 
 
 

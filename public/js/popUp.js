@@ -297,16 +297,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
             }
         });
     } else {
-        model.innerHTML =
-            `
-        <div class="modelContent">
-        <span class="close">&times</span>
-            <div class="errorPic">
-                <img src="img/icons/down_face.png">
-                <h3>Please login to use this feature</h3>
-            </div>
-        </div>
-            `;
+        errorModel();
     }
     model.style.display = "block";
     close();
@@ -356,7 +347,7 @@ function editProfile () {
         const response = await fetch (url + "/auth/update", options);
         const result = await response.json();
         console.log(result);
-        //location.reload();
+        location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -378,6 +369,20 @@ function showDropDown() {
     document.getElementById("dropDownContent").classList.toggle("hidden");
 }
 
+function errorModel() {
+    model.innerHTML =
+        `
+    <div class="modelContent">
+        <span class="close">&times</span>
+        <div class="errorPic">
+            <img src="img/icons/down_face.png">
+            <h3>Please login to use this feature</h3>
+        </div>
+    </div>
+        `;
+    model.style.display = "block";
+    close();
+}
 
 function getTrending() {
     /*
