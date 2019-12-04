@@ -37,13 +37,6 @@ const getProfile = async () => {
             `;
     }
     } catch (e) {
-        main.innerHTML =
-            `
-        <div class="errorPic">
-            <img src="img/icons/down_face.png">
-            <h3>Please login to use this feature</h3>
-        </div>
-            `;
         console.log(e);
     }
 };

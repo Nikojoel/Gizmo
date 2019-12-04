@@ -259,8 +259,9 @@ aside.innerHTML =
     `;
 
 document.getElementById("newPostBar").addEventListener("click", () => {
-    model.innerHTML =
-        `
+    if (sessionStorage.getItem('token') != null) {
+        model.innerHTML =
+            `
         <div class="modelContent">
             <form id="post-form" enctype="multipart/form-data">
                 <h1>New post</h1>
@@ -275,27 +276,38 @@ document.getElementById("newPostBar").addEventListener("click", () => {
             </form>
         </div>
         `;
-    const postForm = document.getElementById("post-form");
-    postForm.addEventListener("submit", async (evt) => {
-       evt.preventDefault();
-       try {
-           const data = new FormData(postForm);
-           const options = {
-               method: 'POST',
-               body: data,
-               headers: {
-                   'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-               }
-           };
-           const response = await fetch (url + "/post", options);
-           const result = await response.json();
-           console.log(result);
-           location.reload();
-       } catch (e) {
-         console.log(e);
-       }
-
-    });
+        const postForm = document.getElementById("post-form");
+        postForm.addEventListener("submit", async (evt) => {
+            evt.preventDefault();
+            try {
+                const data = new FormData(postForm);
+                const options = {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                    }
+                };
+                const response = await fetch (url + "/post", options);
+                const result = await response.json();
+                console.log(result);
+                location.reload();
+            } catch (e) {
+                console.log(e);
+            }
+        });
+    } else {
+        model.innerHTML =
+            `
+        <div class="modelContent">
+        <span class="close">&times</span>
+            <div class="errorPic">
+                <img src="img/icons/down_face.png">
+                <h3>Please login to use this feature</h3>
+            </div>
+        </div>
+            `;
+    }
     model.style.display = "block";
     close();
 });

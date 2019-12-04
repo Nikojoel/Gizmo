@@ -3,9 +3,10 @@
 const ul = document.querySelector('.main ul');
 const main = document.getElementsByClassName("main")[0];
 
-const getPosts = async (url) => {
+
+const getPosts = async (url, route) => {
     try {
-        const response = await fetch (url);
+        const response = await fetch (url + route);
         const result = await response.json();
         console.log(result);
 
@@ -30,7 +31,7 @@ const getPosts = async (url) => {
     }
 };
 
-getPosts(url + "/post");
+getPosts(url, "/post");
 
 
 const getPost = async (id) => {

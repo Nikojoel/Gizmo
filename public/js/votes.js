@@ -1,6 +1,6 @@
 'use strict';
 
-const ul = document.querySelector(".main ul");
+const main = document.getElementsByClassName("main")[0];
 
 const getVotes = async () => {
     try {
@@ -13,7 +13,14 @@ const getVotes = async () => {
         const response = await fetch(url + "/post/liked", options);
         const result = await response.json();
         console.log(result);
-
+        main.innerHTML =
+            `
+            <h1>Your votes</h1>
+            <ul>
+            
+            </ul>
+            `;
+        const ul = document.querySelector(".main ul");
         result.forEach(it => {
             ul.innerHTML +=
             `
@@ -28,13 +35,6 @@ const getVotes = async () => {
         });
 
     } catch (e) {
-        main.innerHTML =
-            `
-        <div id="errorPic">
-            <img src="img/icons/down_face.png">
-            <h3>Please login to use this feature</h3>
-        </div>
-            `;
         console.log(e);
     }
 };
