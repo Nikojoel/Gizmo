@@ -31,24 +31,28 @@ const createHeader = async () => {
 
         loginForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
-            const data = serializeJson(loginForm);
-            const fetchOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            };
-            const response = await fetch(url + '/auth/login', fetchOptions);
-            const json = await response.json();
-            console.log('login response', json);
-            if (!json.user) {
-                alert(json.message);
-            } else {
-                sessionStorage.setItem('token', json.token);
-                console.log(json.user.user_name);
-                model.style.display = "none";
-                location.reload();
+            try {
+                const data = serializeJson(loginForm);
+                const fetchOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                };
+                const response = await fetch(url + '/auth/login', fetchOptions);
+                const json = await response.json();
+                console.log('login response', json);
+                if (!json.user) {
+                    alert(json.message);
+                } else {
+                    sessionStorage.setItem('token', json.token);
+                    console.log(json.user.user_name);
+                    model.style.display = "none";
+                    location.reload();
+                }
+            } catch (e) {
+                console.log(e);
             }
         });
         close();
@@ -82,15 +86,19 @@ const createHeader = async () => {
 
             registerForm.addEventListener("submit", async (evt) => {
                 evt.preventDefault();
-                const data = new FormData(registerForm);
-                const fetchOptions = {
-                    method: 'POST',
-                    body: data,
-                };
-                const response = await fetch(url + "/auth/register", fetchOptions);
-                const json = await response.json();
-                console.log(json);
-                model.style.display = "none";
+                try {
+                    const data = new FormData(registerForm);
+                    const fetchOptions = {
+                        method: 'POST',
+                        body: data,
+                    };
+                    const response = await fetch(url + "/auth/register", fetchOptions);
+                    const json = await response.json();
+                    console.log(json);
+                    model.style.display = "none";
+                } catch (e) {
+                    console.log(e);
+                }
             });
             close();
         });
@@ -271,8 +279,10 @@ document.getElementById("newPostBar").addEventListener("click", () => {
     postForm.addEventListener("submit", async (evt) => {
        evt.preventDefault();
        try {
+           const data = new FormData(postForm);
            const options = {
                method: 'POST',
+               body: data,
                headers: {
                    'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                }
@@ -280,8 +290,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
            const response = await fetch (url + "/post", options);
            const result = await response.json();
            console.log(result);
-
-           //location.reload();
+           location.reload();
        } catch (e) {
          console.log(e);
        }
