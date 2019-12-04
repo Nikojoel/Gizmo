@@ -15,8 +15,10 @@ router.post('/register',upload.single('profile'),[
     body('lastname', 'not a valid lastname').matches('([A-Za-z])'),
     body('password', 'at least one upper case letter').matches('(?=.*[A-Z]).{8,}'),
     sanitizeBody('name').escape(),
-
 ], authController.user_register);
+router.put('/', upload.single('profile'), [
+    body('username', 'minimum 3 characters').isLength({min: 3})
+]);
    // authController.login,
 
 
