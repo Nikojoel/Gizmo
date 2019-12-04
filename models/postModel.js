@@ -23,7 +23,7 @@ const getPost = async (params) => {
         const [rows] = await promisePool.execute(
             'SELECT post.*, user.user_name, user.user_picture, ' +
             '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments,' +
-            '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote ' +
+            '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) AS count_vote ' +
             'FROM post ' +
             'JOIN user ON user.user_id = post.post_owner ' +
             'WHERE post.post_id = ?',
