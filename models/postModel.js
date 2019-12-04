@@ -29,8 +29,12 @@ const getPost = async (params) => {
             'WHERE post.post_id = ?',
             params,
         );
-
-        return rows;
+        console.log(params);
+        const [comments] = await promisePool.execute(
+            'SELECT COMMENT.*, user.user_name FROM comment ' +
+            'JOIN user ON comment_owner_id = user_id WHERE comment_post_id = ?',
+            params)
+        return {post:rows, commets: comments};
     }  catch (e) {
         return {error: 'db error'};
     }
