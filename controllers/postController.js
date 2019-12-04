@@ -8,7 +8,6 @@ const get_all_post = async (req, res) => {
 
 const get_post = async (req, res) => {
     const [post] = await postModel.getPost([req.params.id]);
-    console.log(req.user);
     await res.json(post);
 };
 
@@ -23,9 +22,14 @@ const add_post = async (req, res) => {
     await res.json(response);
 };
 
+const get_liked = async (req, res) => {
+    const [response] = await postModel.getLikedPosts([req.user.user_id]);
+    await res.json(response);
+};
 
 module.exports = {
     get_all_post,
     get_post,
     add_post,
+    get_liked,
 };

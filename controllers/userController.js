@@ -25,9 +25,10 @@ const add_user = async (req, res) => {
 };
 
 const get_profile = async (req, res) => {
+    console.log(req.user);
     const [user] = await userModel.getUser([req.user.user_id]);
     await res.json(user);
-}
+};
 
 
 module.exports = {
