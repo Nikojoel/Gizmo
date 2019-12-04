@@ -23,7 +23,7 @@ const add_post = async (req, res) => {
 };
 
 const get_liked = async (req, res) => {
-    const [response] = await postModel.getLikedPosts([req.user.user_id]);
+    const response = await postModel.getLikedPosts([req.user.user_id]);
     await res.json(response);
 };
 
