@@ -50,7 +50,7 @@ const addPost = async (params) => {
 const getLikedPosts = async (params) => {
     console.log(params);
   try {
-      const [rows] = await  promisePool.execute('SELECT vote.*, post.*, user_name FROM vote ' +
+      const [rows] = await  promisePool.execute('SELECT vote.*, post.*, user_name, user_picture FROM vote ' +
           'JOIN post ON post_id = vote_post_id ' +
           'JOIN user ON post_owner = user_id ' +
           'WHERE vote_owner_id = ?;', params);
