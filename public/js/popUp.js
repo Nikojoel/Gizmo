@@ -97,6 +97,22 @@ const createHeader = async () => {
     });
 };
 
+const logOut = async () => {
+    try {
+        const options = {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+            }
+        };
+        const response = await fetch (url + "/auth/logout", options);
+        const result = await response.json();
+        console.log(result);
+        sessionStorage.removeItem("token");
+        window.location.replace("index.html")
+    } catch (e) {
+        console.log(e);
+    }
+};
 
 const checkToken = async () => {
     if (sessionStorage.getItem('token') != null) {
@@ -120,7 +136,7 @@ const checkToken = async () => {
                     <img src="${url + "/" + result.user_picture}" class="profPic">
                     <h3>${result.user_name}</h3>
                     </a>
-                    <a href="${url}/auth/logout">Log out</a>
+                    <img src="img/icons/home.png" onclick="logOut()">
                 </div>
                 `;
         } catch (e) {
@@ -142,8 +158,47 @@ const checkToken = async () => {
 
 checkToken();
 
+const showProfile = async (id) => {
+    try {
+        const response = await fetch (url + "/user/" + id);
+        const result = await response.json();
+        console.log(result);
+        if (`${result.user_bio}` === "null") {
+            model.innerHTML =
+        `
+        <div class="modelContent">
+            <h1>${result.user_name}'s profile</h1>
+            <span class="close">&times</span>
+            <h3>@${result.user_name}</h3>
+            <img src="img/${result.user_picture}" width="150px" height="200px">
+            <div id="bioTextSmall">
+            <h3>Bio</h3>
+            <i>This bio is empty : (</i>
+            </div>
+        </div>
+        `;
+        } else {
+        model.innerHTML =
+        `
+        <div class="modelContent">
+            <h1>${result.user_name}'s profile</h1>
+            <span class="close">&times</span>
+            <h3>@${result.user_name}</h3>
+            <img src="img/${result.user_picture}" width="150px" height="200px">
+            <div id="bioTextSmall">
+            <h3>Bio</h3>
+            <i>${result.user_bio}</i>
+            </div>
+        </div>
+        `;
+        }
+        model.style.display = "block";
+        close();
+    } catch (e) {
+        console.log(e);
+    }
 
-
+};
 
 footer.innerHTML =
     `
@@ -227,8 +282,8 @@ function close() {
 }
 
 function editProfile () {
-        model.innerHTML =
-            `
+    model.innerHTML =
+        `
             <div class="modelContent">
                 <form id="edit-form" enctype="multipart/form-data">
                     <h1>Edit profile</h1>
@@ -243,8 +298,28 @@ function editProfile () {
                 </form>
             </div>
             `;
-        model.style.display = "block";
-        close();
+    const editForm = document.getElementById("edit-form");
+    editForm.addEventListener("submit", async (evt) => {
+        evt.preventDefault();
+        try {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                }
+            };
+        // async ->
+
+
+
+
+        location.reload();
+        } catch (e) {
+            console.log(e);
+        }
+    });
+    model.style.display = "block";
+    close();
 }
 
 function showPassword() {
@@ -254,35 +329,6 @@ function showPassword() {
     } else {
         pwText.type = "password";
     }
-}
-
-const showProfile = async (id) => {
-    try {
-
-        const response = await fetch (url + "/user/" + id);
-        const result = await response.json();
-        console.log(result);
-
-        model.innerHTML =
-            `
-        <div class="modelContent">
-            <h1>${result.user_name}'s profile</h1>
-            <span class="close">&times</span>
-            <h3>@${result.user_name}</h3>
-            <img src="img/${result.user_picture}" width="150px" height="200px">
-            <div id="bioTextSmall">
-                    <h3>Bio</h3>
-                    <i>${result.user_bio}</i>
-            </div>
-        </div>
-        `;
-
-        model.style.display = "block";
-        close();
-    } catch (e) {
-        console.log(e);
-    }
-
 }
 
 function showDropDown() {
