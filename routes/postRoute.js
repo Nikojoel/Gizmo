@@ -10,7 +10,7 @@ router.get('/', postController.get_all_post);
 
 router.get('/:id', postController.get_post);
 
-router.post('/', upload.single('upload'), postController.add_post);
+router.post('/', passport.authenticate('jwt', {session: false}),upload.single('post_file'), postController.add_post);
 
 router.post('/liked', passport.authenticate('jwt', {session: false}) ,postController.get_liked);
 //router.put('/', postController.update_post);

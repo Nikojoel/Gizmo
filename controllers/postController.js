@@ -13,7 +13,7 @@ const get_post = async (req, res) => {
 
 const add_post = async (req, res) => {
     const params = [
-        req.body.post_owner,
+        req.user.user_id,
         req.body.post_title,
         req.body.post_text,
         req.file.filename,
