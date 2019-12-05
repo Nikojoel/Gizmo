@@ -2,16 +2,44 @@
 const pool = require('../database/db.js');
 const promisePool = pool.promise();
 
-const getAllPosts = async () => {
+const getAllPosts = async (params) => {
     try {
-        const [rows] = await promisePool.execute(
-            'SELECT post_id, post_title, post_file, ' +
-            '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
-            '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
-            'user_name , user_id , user_picture ' +
-            'FROM post JOIN user ON ' +
-            'post_owner = user_id '
+        if (params === 'new') {
+            const [rows] = await promisePool.execute(
+                'SELECT post_id, post_title, post_file, ' +
+                '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
+                'user_name , user_id , user_picture ' +
+                'FROM post JOIN user ON ' +
+                'post_owner = user_id ' +
+                'ORDER BY count_vote DESC'
             );
+        } else if (params === 'top'){
+            const [rows] = await promisePool.execute(
+                'SELECT post_id, post_title, post_file, ' +
+                '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
+                'user_name , user_id , user_picture ' +
+                'FROM post JOIN user ON ' +
+                'post_owner = user_id ' +
+                'ORDER BY post_date DESC'
+            );
+        } else if (params === 'trending'){
+            const [rows] = await promisePool.execute('SELECT post., user.user_name, user.user_picture, ' +
+                '(SELECT COUNT() FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) ' +
+                'AS count_vote' +
+                'FROM post' +
+                'JOIN user ON user.user_id = post.post_owner' +
+                'WHERE TIMESTAMPDIFF(DAY, post_date, CURDATE()) <= 30' +
+                'ORDER BY count_vote DESC'
+            );
+        } else {
+            const search = '%' + params + '%';
+            const [rows] = await promisePool.execute(
+            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_text LIKE ? OR user_name LIKE ?', search, search
+            );
+        }
         return rows;
     } catch (e) {
         return {error: 'db error'}
