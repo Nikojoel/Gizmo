@@ -9,9 +9,11 @@ const getPosts = async (url, route) => {
         const response = await fetch (url + route );
         const result = await response.json();
         console.log(result);
+        main.innerHTML = "<ul></ul>";
+        const posts = document.querySelector(".main ul");
         ul.innerHTML = "";
         result.forEach(it => {
-            ul.innerHTML += `
+            posts.innerHTML += `
     <li>
         <div>
             <div id="thumbNail" onclick="getPost(${it.post_id})">
@@ -112,6 +114,91 @@ const getPost = async (id) => {
         console.log(e);
     }
 };
+
+const getVotes = async () => {
+    if (sessionStorage.getItem('token') != null) {
+        try {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                }
+            };
+            const response = await fetch(url + "/post/liked", options);
+            const result = await response.json();
+            console.log(result);
+            main.innerHTML =
+                `
+            <h1>Your votes</h1>
+            <ul>
+            
+            </ul>
+            `;
+            const ul = document.querySelector(".main ul");
+            result.forEach(it => {
+                ul.innerHTML +=
+                    `
+            <li>
+                <div>
+                    <img src="img/${it.post_file}" class="votePic">
+                    <h3>${it.post_title}</h3>
+                    <img src="img/icons/thumb_up.png">
+                </div>
+            </li>
+            `;
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    } else {
+        errorModel();
+    }
+};
+
+const getProfile = async () => {
+    if (sessionStorage.getItem('token') != null) {
+        try {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                }
+            };
+            const response = await fetch(url + "/user/profile", options);
+            const result = await response.json();
+            console.log(result);
+            if (`${result.user_bio}` === "null") {
+                main.innerHTML =
+                    `
+            <h1>${result.user_firstname}'s profile</h1>
+            <h3>@${result.user_name}</h3>
+            <h4>${result.user_firstname} ${result.user_lastname}</h4>
+            <img src="${url + "/" + result.user_picture}" width="50%" height="50%">
+            <h3>Bio</h3>
+            <i>Your bio is empty : (</i>
+            <input type="button" value="Edit profile" onclick="editProfile()">
+            `;
+            } else {
+                main.innerHTML =
+                    `
+            <h1>${result.user_firstname}'s profile</h1>
+            <h3>@${result.user_name}</h3>
+            <h4>${result.user_firstname} ${result.user_lastname}</h4>
+            <img src="${url + "/" + result.user_picture}" width="50%" height="50%">
+            <h3>Bio</h3>
+            <i>${result.user_bio}</i>
+            <input type="button" value="Edit profile" onclick="editProfile()">
+            `;
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    } else {
+        errorModel();
+    }
+};
+
 
 
 

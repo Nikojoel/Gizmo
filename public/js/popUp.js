@@ -244,10 +244,10 @@ aside.innerHTML =
                     <a href="index.html"><img src="img/icons/home.png" width="50px" height="50px">Home</a>
                 </li>
                 <li id="profile">
-                    <a href="profile.html"><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
+                    <a onclick="getProfile()" "><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
                 </li>
                 <li id="votes">
-                    <a href="votes.html"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
+                    <a onclick="getVotes()"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
                 </li>
                 <li id="sort" onclick="showDropDown()">
                     <a><img src="img/icons/sort.png" width="50px" height="50px">Sort</a>
@@ -407,5 +407,4 @@ function getMostVoted() {
 
 function getSearch(searchData) {
     getPosts(url, "/post/search/" + searchData);
-
 }
