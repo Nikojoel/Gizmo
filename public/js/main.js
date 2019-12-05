@@ -9,7 +9,7 @@ const getPosts = async (url, route) => {
         const response = await fetch (url + route );
         const result = await response.json();
         console.log(result);
-
+        ul.innerHTML = "";
         result.forEach(it => {
             ul.innerHTML += `
     <li>
@@ -31,7 +31,7 @@ const getPosts = async (url, route) => {
     }
 };
 
-getPosts(url, "/post/new");
+getPosts(url, "/post/search/new");
 
 
 const getPost = async (id) => {

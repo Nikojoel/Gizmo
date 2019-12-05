@@ -44,7 +44,7 @@ const createHeader = async () => {
                 const json = await response.json();
                 console.log('login response', json);
                 if (!json.user) {
-                    alert(json.message);
+                    alert("Wrong username or password. Try again");
                 } else {
                     sessionStorage.setItem('token', json.token);
                     console.log(json.user.user_name);
@@ -178,7 +178,7 @@ const showProfile = async (id) => {
             <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
             <h3>@${result.user_name}</h3>
-            <img src="img/${result.user_picture}" width="150px" height="200px">
+            <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
             <div id="bioTextSmall">
             <h3>Bio</h3>
             <i>This bio is empty : (</i>
@@ -192,7 +192,7 @@ const showProfile = async (id) => {
             <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
             <h3>@${result.user_name}</h3>
-            <img src="img/${result.user_picture}" width="150px" height="200px">
+            <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
             <div id="bioTextSmall">
             <h3>Bio</h3>
             <i>${result.user_bio}</i>
@@ -236,7 +236,9 @@ aside.innerHTML =
             <ul>
                 <li>
                     <img src="img/icons/search.png" width="36px" height="36px">
-                    <input type="text" placeholder="Search...">
+                    <form id="search-form" name="search" enctype="multipart/form-data">
+                        <input type="text" id="searchText" placeholder="Search..." required>
+                    </form>
                 </li>
                 <li id="home">
                     <a href="index.html"><img src="img/icons/home.png" width="36px" height="36px">Home</a>
@@ -250,13 +252,20 @@ aside.innerHTML =
                 <li id="sort" onclick="showDropDown()">
                     <a><img src="img/icons/sort.png" width="36px" height="36px">Sort</a>
                     <div class="hidden" id="dropDownContent">
-                        <a href="index.html" onclick="getMostVoted()">Most voted</a>
-                        <a href="index.html" onclick="getTrending()">Trending</a>
-                        <a href="index.html" onclick="getNew()">New</a>
+                        <a onclick="getMostVoted()">Most voted</a>
+                        <a onclick="getTrending()">Trending</a>
+                        <a onclick="getNew()">New</a>
                   </div>
                 </li>
             </ul>
     `;
+
+const searchForm = document.getElementById("search-form");
+searchForm.addEventListener("submit",(evt) => {
+    evt.preventDefault();
+    const data = document.getElementById("searchText").value;
+    getSearch(data);
+});
 
 document.getElementById("newPostBar").addEventListener("click", () => {
     if (sessionStorage.getItem('token') != null) {
@@ -267,11 +276,11 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 <h1>New post</h1>
                 <span class="close">&times</span>
                 <h3>Title</h3>
-                <input type="text" name="post_title" required="">
+                <input type="text" name="post_title" required>
                 <h3>Text</h3>
-                <input type="text" name="post_text" required="">
+                <input type="text" name="post_text" required>
                 <h3>Picture</h3>
-                <input type="file" name="post_file" required="">
+                <input type="file" name="post_file" required>
                 <input type="submit" value="Post" id="postButton">
             </form>
         </div>
@@ -385,19 +394,18 @@ function errorModel() {
 }
 
 function getTrending() {
-    /*
-    getPosts(trending url);
-     */
+    getPosts(url, "/post/search/trending");
 }
 
 function getNew() {
-    /*
-    getPosts(new url);
-    */
+    getPosts(url, "/post/search/new");
 }
 
 function getMostVoted() {
-    /*
-    getPosts(most voted url);
-    */
+    getPosts(url, "/post/search/top");
+}
+
+function getSearch(searchData) {
+    getPosts(url, "/post/search/" + searchData);
+
 }
