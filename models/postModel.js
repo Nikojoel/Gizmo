@@ -38,9 +38,11 @@ const getAllPosts = async (params) => {
                 'ORDER BY count_vote DESC'
             );
         } else {
-            const search = '%' + params + '%';
+
+            const search = ['%' + params + '%','%' + params + '%'];
+            console.log('searching?', search);
             const [rows] = await promisePool.execute(
-            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search, search
+            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search
             );
             return rows;
         }
