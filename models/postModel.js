@@ -105,6 +105,19 @@ const addComment = async (params) => {
         return {error: 'failed to add to db'};
     }
 };
+const vote = async (params) => {
+    console.log('voting params', params);
+    try {
+        const [rows] = await promisePool.execute(
+            'INSERT INTO vote' +
+            '(vote_owner_id, vote_post_id, vote_status)' +
+            'VALUES (?, ?, ?)' +
+            'ON DUPLICATE KEY UPDATE  vote_status = NOT vote_status', params);
+        return rows;
+    } catch (e) {
+        return {error: 'db error'};
+    }
+};
 
 module.exports = {
     getAllPosts,
@@ -112,4 +125,5 @@ module.exports = {
     addPost,
     getLikedPosts,
     addComment,
+    vote,
 };
