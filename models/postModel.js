@@ -3,7 +3,7 @@ const pool = require('../database/db.js');
 const promisePool = pool.promise();
 
 const getAllPosts = async (params) => {
-    console.log(params);
+    console.log('all posts params', params);
     try {
         if (params == 'new') {
             const [rows] = await promisePool.execute(
@@ -51,6 +51,7 @@ const getAllPosts = async (params) => {
 };
 
 const getPost = async (params) => {
+    console.log('alive we ride', params);
     try {
         const [rows] = await promisePool.execute(
             'SELECT post.*, user.user_name, user.user_picture, ' +
@@ -61,11 +62,10 @@ const getPost = async (params) => {
             'WHERE post.post_id = ?',
             params,
         );
-        console.log(params);
         const [comments] = await promisePool.execute(
             'SELECT COMMENT.*, user.user_name, user.user_picture FROM comment ' +
             'JOIN user ON comment_owner_id = user_id WHERE comment_post_id = ?',
-            params)
+            params);
         return {post:rows, commets: comments};
     }  catch (e) {
         return {error: 'db error'};
@@ -73,7 +73,6 @@ const getPost = async (params) => {
 };
 
 const addPost = async (params) => {
-    console.log(params);
     try {
         const [rows] = await promisePool.execute('INSERT INTO post (post_owner, post_title, post_text, post_file)  VALUES (?, ?, ?, ?)',
             params,
@@ -85,7 +84,6 @@ const addPost = async (params) => {
 };
 
 const getLikedPosts = async (params) => {
-    console.log(params);
   try {
       const [rows] = await  promisePool.execute('SELECT vote.*, post.*, user_name, user_picture FROM vote ' +
           'JOIN post ON post_id = vote_post_id ' +

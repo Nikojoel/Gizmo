@@ -6,7 +6,7 @@ const main = document.getElementsByClassName("main")[0];
 
 const getPosts = async (url, route) => {
     try {
-        const response = await fetch (url + route);
+        const response = await fetch (url + route );
         const result = await response.json();
         console.log(result);
 
@@ -42,6 +42,7 @@ const getPost = async (id) => {
             }
         };
         const response = await fetch (url + "/post/" + id, options);
+        console.log('response?', response);
         const result = await response.json();
         console.log(result);
 

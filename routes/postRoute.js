@@ -6,7 +6,7 @@ const upload = multer({dest: 'uploads/'});
 const postController = require('../controllers/postController');
 const passport = require('../utils/pass');
 
-router.get('/:search', postController.get_all_post);
+router.get('/search/:search', postController.get_all_post);
 
 router.get('/:id', postController.get_post);
 
