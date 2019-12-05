@@ -9,7 +9,7 @@ const getAllPosts = async (params) => {
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
-                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) AS count_vote, ' +
                 'user_name , user_id , user_picture ' +
                 'FROM post JOIN user ON ' +
                 'post_owner = user_id ' +
@@ -20,7 +20,7 @@ const getAllPosts = async (params) => {
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
-                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id) AS count_vote, ' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) AS count_vote, ' +
                 'user_name , user_id , user_picture ' +
                 'FROM post JOIN user ON ' +
                 'post_owner = user_id ' +
