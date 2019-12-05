@@ -36,6 +36,15 @@ const add_comment = async (req, res) => {
     const response = await  postModel.addComment(params);
     await res.json(response);
 };
+const vote = async (req, res) => {
+  const params = [
+      req.user.user_id,
+      req.body.post_id,
+      1
+  ];
+  const response = await postModel.vote(params);
+  await res.json(response);
+};
 
 module.exports = {
     get_all_post,
@@ -43,4 +52,5 @@ module.exports = {
     add_post,
     get_liked,
     add_comment,
+    vote,
 };
