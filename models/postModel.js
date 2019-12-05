@@ -28,15 +28,17 @@ const getAllPosts = async (params) => {
             );
             return rows;
         } else if (params == 'trending'){
-            const [rows] = await promisePool.execute('SELECT post., user.user_name, user.user_picture, ' +
-                '(SELECT COUNT() FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
-                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) ' +
-                'AS count_vote' +
-                'FROM post' +
-                'JOIN user ON user.user_id = post.post_owner' +
-                'WHERE TIMESTAMPDIFF(DAY, post_date, CURDATE()) <= 30' +
+            const [rows] = await promisePool.execute(
+                'SELECT post.*, user.user_name, user.user_picture, \n' +
+                '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, \n' +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) \n' +
+                'AS count_vote\n' +
+                'FROM post\n' +
+                'JOIN user ON user.user_id = post.post_owner\n' +
+                'WHERE TIMESTAMPDIFF(DAY, post_date, CURDATE()) <= 30\n' +
                 'ORDER BY count_vote DESC'
             );
+            return rows;
         } else {
             const search = ['%' + params + '%','%' + params + '%'];
             console.log('searching?', search);
