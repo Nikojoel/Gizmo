@@ -140,7 +140,7 @@ const getVotes = async () => {
                     `
             <li>
                 <div>
-                    <img src="${url + "/" + it.post_file}" class="profPic">
+                    <img src="${url + "/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
                     <h3>${it.post_title}</h3>
                     <img src="img/icons/thumb_up.png">
                 </div>
