@@ -49,7 +49,7 @@ const getPost = async (id) => {
         console.log('response?', response);
         const result = await response.json();
         console.log(result);
-
+        const postId = id;
         ul.innerHTML = "";
         main.innerHTML =
             `
@@ -67,25 +67,43 @@ const getPost = async (id) => {
             </div>
             
             <form id="comment-form" enctype="multipart/form-data">
-                <input type="text">
+                <input type="text" name="comment"required>
+                <input type="hidden" name="post_id" value="${postId}">
                 <input type="submit" value="Comment">
             </form>
             <h1>Comments</h1>
+            <ul id="comments">
+            
+            </ul>
             `;
+        const commentUl = document.getElementById("comments");
         result.commets.forEach(it => {
-            main.innerHTML +=
-                `
-            <div>
-                <img src="${url + "/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
-            </div>
-                `;
-           console.log(it);
+            commentUl.innerHTML +=
+            `
+            <li>
+                <div>
+                    <img src="${url + "/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
+                </div>
+            </li>
+            `;
         });
         const commentForm = document.getElementById("comment-form");
         commentForm.addEventListener("submit", async (evt) => {
            evt.preventDefault();
            try {
-               // TODO
+               const data = serializeJson(commentForm);
+               const options = {
+                   method: 'POST',
+                   headers: {
+                       'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(data),
+               };
+               const response = await fetch (url + "/post/comment", options);
+               const result = await response.json();
+               console.log(result);
+               getPost(postId);
            } catch (e) {
              console.log(e);
            }
