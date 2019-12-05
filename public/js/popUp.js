@@ -136,14 +136,14 @@ const checkToken = async () => {
             header.innerHTML =
                 `
                 <div>
-                    <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
+                    <a id="logo" href="index.html"> <img src="img/logo.png" width="76px" height="76px"> </a>
                 </div>
-                <div>
+                <div id="loginProfile">
                     <a onclick="getProfile()">
                     <img src="${url + "/" + result.user_picture}" class="profPic">
                     <h3>${result.user_name}</h3>
                     </a>
-                    <img src="img/icons/home.png" onclick="logOut()">
+                    <img id="logOut" src="img/icons/logout.png" width="48px" height="48px" onclick="logOut()">
                 </div>
                 `;
         } catch (e) {
@@ -153,10 +153,10 @@ const checkToken = async () => {
         header.innerHTML =
             `
             <div>
-                <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
+                <a id="logo" href="index.html"> <img src="img/logo.png" width="76px" height="76px"> </a>
             </div>
             <div id="login">
-                <a id="loginImg"><img src="img/icons/profile.png" width="48px" height="48px">Login/Register</a>
+                <a id="loginImg"><img src="img/icons/profile.png" width="50px" height="50px">Login/Register</a>
             </div>
         `;
         createHeader();

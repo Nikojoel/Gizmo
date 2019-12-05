@@ -56,7 +56,8 @@ const getPost = async (id) => {
         main.innerHTML =
             `
             <div id="postContent">
-                <img src="${url + "/" + result.post[0].user_picture}" class="profPic"><p>by ${result.post[0].user_name}</p>
+                <img src="${url + "/" + result.post[0].user_picture}" class="profPic">
+                <p>by ${result.post[0].user_name}</p>
                 <h2>${result.post[0].post_title}</h2>
                 <div id="postPic">
                     <img src="${url + "/" + result.post[0].post_file}" width="100%">
@@ -66,17 +67,19 @@ const getPost = async (id) => {
                     <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id}, 0);" <p>${result.post[0].count_vote}</p>
                     <img src="img/icons/comment.png"<p>${result.post[0].count_comments}</p>
                 </div>
-            </div>
             
+            <div id="postNoComments">
+            <h1>Comments</h1>
             <form id="comment-form" enctype="multipart/form-data">
                 <input type="text" name="comment"required>
                 <input type="hidden" name="post_id" value="${postId}">
                 <input type="submit" value="Comment">
             </form>
-            <h1>Comments</h1>
             <ul id="comments">
             
             </ul>
+            </div>
+            </div>
             `;
         const commentUl = document.getElementById("comments");
         result.commets.forEach(it => {
@@ -182,13 +185,19 @@ const getProfile = async () => {
             } else {
                 main.innerHTML =
                     `
+           <div id="profileContent">
             <h1>${result.user_firstname}'s profile</h1>
+            <div id="profileInfo">
+            <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
             <h3>@${result.user_name}</h3>
             <h4>${result.user_firstname} ${result.user_lastname}</h4>
-            <img src="${url + "/" + result.user_picture}" width="50%" height="50%">
+            </div>
+            <div id="profileBio">
             <h3>Bio</h3>
             <i>${result.user_bio}</i>
+            </div>
             <input type="button" value="Edit profile" onclick="editProfile()">
+            </div>
             `;
             }
         } catch (e) {
