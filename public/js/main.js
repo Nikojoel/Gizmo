@@ -62,7 +62,7 @@ const getPost = async (id) => {
                 <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
                     <img src="img/icons/thumb_up.png"<p>${result.post[0].count_vote}</p>
-                    <img src="img/icons/message.png"<p>${result.post[0].count_comments}</p>
+                    <img src="img/icons/comment.png"<p>${result.post[0].count_comments}</p>
                 </div>
             </div>
             
