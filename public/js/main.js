@@ -26,7 +26,7 @@ const getPosts = async (url, route) => {
                     <p id="userNameSize">by ${it.user_name}</p>
                 </div>
             </div>
-            <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" width="26px" height="26px">${it.count_vote} UPvotes </p>
+            <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)" width="26px" height="26px">${it.count_vote} UPvotes </p>
             <p><img src="img/icons/comment.png" width="26px" height="26px">${it.count_comments} comments</p>  
          </div>
     </li>
@@ -63,7 +63,7 @@ const getPost = async (id) => {
                 </div>
                 <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
-                    <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id});" <p>${result.post[0].count_vote}</p>
+                    <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id}, 0);" <p>${result.post[0].count_vote}</p>
                     <img src="img/icons/comment.png"<p>${result.post[0].count_comments}</p>
                 </div>
             </div>
@@ -105,7 +105,7 @@ const getPost = async (id) => {
                const response = await fetch (url + "/post/comment", options);
                const result = await response.json();
                console.log(result);
-               getPost(postId);
+               getPost(postId, 0);
            } catch (e) {
              console.log(e);
            }
@@ -200,7 +200,7 @@ const getProfile = async () => {
 };
 
 
-const vote = async (id) => {
+const vote = async (id, status) => {
     if (sessionStorage.getItem('token') != null) {
         try {
             const options = {
@@ -214,7 +214,11 @@ const vote = async (id) => {
             const response = await fetch (url + "/post/vote", options);
             const result = await response.json();
             console.log(result);
-            getPost(id);
+            if (status === 0) {
+                getPost(id);
+            } else if (status === 1) {
+                getPosts(url, "/post/search/new");
+            }
         } catch (e) {
             console.log(e);
         }
