@@ -31,7 +31,7 @@ const getPosts = async (url, route) => {
     }
 };
 
-getPosts(url, "/post");
+getPosts(url, "/post/new");
 
 
 const getPost = async (id) => {

@@ -2,6 +2,7 @@
 const postModel = require('../models/postModel');
 
 const get_all_post = async (req, res) => {
+    console.log([req.params.search]);
     const posts = await postModel.getAllPosts([req.params.search]);
     await res.json(posts);
 };

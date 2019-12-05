@@ -3,8 +3,9 @@ const pool = require('../database/db.js');
 const promisePool = pool.promise();
 
 const getAllPosts = async (params) => {
+    console.log(params);
     try {
-        if (params === 'new') {
+        if (params == 'new') {
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
@@ -14,7 +15,8 @@ const getAllPosts = async (params) => {
                 'post_owner = user_id ' +
                 'ORDER BY count_vote DESC'
             );
-        } else if (params === 'top'){
+            return rows;
+        } else if (params == 'top'){
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
@@ -24,7 +26,8 @@ const getAllPosts = async (params) => {
                 'post_owner = user_id ' +
                 'ORDER BY post_date DESC'
             );
-        } else if (params === 'trending'){
+            return rows;
+        } else if (params == 'trending'){
             const [rows] = await promisePool.execute('SELECT post., user.user_name, user.user_picture, ' +
                 '(SELECT COUNT() FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
                 '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) ' +
@@ -39,8 +42,9 @@ const getAllPosts = async (params) => {
             const [rows] = await promisePool.execute(
             'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search, search
             );
+            return rows;
         }
-        return rows;
+
     } catch (e) {
         return {error: 'db error'}
     }
