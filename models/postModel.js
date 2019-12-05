@@ -91,7 +91,7 @@ const getLikedPosts = async (params) => {
       const [rows] = await  promisePool.execute('SELECT vote.*, post.*, user_name, user_picture FROM vote ' +
           'JOIN post ON post_id = vote_post_id ' +
           'JOIN user ON post_owner = user_id ' +
-          'WHERE vote_owner_id = ?;', params);
+          'WHERE vote_owner_id = ? AND vote_status = 1;', params);
       return rows;
   }  catch (e) {
       return {error: 'db error'};
