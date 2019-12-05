@@ -14,15 +14,19 @@ const getPosts = async (url, route) => {
             ul.innerHTML += `
     <li>
         <div>
-            <div onclick="getPost(${it.post_id})">
-                <img src="${url + "/" + it.post_file}" alt="paskaa" width="150" height="150">
-                <h3>${it.post_title}</h3>
+            <div id="thumbNail" onclick="getPost(${it.post_id})">
+                <img id="thumbNailImg" src="${url + "/" + it.post_file}">
             </div>
             <div id="postProfile" onclick="showProfile(${it.user_id})">
-                <img src="${url + "/" + it.user_picture}" class="profPic"><p><strong>by ${it.user_name}</strong></p>
+                <img src="${url + "/" + it.user_picture}" class="profPic">
+                <div id="postDesc">
+                    <h3 id="titleSize">${it.post_title}</h3>
+                    <p id="userNameSize">by ${it.user_name}</p>
+                </div>
             </div>
-            <p><img src="img/ic_warning_black_48dp.png">${it.count_vote} votes <img src="img/ic_warning_black_48dp.png">${it.count_comments} comments</p>
-
+            <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" width="26px" height="26px">${it.count_vote} UPvotes </p>
+            <p><img src="img/icons/comment.png" width="26px" height="26px">${it.count_comments} comments</p>  
+         </div>
     </li>
     `;
         });

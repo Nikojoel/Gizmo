@@ -231,26 +231,26 @@ footer.innerHTML =
 aside.innerHTML =
     `
             <div id="newPostBar">
-                <p id="newPost"><img src="img/icons/new_post.png">New post</p>
+                <p id="newPost"><img src="img/icons/new_post.png" width="64px" height="64px">New post</p>
             </div>
-            <ul>
-                <li>
-                    <img src="img/icons/search.png" width="36px" height="36px">
+            <ul id="stickyList">
+                <li id="search">
+                    <img src="img/icons/search.png" width="50px" height="50px">
                     <form id="search-form" name="search" enctype="multipart/form-data">
-                        <input type="text" id="searchText" placeholder="Search..." required>
+                        <input id="searchText" type="text" placeholder="Search..." required>
                     </form>
                 </li>
                 <li id="home">
-                    <a href="index.html"><img src="img/icons/home.png" width="36px" height="36px">Home</a>
+                    <a href="index.html"><img src="img/icons/home.png" width="50px" height="50px">Home</a>
                 </li>
                 <li id="profile">
-                    <a href="profile.html"><img src="img/icons/profile.png" width="36px" height="36px">Profile</a>
+                    <a href="profile.html"><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
                 </li>
                 <li id="votes">
-                    <a href="votes.html"><img src="img/icons/votes.png" width="30px" height="30px">Votes</a>
+                    <a href="votes.html"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
                 </li>
                 <li id="sort" onclick="showDropDown()">
-                    <a><img src="img/icons/sort.png" width="36px" height="36px">Sort</a>
+                    <a><img src="img/icons/sort.png" width="50px" height="50px">Sort</a>
                     <div class="hidden" id="dropDownContent">
                         <a onclick="getMostVoted()">Most voted</a>
                         <a onclick="getTrending()">Trending</a>
