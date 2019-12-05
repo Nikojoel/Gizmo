@@ -5,7 +5,7 @@ const promisePool = pool.promise();
 const getAllPosts = async (params) => {
     console.log('all posts params', params);
     try {
-        if (params == 'new') {
+        if (params == 'top') {
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
@@ -16,7 +16,7 @@ const getAllPosts = async (params) => {
                 'ORDER BY count_vote DESC'
             );
             return rows;
-        } else if (params == 'top'){
+        } else if (params == 'new'){
             const [rows] = await promisePool.execute(
                 'SELECT post_id, post_title, post_file, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments, ' +
@@ -38,7 +38,6 @@ const getAllPosts = async (params) => {
                 'ORDER BY count_vote DESC'
             );
         } else {
-
             const search = ['%' + params + '%','%' + params + '%'];
             console.log('searching?', search);
             const [rows] = await promisePool.execute(
