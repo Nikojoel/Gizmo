@@ -96,10 +96,19 @@ const getLikedPosts = async (params) => {
       return {error: 'db error'};
   }
 };
+const addComment = async (params) => {
+    try {
+        const [rows] = await promisePool.execute('INSERT INTO comment (comment_owner_id, comment_post_id, comment_text) VALUES (?, ?, ?)',params);
+        return rows;
+    } catch (e) {
+        return {error: 'failed to add to db'};
+    }
+};
 
 module.exports = {
     getAllPosts,
     getPost,
     addPost,
     getLikedPosts,
+    addComment,
 };

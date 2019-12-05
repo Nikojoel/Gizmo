@@ -13,6 +13,8 @@ router.get('/:id', postController.get_post);
 router.post('/', passport.authenticate('jwt', {session: false}),upload.single('post_file'), postController.add_post);
 
 router.post('/liked', passport.authenticate('jwt', {session: false}) ,postController.get_liked);
+
+router.post('/comment', passport.authenticate('jwt', {session: false}) , postController.add_comment);
 //router.put('/', postController.update_post);
 
 //router.delete('/:id', postController.delete_post);
