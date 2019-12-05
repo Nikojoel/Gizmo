@@ -139,7 +139,7 @@ const checkToken = async () => {
                     <a id="logo" href="index.html"> <img src="img/logo.png" width="64px" height="64px"> </a>
                 </div>
                 <div>
-                    <a href="profile.html">
+                    <a onclick="getProfile()">
                     <img src="${url + "/" + result.user_picture}" class="profPic">
                     <h3>${result.user_name}</h3>
                     </a>
