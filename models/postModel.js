@@ -37,7 +37,7 @@ const getAllPosts = async (params) => {
         } else {
             const search = '%' + params + '%';
             const [rows] = await promisePool.execute(
-            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_text LIKE ? OR user_name LIKE ?', search, search
+            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search, search
             );
         }
         return rows;
