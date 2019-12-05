@@ -178,13 +178,15 @@ const getProfile = async () => {
             if (`${result.user_bio}` === "null") {
                 main.innerHTML =
                     `
+            <div id="profileContent">
             <h1>${result.user_firstname}'s profile</h1>
             <h3>@${result.user_name}</h3>
             <h4>${result.user_firstname} ${result.user_lastname}</h4>
-            <img src="${url + "/" + result.user_picture}" width="50%" height="50%">
+            <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
             <h3>Bio</h3>
             <i>Your bio is empty : (</i>
             <input type="button" value="Edit profile" onclick="editProfile()">
+            </div>
             `;
             } else {
                 main.innerHTML =

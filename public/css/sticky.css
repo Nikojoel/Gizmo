@@ -181,11 +181,11 @@ h1 {
     text-decoration: none;
     cursor: pointer;
     display: flex;
+    max-height: 87px;
 }
 
 #postDesc {
-    display: block;
-
+    display: inline-block;
 }
 
 .dropdown-content {
@@ -277,9 +277,7 @@ h1 {
 #userNameSize {
     font-size: 14px;
     font-weight: bold;
-    margin-top: 0;
-    display: flex;
-    padding-left: 25px;
+    padding-left: 55px;
 }
 
 #titleSize {
@@ -291,6 +289,7 @@ h1 {
     padding-top: 5px;
     color: gray;
 }
+
  #stickyList li {
     padding: 10px 0 0 0;
 }
