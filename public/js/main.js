@@ -96,6 +96,7 @@ const getPost = async (id) => {
         commentForm.addEventListener("submit", async (evt) => {
            evt.preventDefault();
            try {
+               if (sessionStorage.getItem('token') != null) {
                const data = serializeJson(commentForm);
                const options = {
                    method: 'POST',
@@ -109,8 +110,11 @@ const getPost = async (id) => {
                const result = await response.json();
                console.log(result);
                getPost(postId, 0);
+               } else {
+                   errorModel();
+               }
            } catch (e) {
-             console.log(e);
+               console.log(e);
            }
         });
     } catch (e) {
