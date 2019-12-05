@@ -7,7 +7,6 @@ const aside = document.getElementsByClassName("sidebar")[0];
 const header = document.getElementsByClassName("header")[0];
 const footer = document.getElementsByClassName("footer")[0];
 
-
 const createHeader = async () => {
     document.getElementById("login").addEventListener("click", () => {
         model.innerHTML =
