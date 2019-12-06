@@ -152,7 +152,7 @@ const getVotes = async () => {
             console.log(result);
             main.innerHTML =
                 `
-            <h1>Your votes</h1>
+            <h1 id="voteHeader">Your votes</h1>
             <ul>
             
             </ul>
@@ -162,11 +162,11 @@ const getVotes = async () => {
             result.forEach(it => {
                 ul.innerHTML +=
                     `
-            <li>
+            <li id="voteStyle">
                 <div>
                     <img src="${url + "/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
-                    <h3>${it.post_title}</h3>
-                    <img src="img/icons/thumb_up.png">
+                    <h3 id="yourVotesText">${it.post_title}</h3>
+                    <img id="voteThumb" src="img/icons/thumb_up.png">
                 </div>
             </li>
             `;
