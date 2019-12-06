@@ -100,6 +100,7 @@ const createHeader = async () => {
                     // Fetch
                     const response = await fetch(url + "/auth/register", options);
                     const json = await response.json();
+                    console.log(json);
                     model.style.display = "none";
                 } catch (e) {
                     console.log(e);

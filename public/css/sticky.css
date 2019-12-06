@@ -23,7 +23,7 @@ body {
     padding: 1rem 0 3.1rem 0;
     background-color: #fff;
     box-sizing: border-box;
-    width: calc(80% - 8rem);
+    width: calc(80% - 1rem);
     height: 100%;
     flex-wrap: wrap;
 }
@@ -37,12 +37,12 @@ body {
     top: 0;
     background-color: #fff;
     padding: 3.1rem 0 3.1rem 0;
-    margin-left: 8rem;
+    margin-left: 1rem;
 }
 
 .header{
     border-bottom: 1px solid gray;
-    padding: 1rem;
+    padding-top: 1rem;
     background-color: #fff;
     width: 100%;
     text-align: center;
@@ -102,7 +102,9 @@ body {
     top: 50%;
     right: 50%;
 }
-
+.modelContent img {
+    width: 100%;
+}
 
 .modelContent p {
     border-bottom: 1px solid black;
@@ -134,12 +136,15 @@ body {
 
 
 ul {
-    padding-left: 0;
+    margin: auto;
     list-style: none;
 }
 
 ul a {
     text-decoration: none;
+}
+#logo img{
+    height: 3rem;
 }
 
 .profPic {
@@ -204,7 +209,6 @@ h1 {
     float: right;
     display: block;
     padding-right: 20px;
-    padding-top: 1.2rem;
 }
 
 #names {
@@ -222,7 +226,10 @@ h1 {
 }
 
 #postPic {
-    width: 50%;
+    width: 80%;
+}
+#postPic img {
+    width: 100%;
 }
 
 #thumbNail {
@@ -236,6 +243,7 @@ h1 {
 }
 
 #postContent {
+    margin-left: 3rem;
     padding: 1rem 0 3.1rem 3.1rem;
 }
 
@@ -315,10 +323,15 @@ h1 {
 
  #profileContent {
      padding: 0.93rem 0 3.1rem 3.1rem;
+     width: calc(80% - 1rem);
  }
 
  #profileInfo {
+     width: 80%;
      display: inline-block;
+ }
+ #profileInfo img {
+     width: 100%;
  }
 
  #profileBio {

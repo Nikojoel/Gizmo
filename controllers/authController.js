@@ -1,6 +1,7 @@
 'use strict';
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const thumb = require('../utils/resize');
 const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
@@ -29,6 +30,15 @@ const user_register = async (req, res, next) => {
         console.log('user create error', errors);
         res.send(errors.array());
     } else {
+        try {
+            await thumb.makeThumbnail(
+                req.file.path,
+                'thumbnails/' + req.file.filename,
+                {width: 300, height: 300}
+            );
+        } catch (e) {
+            console.log('sharp error: ', e);
+        }
         const salt = bcrypt.genSaltSync(12);
         const hash = bcrypt.hashSync(req.body.password, salt);
         const params = [
@@ -56,6 +66,15 @@ const update_profile = async (req, res, next) => {
         console.log('user create error', errors);
         res.send(errors.array());
     } else {
+        try {
+            await thumb.makeThumbnail(
+                req.file.path,
+                'thumbnails/' + req.file.filename,
+                {width: 300, height: 300}
+            );
+        } catch (e) {
+            console.log('sharp error: ', e);
+        }
         const params = [
             req.body.username,
             req.body.bio,

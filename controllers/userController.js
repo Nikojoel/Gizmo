@@ -1,6 +1,5 @@
 'use strict';
 const userModel = require('../models/userModel');
-const thumb = require('../utils/resize');
 
 const get_all_users = async (req, res) => {
     const users = await userModel.getAllUsers();
@@ -13,16 +12,6 @@ const get_user = async (req, res) => {
 };
 
 const add_user = async (req, res) => {
-    console.log('making user thumbnail');
-      try {
-          await thumb.makeThumbnail(
-              req.file.path,
-              'thumbnails/' + req.file.filename,
-              {width: 150, height: 150}
-              );
-      } catch (e) {
-           console.log('sharp error: ', e);
-      }
       const params = [
           req.body.name,
           req.body.firstname,
