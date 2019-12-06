@@ -1,17 +1,21 @@
 'use strict';
-// All main app functionality (profile, votes, posts)
+// All main app functionality (profile, votes, posts, post commenting, post voting)
+
+// Static elements
 const ul = document.querySelector('.main ul');
 const main = document.getElementsByClassName("main")[0];
 
-
+// Displays all posts that are found from the database, ordered by recent date as default
 const getPosts = async (url, route) => {
     try {
+        // Fetch
         const response = await fetch (url + route );
         const result = await response.json();
         console.log(result);
         main.innerHTML = "<ul></ul>";
         const posts = document.querySelector(".main ul");
         ul.innerHTML = "";
+        // Html for main
         result.forEach(it => {
             posts.innerHTML +=
             `
@@ -38,22 +42,19 @@ const getPosts = async (url, route) => {
     }
 };
 
+// Gets all posts every time index is loaded
 getPosts(url, "/post/search/new");
 
-
+// Displays single post using the post id as a parameter
 const getPost = async (id) => {
     try {
-        const options = {
-            headers: {
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            }
-        };
-        const response = await fetch (url + "/post/" + id, options);
-        console.log('response?', response);
+        // Fetch
+        const response = await fetch (url + "/post/" + id);
         const result = await response.json();
         console.log(result);
         const postId = id;
         ul.innerHTML = "";
+        // Html for single post view with the post comments
         main.innerHTML =
             `
             <div id="postContent">
@@ -83,7 +84,7 @@ const getPost = async (id) => {
             </div>
             `;
         const commentUl = document.getElementById("comments");
-
+        // All comments for the post
         result.commets.forEach(it => {
             commentUl.innerHTML +=
             `
@@ -94,27 +95,36 @@ const getPost = async (id) => {
             </li>
             `;
         });
-        const commentForm = document.getElementById("comment-form");
 
+        // Commenting on a post
+
+        const commentForm = document.getElementById("comment-form");
+        // Submit listener
         commentForm.addEventListener("submit", async (evt) => {
            evt.preventDefault();
            try {
+               // Check that the user is logged in
                if (sessionStorage.getItem('token') != null) {
-               const data = serializeJson(commentForm);
-               const options = {
-                   method: 'POST',
-                   headers: {
-                       'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-                       'Content-Type': 'application/json'
-                   },
-                   body: JSON.stringify(data),
-               };
-               const response = await fetch (url + "/post/comment", options);
-               const result = await response.json();
-               console.log(result);
-               getPost(postId, 0);
+                   // Form data
+                   const data = serializeJson(commentForm);
+                   // Fetch options including user token
+                   const options = {
+                       method: 'POST',
+                       headers: {
+                           'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                           'Content-Type': 'application/json'
+                       },
+                       body: JSON.stringify(data),
+                   };
+                   // Fetch
+                   const response = await fetch (url + "/post/comment", options);
+                   const result = await response.json();
+                   console.log(result);
+                   getPost(postId, 0);
+
                } else {
-                   errorModel();
+                // Error pop up if user isn't logged in
+                errorModel();
                }
            } catch (e) {
                console.log(e);
@@ -124,16 +134,19 @@ const getPost = async (id) => {
         console.log(e);
     }
 };
-
+// Gets the users voted posts
 const getVotes = async () => {
+    // Check that the user is logged in
     if (sessionStorage.getItem('token') != null) {
         try {
+            // Fetch options including user token
             const options = {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
+            // Fetch
             const response = await fetch(url + "/post/liked", options);
             const result = await response.json();
             console.log(result);
@@ -144,6 +157,7 @@ const getVotes = async () => {
             
             </ul>
             `;
+            // Html for votes
             const ul = document.querySelector(".main ul");
             result.forEach(it => {
                 ul.innerHTML +=
@@ -162,22 +176,28 @@ const getVotes = async () => {
             console.log(e);
         }
     } else {
+        // Error pop up if user isn't logged in
         errorModel();
     }
 };
 
+// Gets the user profile
 const getProfile = async () => {
+    // Check that the user is logged in
     if (sessionStorage.getItem('token') != null) {
         try {
+            // Fetch options including user token
             const options = {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
+            // Fetch
             const response = await fetch(url + "/user/profile", options);
             const result = await response.json();
             console.log(result);
+            // Html when users bio is empty
             if (`${result.user_bio}` === "null") {
                 main.innerHTML =
                 `
@@ -191,6 +211,7 @@ const getProfile = async () => {
                     <input type="button" value="Edit profile" onclick="editProfile()">
                 </div>
             `;
+            // Html when the users bio isn't empty
             } else {
                 main.innerHTML =
                 `
@@ -213,14 +234,17 @@ const getProfile = async () => {
             console.log(e);
         }
     } else {
+        // Error pop up if user isn't logged in
         errorModel();
     }
 };
 
-
+// Adding votes to a post
 const vote = async (id, status) => {
+    // Check that the user is logged in
     if (sessionStorage.getItem('token') != null) {
         try {
+            // Fetch options including user token and post id
             const options = {
                 method: 'POST',
                 headers: {
@@ -229,18 +253,26 @@ const vote = async (id, status) => {
                 },
                 body: JSON.stringify({post_id: id}),
             };
+            // Fetch
             const response = await fetch (url + "/post/vote", options);
             const result = await response.json();
             console.log(result);
+            /* Vote status logic
+               0, single post view
+               1, main post view
+            */
             if (status === 0) {
+                // Reloads single post view
                 getPost(id);
             } else if (status === 1) {
+                // Reloads all posts view
                 getPosts(url, "/post/search/new");
             }
         } catch (e) {
             console.log(e);
         }
     } else {
+        // Error pop up if user isn't logged in
         errorModel();
     }
 };

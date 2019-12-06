@@ -1,12 +1,16 @@
 'use strict';
 // All static element functionality (footer, aside, header) and pop up windows
+
+// Url for fetching
 const url = "http://localhost:3000";
 
+// Static elements
 const model = document.getElementById("popUp");
 const aside = document.getElementsByClassName("sidebar")[0];
 const header = document.getElementsByClassName("header")[0];
 const footer = document.getElementsByClassName("footer")[0];
 
+// Creates html for the pop up windows in the header
 const createHeader = async () => {
     document.getElementById("login").addEventListener("click", () => {
         model.innerHTML =
@@ -27,9 +31,10 @@ const createHeader = async () => {
         `;
         model.style.display = "block";
         const loginForm = document.getElementById("login-form");
-
+        // Submit listener for the form
         loginForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
+            // Serialize data from the form
             try {
                 const data = serializeJson(loginForm);
                 const options = {
@@ -39,14 +44,16 @@ const createHeader = async () => {
                     },
                     body: JSON.stringify(data),
                 };
+                // Fetch
                 const response = await fetch(url + '/auth/login', options);
-                const json = await response.json();
-                console.log('login response', json);
-                if (!json.user) {
+                const result = await response.json();
+                console.log(result);
+                // Login fail
+                if (!result.user) {
                     alert("Wrong username or password. Try again");
+                // Login successful
                 } else {
-                    sessionStorage.setItem('token', json.token);
-                    console.log(json.user.user_name);
+                    sessionStorage.setItem('token', result.token);
                     model.style.display = "none";
                     location.reload();
                 }
@@ -55,7 +62,7 @@ const createHeader = async () => {
             }
         });
         close();
-
+        // Html for the register form
         document.getElementById("register").addEventListener("click", () => {
             model.innerHTML =
                 `
@@ -81,15 +88,17 @@ const createHeader = async () => {
             </div>
            `;
             const registerForm = document.getElementById("register-form");
-
+            // Submit listener for the form
             registerForm.addEventListener("submit", async (evt) => {
                 evt.preventDefault();
+                // Serialize data from the form
                 try {
                     const data = new FormData(registerForm);
                     const options = {
                         method: 'POST',
                         body: data,
                     };
+                    // Fetch
                     const response = await fetch(url + "/auth/register", options);
                     const json = await response.json();
                     console.log(json);
@@ -103,35 +112,45 @@ const createHeader = async () => {
     });
 };
 
+// Logs the user out by removing token from the session storage
 const logOut = async () => {
+    // Gets the user token
     try {
         const options = {
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
             }
         };
+        // Fetch
         const response = await fetch (url + "/auth/logout", options);
         const result = await response.json();
         console.log(result);
+        // Removes token from the user
         sessionStorage.removeItem("token");
+        // Redirects to the index view
         window.location.replace("index.html")
     } catch (e) {
         console.log(e);
     }
 };
 
+// Checks if the app user is logged in or not and creates corresponding html to the header
 const checkToken = async () => {
+    // Check that the user is logged in
     if (sessionStorage.getItem('token') != null) {
         try {
+            // User token
             const options = {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
+            // Fetch
             const response = await fetch (url + "/user/profile", options);
             const result = await response.json();
             console.log(result);
+            // Html when the user is logged in
             header.innerHTML =
                 `
                 <div>
@@ -149,6 +168,7 @@ const checkToken = async () => {
             console.log(e);
         }
     } else {
+        // Html when the user isn't logged in
         header.innerHTML =
             `
             <div>
@@ -158,17 +178,21 @@ const checkToken = async () => {
                 <a id="loginImg"><img src="img/icons/profile.png" width="50px" height="50px">Login/Register</a>
             </div>
         `;
+        // Creates the popup functionality
         createHeader();
     }
 };
-
+// Checks user token
 checkToken();
 
+// Html for the pop up window displaying specific user with the id parameter
 const showProfile = async (id) => {
     try {
+        // Fetch
         const response = await fetch (url + "/user/" + id);
         const result = await response.json();
         console.log(result);
+        // Html when the users bio is empty
         if (`${result.user_bio}` === "null") {
             model.innerHTML =
             `
@@ -184,6 +208,7 @@ const showProfile = async (id) => {
             </div>
         `;
         } else {
+        // Html when the users bio isn't empty
         model.innerHTML =
         `
         <div class="modelContent">
@@ -205,6 +230,7 @@ const showProfile = async (id) => {
     }
 };
 
+// Footer element html
 footer.innerHTML =
     `
     <div id="names">
@@ -225,6 +251,7 @@ footer.innerHTML =
     </div>
     `;
 
+// Aside element html
 aside.innerHTML =
     `
     <div id="newPostBar">
@@ -259,14 +286,18 @@ aside.innerHTML =
 
 const searchForm = document.getElementById("search-form");
 
+// Submit listener for the post search
 searchForm.addEventListener("submit",(evt) => {
     evt.preventDefault();
     const data = document.getElementById("searchText").value;
     getSearch(data);
 });
 
+// Listener for the new post element
 document.getElementById("newPostBar").addEventListener("click", () => {
+    // Check that the user is logged in
     if (sessionStorage.getItem('token') != null) {
+        // Html for when the user is logged in
         model.innerHTML =
         `
         <div class="modelContent">
@@ -284,10 +315,11 @@ document.getElementById("newPostBar").addEventListener("click", () => {
         </div>
         `;
         const postForm = document.getElementById("post-form");
-
+        // Submit listener for the form
         postForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
             try {
+                // Form data
                 const data = new FormData(postForm);
                 const options = {
                     method: 'POST',
@@ -296,6 +328,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                     }
                 };
+                // Fetch
                 const response = await fetch (url + "/post", options);
                 const result = await response.json();
                 console.log(result);
@@ -304,6 +337,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 console.log(e);
             }
         });
+    // Html for when the user isn't logged in
     } else {
         errorModel();
     }
@@ -311,6 +345,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
     close();
 });
 
+// Used for closing the pop up windows
 function close() {
     document.getElementsByClassName("close")[0].addEventListener("click", () => {
         model.style.display = "none";
@@ -323,6 +358,7 @@ function close() {
     });
 }
 
+// Html for editing user profile
 function editProfile () {
     model.innerHTML =
         `
@@ -342,9 +378,11 @@ function editProfile () {
         `;
     const editForm = document.getElementById("edit-form");
 
+    // Submit listener
     editForm.addEventListener("submit", async (evt) => {
         evt.preventDefault();
         try {
+            // Form data
             const data = new FormData(editForm);
             const options = {
                 method: 'PUT',
@@ -353,6 +391,7 @@ function editProfile () {
                     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 }
             };
+        // Fetch
         const response = await fetch (url + "/auth/update", options);
         const result = await response.json();
         console.log(result);
@@ -365,6 +404,7 @@ function editProfile () {
     close();
 }
 
+// Used for a checkbox that displays password as normal text
 function showPassword() {
     const pwText = document.getElementById("passwordText");
     if (pwText.type === "password") {
@@ -374,10 +414,12 @@ function showPassword() {
     }
 }
 
+// Sort menu
 function showDropDown() {
     document.getElementById("dropDownContent").classList.toggle("hidden");
 }
 
+// Displays error pop up when user is not authorized
 function errorModel() {
     model.innerHTML =
     `
@@ -393,18 +435,22 @@ function errorModel() {
     close();
 }
 
+// Displays trending posts (ordered by recent date and most voted)
 function getTrending() {
     getPosts(url, "/post/search/trending");
 }
 
+// Displays new posts (ordered by recent date)
 function getNew() {
     getPosts(url, "/post/search/new");
 }
 
+// Displays most voted posts (ordered by vote amount)
 function getMostVoted() {
     getPosts(url, "/post/search/top");
 }
 
+// Displays posts that include any search data
 function getSearch(searchData) {
     getPosts(url, "/post/search/" + searchData);
 }
