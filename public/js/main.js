@@ -24,7 +24,7 @@ const getPosts = async (url, route) => {
                         <img id="thumbNailImg" src="${url + "/thumbnails/" + it.post_file}">
                     </div>
                     <div id="postProfile" onclick="showProfile(${it.user_id})">
-                        <img src="${url + "/" + it.user_picture}" class="profPic">
+                        <img src="${url + "/thumbnails/" + it.user_picture}" class="profPic">
                         <div id="postDesc">
                             <h3 id="titleSize">${it.post_title}</h3>
                             <p id="userNameSize">by ${it.user_name}</p>
@@ -89,7 +89,7 @@ const getPost = async (id) => {
             `
             <li>
                 <div>
-                    <img src="${url + "/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
+                    <img src="${url + "/thumbnails/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
                 </div>
             </li>
             `;
@@ -161,7 +161,7 @@ const getVotes = async () => {
                     `
             <li id="voteStyle">
                 <div>
-                    <img src="${url + "/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
+                    <img src="${url + "/thumbnails/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
                     <h3 id="yourVotesText">${it.post_title}</h3>
                     <img id="voteThumb" src="img/icons/thumb_up.png">
                 </div>

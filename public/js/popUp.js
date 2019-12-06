@@ -150,14 +150,14 @@ const checkToken = async () => {
             header.innerHTML =
                 `
                 <div>
-                    <a id="logo" href="index.html"> <img src="img/logo.png"> </a>
+                    <a id="logo" href="index.html"> <img src="img/logo.png" alt="Gizmo logo"> </a>
                 </div>
                 <div id="loginProfile">
                     <a id="picAndName" onclick="getProfile()">
-                    <img src="${url + "/" + result.user_picture}" class="profPic">
+                    <img src="${url + "/thumbnails/" + result.user_picture}" class="profPic" alt="user profile pic">
                     <h3>${result.user_name}</h3>
                     </a>
-                    <img id="logOut" src="img/icons/logout.png"onclick="logOut()">
+                    <img id="logOut" src="img/icons/logout.png" alt="Logout icon" onclick="logOut()">
                 </div>
                 `;
         } catch (e) {
@@ -168,10 +168,10 @@ const checkToken = async () => {
         header.innerHTML =
             `
             <div>
-                <a id="logo" href="index.html"> <img src="img/logo.png" > </a>
+                <a id="logo" href="index.html"><img src="img/logo.png" alt="Gizmo logo"></a>
             </div>
             <div id="login">
-                <a id="loginImg"><img src="img/icons/profile.png">Login/Register</a>
+                <a id="loginImg"><img src="img/icons/profile.png" alt="login/register picture">Login/Register</a>
             </div>
         `;
         // Creates the popup functionality
