@@ -1,5 +1,5 @@
 'use strict';
-
+// All main app functionality (profile, votes, posts)
 const ul = document.querySelector('.main ul');
 const main = document.getElementsByClassName("main")[0];
 
@@ -13,24 +13,25 @@ const getPosts = async (url, route) => {
         const posts = document.querySelector(".main ul");
         ul.innerHTML = "";
         result.forEach(it => {
-            posts.innerHTML += `
-    <li>
-        <div>
-            <div id="thumbNail" onclick="getPost(${it.post_id})">
-                <img id="thumbNailImg" src="${url + "/" + it.post_file}">
-            </div>
-            <div id="postProfile" onclick="showProfile(${it.user_id})">
-                <img src="${url + "/" + it.user_picture}" class="profPic">
-                <div id="postDesc">
-                    <h3 id="titleSize">${it.post_title}</h3>
-                    <p id="userNameSize">by ${it.user_name}</p>
-                </div>
-            </div>
-            <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)" width="26px" height="26px">${it.count_vote} UPvotes </p>
-            <p><img src="img/icons/comment.png" width="26px" height="26px">${it.count_comments} comments</p>  
-         </div>
-    </li>
-    `;
+            posts.innerHTML +=
+            `
+            <li>
+                <div>
+                    <div id="thumbNail" onclick="getPost(${it.post_id})">
+                        <img id="thumbNailImg" src="${url + "/" + it.post_file}">
+                    </div>
+                    <div id="postProfile" onclick="showProfile(${it.user_id})">
+                        <img src="${url + "/" + it.user_picture}" class="profPic">
+                        <div id="postDesc">
+                            <h3 id="titleSize">${it.post_title}</h3>
+                            <p id="userNameSize">by ${it.user_name}</p>
+                        </div>
+                    </div>
+                    <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)" width="26px" height="26px">${it.count_vote} UPvotes </p>
+                    <p><img src="img/icons/comment.png" width="26px" height="26px">${it.count_comments} comments</p>  
+                 </div>
+            </li>
+            `;
         });
     } catch (e) {
         console.log(e);
@@ -59,9 +60,9 @@ const getPost = async (id) => {
                 <img src="${url + "/" + result.post[0].user_picture}" class="profPic">
                 <p>by ${result.post[0].user_name}</p>
                 <h2>${result.post[0].post_title}</h2>
-                <div id="postPic">
-                    <img src="${url + "/" + result.post[0].post_file}" width="100%">
-                </div>
+                    <div id="postPic">
+                        <img src="${url + "/" + result.post[0].post_file}" width="100%">
+                    </div>
                 <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
                     <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id}, 0);" <p>${result.post[0].count_vote}</p>
@@ -69,19 +70,20 @@ const getPost = async (id) => {
                 </div>
             
             <div id="postNoComments">
-            <h1>Comments</h1>
-            <form id="comment-form" enctype="multipart/form-data">
-                <input type="text" name="comment"required>
-                <input type="hidden" name="post_id" value="${postId}">
-                <input type="submit" value="Comment">
-            </form>
+                <h1>Comments</h1>
+                <form id="comment-form" enctype="multipart/form-data">
+                    <input type="text" name="comment"required>
+                    <input type="hidden" name="post_id" value="${postId}">
+                    <input type="submit" value="Comment">
+                </form>
             <ul id="comments">
-            
+                <!-- js creates all content here -->
             </ul>
             </div>
             </div>
             `;
         const commentUl = document.getElementById("comments");
+
         result.commets.forEach(it => {
             commentUl.innerHTML +=
             `
@@ -93,6 +95,7 @@ const getPost = async (id) => {
             `;
         });
         const commentForm = document.getElementById("comment-form");
+
         commentForm.addEventListener("submit", async (evt) => {
            evt.preventDefault();
            try {
@@ -177,33 +180,33 @@ const getProfile = async () => {
             console.log(result);
             if (`${result.user_bio}` === "null") {
                 main.innerHTML =
-                    `
-            <div id="profileContent">
-            <h1>${result.user_firstname}'s profile</h1>
-            <h3>@${result.user_name}</h3>
-            <h4>${result.user_firstname} ${result.user_lastname}</h4>
-            <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
-            <h3>Bio</h3>
-            <i>Your bio is empty : (</i>
-            <input type="button" value="Edit profile" onclick="editProfile()">
-            </div>
+                `
+                <div id="profileContent">
+                    <h1>${result.user_firstname}'s profile</h1>
+                    <h3>@${result.user_name}</h3>
+                    <h4>${result.user_firstname} ${result.user_lastname}</h4>
+                    <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
+                    <h3>Bio</h3>
+                    <i>Your bio is empty : (</i>
+                    <input type="button" value="Edit profile" onclick="editProfile()">
+                </div>
             `;
             } else {
                 main.innerHTML =
-                    `
-           <div id="profileContent">
-            <h1>${result.user_firstname}'s profile</h1>
-            <div id="profileInfo">
-            <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
-            <h3>@${result.user_name}</h3>
-            <h4>${result.user_firstname} ${result.user_lastname}</h4>
-            </div>
-            <div id="profileBio">
-            <h3>Bio</h3>
-            <i>${result.user_bio}</i>
-            </div>
-            <input type="button" value="Edit profile" onclick="editProfile()">
-            </div>
+                `
+               <div id="profileContent">
+                    <h1>${result.user_firstname}'s profile</h1>
+                    <div id="profileInfo">
+                    <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
+                    <h3>@${result.user_name}</h3>
+                    <h4>${result.user_firstname} ${result.user_lastname}</h4>
+                    </div>
+                    <div id="profileBio">
+                    <h3>Bio</h3>
+                    <i>${result.user_bio}</i>
+                    </div>
+                    <input type="button" value="Edit profile" onclick="editProfile()">
+                </div>
             `;
             }
         } catch (e) {

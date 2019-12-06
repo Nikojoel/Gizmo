@@ -1,5 +1,5 @@
 'use strict';
-// All static element functionality
+// All static element functionality (footer, aside, header) and pop up windows
 const url = "http://localhost:3000";
 
 const model = document.getElementById("popUp");
@@ -32,14 +32,14 @@ const createHeader = async () => {
             evt.preventDefault();
             try {
                 const data = serializeJson(loginForm);
-                const fetchOptions = {
+                const options = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data),
                 };
-                const response = await fetch(url + '/auth/login', fetchOptions);
+                const response = await fetch(url + '/auth/login', options);
                 const json = await response.json();
                 console.log('login response', json);
                 if (!json.user) {
@@ -59,7 +59,6 @@ const createHeader = async () => {
         document.getElementById("register").addEventListener("click", () => {
             model.innerHTML =
                 `
-            
            <div class="modelContent">
                 <form id="register-form" enctype="multipart/form-data">
                     <h1>New user</h1>
@@ -79,7 +78,7 @@ const createHeader = async () => {
                     <input type="file" name="profile" required>
                     <input type="submit" value="Register" name="submit">
                 </form>
-                </div>
+            </div>
            `;
             const registerForm = document.getElementById("register-form");
 
@@ -87,11 +86,11 @@ const createHeader = async () => {
                 evt.preventDefault();
                 try {
                     const data = new FormData(registerForm);
-                    const fetchOptions = {
+                    const options = {
                         method: 'POST',
                         body: data,
                     };
-                    const response = await fetch(url + "/auth/register", fetchOptions);
+                    const response = await fetch(url + "/auth/register", options);
                     const json = await response.json();
                     console.log(json);
                     model.style.display = "none";
@@ -172,17 +171,17 @@ const showProfile = async (id) => {
         console.log(result);
         if (`${result.user_bio}` === "null") {
             model.innerHTML =
-        `
-        <div class="modelContent">
-            <h1>${result.user_name}'s profile</h1>
-            <span class="close">&times</span>
-            <h3>@${result.user_name}</h3>
-            <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
-            <div id="bioTextSmall">
-            <h3>Bio</h3>
-            <i>This bio is empty : (</i>
+            `
+            <div class="modelContent">
+                <h1>${result.user_name}'s profile</h1>
+                <span class="close">&times</span>
+                <h3>@${result.user_name}</h3>
+                <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
+                <div id="bioTextSmall">
+                <h3>Bio</h3>
+                <i>This bio is empty : (</i>
+                </div>
             </div>
-        </div>
         `;
         } else {
         model.innerHTML =
@@ -204,62 +203,62 @@ const showProfile = async (id) => {
     } catch (e) {
         console.log(e);
     }
-
 };
 
 footer.innerHTML =
     `
     <div id="names">
-    <a>Developed by Niko Holopainen, Jalmari Espo, Enar Mariinsky</a>
+        <a>Developed by Niko Holopainen, Jalmari Espo, Enar Mariinsky</a>
     </div>
     <div id="footerLinks">
-    <ul>
-        <li id="github">
-        <a href="https://github.com/">GitHub</a>
-        </li>
-        <li id="twitter">
-        <a href="https://twitter.com">Twitter</a>
-        </li>
-        <li id="instagram">
-        <a href="https://instagram.com">Instagram</a>
-        </li>
-    </ul>
+        <ul>
+            <li id="github">
+                <a href="https://github.com/">GitHub</a>
+            </li>
+            <li id="twitter">
+                <a href="https://twitter.com">Twitter</a>
+            </li>
+            <li id="instagram">
+                <a href="https://instagram.com">Instagram</a>
+            </li>
+        </ul>
     </div>
     `;
 
 aside.innerHTML =
     `
-            <div id="newPostBar">
-                <p id="newPost"><img src="img/icons/new_post.png" width="64px" height="64px">New post</p>
-            </div>
-            <ul id="stickyList">
-                <li id="search">
-                    <img src="img/icons/search.png" width="50px" height="50px">
-                    <form id="search-form" name="search" enctype="multipart/form-data">
-                        <input id="searchText" type="text" placeholder="Search..." required>
-                    </form>
-                </li>
-                <li id="home">
-                    <a href="index.html"><img src="img/icons/home.png" width="50px" height="50px">Home</a>
-                </li>
-                <li id="profile">
-                    <a onclick="getProfile()" "><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
-                </li>
-                <li id="votes">
-                    <a onclick="getVotes()"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
-                </li>
-                <li id="sort" onclick="showDropDown()">
-                    <a><img src="img/icons/sort.png" width="50px" height="50px">Sort</a>
-                    <div class="hidden" id="dropDownContent">
-                        <a onclick="getMostVoted()">Most voted</a>
-                        <a onclick="getTrending()">Trending</a>
-                        <a onclick="getNew()">New</a>
-                  </div>
-                </li>
-            </ul>
+    <div id="newPostBar">
+        <p id="newPost"><img src="img/icons/new_post.png" width="64px" height="64px">New post</p>
+    </div>
+    <ul id="stickyList">
+        <li id="search">
+            <img src="img/icons/search.png" width="50px" height="50px">
+            <form id="search-form" name="search" enctype="multipart/form-data">
+                <input id="searchText" type="text" placeholder="Search..." required>
+            </form>
+        </li>
+        <li id="home">
+            <a href="index.html"><img src="img/icons/home.png" width="50px" height="50px">Home</a>
+        </li>
+        <li id="profile">
+            <a onclick="getProfile()" "><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
+        </li>
+        <li id="votes">
+            <a onclick="getVotes()"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
+        </li>
+        <li id="sort" onclick="showDropDown()">
+            <a><img src="img/icons/sort.png" width="50px" height="50px">Sort</a>
+            <div class="hidden" id="dropDownContent">
+                <a onclick="getMostVoted()">Most voted</a>
+                <a onclick="getTrending()">Trending</a>
+                <a onclick="getNew()">New</a>
+          </div>
+        </li>
+    </ul>
     `;
 
 const searchForm = document.getElementById("search-form");
+
 searchForm.addEventListener("submit",(evt) => {
     evt.preventDefault();
     const data = document.getElementById("searchText").value;
@@ -269,7 +268,7 @@ searchForm.addEventListener("submit",(evt) => {
 document.getElementById("newPostBar").addEventListener("click", () => {
     if (sessionStorage.getItem('token') != null) {
         model.innerHTML =
-            `
+        `
         <div class="modelContent">
             <form id="post-form" enctype="multipart/form-data">
                 <h1>New post</h1>
@@ -285,6 +284,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
         </div>
         `;
         const postForm = document.getElementById("post-form");
+
         postForm.addEventListener("submit", async (evt) => {
             evt.preventDefault();
             try {
@@ -326,21 +326,22 @@ function close() {
 function editProfile () {
     model.innerHTML =
         `
-            <div class="modelContent">
-                <form id="edit-form" enctype="multipart/form-data">
-                    <h1>Edit profile</h1>
-                    <span class="close">&times</span>
-                    <h3>Bio</h3>
-                    <input type="text" name="bio" required>
-                    <h3>Username</h3>
-                    <input type="text" name="username" required>
-                    <h3>Picture</h3>
-                    <input type="file" name="profile" required>
-                    <input type="submit" name="submit" value="Save">
-                </form>
-            </div>
-            `;
+        <div class="modelContent">
+            <form id="edit-form" enctype="multipart/form-data">
+                <h1>Edit profile</h1>
+                <span class="close">&times</span>
+                <h3>Bio</h3>
+                <input type="text" name="bio" required>
+                <h3>Username</h3>
+                <input type="text" name="username" required>
+                <h3>Picture</h3>
+                <input type="file" name="profile" required>
+                <input type="submit" name="submit" value="Save">
+            </form>
+        </div>
+        `;
     const editForm = document.getElementById("edit-form");
+
     editForm.addEventListener("submit", async (evt) => {
         evt.preventDefault();
         try {
@@ -379,7 +380,7 @@ function showDropDown() {
 
 function errorModel() {
     model.innerHTML =
-        `
+    `
     <div class="modelContent">
         <span class="close">&times</span>
         <div class="errorPic">
@@ -387,7 +388,7 @@ function errorModel() {
             <h3>Please login to use this feature</h3>
         </div>
     </div>
-        `;
+    `;
     model.style.display = "block";
     close();
 }
