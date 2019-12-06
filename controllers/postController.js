@@ -1,5 +1,6 @@
 'use strict';
 const postModel = require('../models/postModel');
+const thumb = require('../utils/resize');
 
 const get_all_post = async (req, res) => {
     const posts = await postModel.getAllPosts([req.params.search]);
@@ -13,6 +14,15 @@ const get_post = async (req, res) => {
 };
 
 const add_post = async (req, res) => {
+    try {
+        await thumb.makeThumbnail(
+            req.file.path,
+            'thumbnails/' + req.file.filename,
+            {width: 300, height: 300}
+        );
+    } catch (e) {
+        console.log('sharp error: ', e);
+    }
     const params = [
         req.user.user_id,
         req.body.post_title,

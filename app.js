@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({parameterLimit: '11111', limit: '10mb', extended: true}));
 
+app.use('/thumbnails', express.static('thumbnails'));
 app.use(express.static('uploads'));
 
 const userRoute = require('./routes/userRoute');
