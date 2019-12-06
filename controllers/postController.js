@@ -8,7 +8,6 @@ const get_all_post = async (req, res) => {
 };
 
 const get_post = async (req, res) => {
-    console.log('get post?',req);
     const post = await postModel.getPost([req.params.id]);
     await res.json(post);
 };

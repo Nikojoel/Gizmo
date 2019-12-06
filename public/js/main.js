@@ -11,7 +11,6 @@ const getPosts = async (url, route) => {
         // Fetch
         const response = await fetch (url + route );
         const result = await response.json();
-        console.log(result);
         main.innerHTML = "<ul></ul>";
         const posts = document.querySelector(".main ul");
         ul.innerHTML = "";
@@ -51,7 +50,6 @@ const getPost = async (id) => {
         // Fetch
         const response = await fetch (url + "/post/" + id);
         const result = await response.json();
-        console.log(result);
         const postId = id;
         ul.innerHTML = "";
         // Html for single post view with the post comments
@@ -120,7 +118,6 @@ const getPost = async (id) => {
                    // Fetch
                    const response = await fetch (url + "/post/comment", options);
                    const result = await response.json();
-                   console.log(result);
                    getPost(postId, 0);
 
                } else {
@@ -150,7 +147,6 @@ const getVotes = async () => {
             // Fetch
             const response = await fetch(url + "/post/liked", options);
             const result = await response.json();
-            console.log(result);
             main.innerHTML =
                 `
             <h1 id="voteHeader">Your votes</h1>
@@ -197,7 +193,6 @@ const getProfile = async () => {
             // Fetch
             const response = await fetch(url + "/user/profile", options);
             const result = await response.json();
-            console.log(result);
             // Html when users bio is empty
             if (`${result.user_bio}` === "null") {
                 main.innerHTML =
@@ -257,7 +252,6 @@ const vote = async (id, status) => {
             // Fetch
             const response = await fetch (url + "/post/vote", options);
             const result = await response.json();
-            console.log(result);
             /* Vote status logic
                0, single post view
                1, main post view

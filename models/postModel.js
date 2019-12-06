@@ -3,7 +3,6 @@ const pool = require('../database/db.js');
 const promisePool = pool.promise();
 
 const getAllPosts = async (params) => {
-    console.log('all posts params', params);
     try {
         if (params == 'top') {
             const [rows] = await promisePool.execute(
@@ -54,7 +53,6 @@ const getAllPosts = async (params) => {
 };
 
 const getPost = async (params) => {
-    console.log('alive we ride', params);
     try {
         const [rows] = await promisePool.execute(
             'SELECT post.*, user.user_name, user.user_picture, ' +

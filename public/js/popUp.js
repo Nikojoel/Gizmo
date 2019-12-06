@@ -47,7 +47,6 @@ const createHeader = async () => {
                 // Fetch
                 const response = await fetch(url + '/auth/login', options);
                 const result = await response.json();
-                console.log(result);
                 // Login fail
                 if (!result.user) {
                     alert("Wrong username or password. Try again");
@@ -101,7 +100,6 @@ const createHeader = async () => {
                     // Fetch
                     const response = await fetch(url + "/auth/register", options);
                     const json = await response.json();
-                    console.log(json);
                     model.style.display = "none";
                 } catch (e) {
                     console.log(e);
@@ -124,7 +122,6 @@ const logOut = async () => {
         // Fetch
         const response = await fetch (url + "/auth/logout", options);
         const result = await response.json();
-        console.log(result);
         // Removes token from the user
         sessionStorage.removeItem("token");
         // Redirects to the index view
@@ -149,7 +146,6 @@ const checkToken = async () => {
             // Fetch
             const response = await fetch (url + "/user/profile", options);
             const result = await response.json();
-            console.log(result);
             // Html when the user is logged in
             header.innerHTML =
                 `
@@ -191,7 +187,6 @@ const showProfile = async (id) => {
         // Fetch
         const response = await fetch (url + "/user/" + id);
         const result = await response.json();
-        console.log(result);
         // Html when the users bio is empty
         if (`${result.user_bio}` === "null") {
             model.innerHTML =
@@ -331,7 +326,6 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 // Fetch
                 const response = await fetch (url + "/post", options);
                 const result = await response.json();
-                console.log(result);
                 location.reload();
             } catch (e) {
                 console.log(e);
@@ -394,7 +388,6 @@ function editProfile () {
         // Fetch
         const response = await fetch (url + "/auth/update", options);
         const result = await response.json();
-        console.log(result);
         location.reload();
         } catch (e) {
             console.log(e);
