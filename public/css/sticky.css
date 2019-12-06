@@ -328,6 +328,12 @@ h1 {
  #loginProfile {
      float: right;
      display: flex;
+     align-items: center;
+ }
+
+ #picAndName {
+     display: inline-flex;
+     align-items: center;
  }
 
  #logOut {
