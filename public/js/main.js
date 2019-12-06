@@ -66,20 +66,21 @@ const getPost = async (id) => {
                     </div>
                 <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
-                    <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id}, 0);" <p>${result.post[0].count_vote}</p>
-                    <img src="img/icons/comment.png"<p>${result.post[0].count_comments}</p>
+                    <img src="img/icons/thumb_up.png" onclick="vote(${result.post[0].post_id}, 0);"> 
+                    <p>${result.post[0].count_vote}</p>
                 </div>
             
             <div id="postNoComments">
-                <h1>Comments</h1>
-                <form id="comment-form" enctype="multipart/form-data">
-                    <input type="text" name="comment"required>
-                    <input type="hidden" name="post_id" value="${postId}">
-                    <input type="submit" value="Comment">
-                </form>
             <ul id="comments">
                 <!-- js creates all content here -->
             </ul>
+            
+                <form id="comment-form" enctype="multipart/form-data">
+                    <input type="text" name="comment" placeholder="Comment" required style="width: 60%">
+                    <input type="hidden" name="post_id" value="${postId}">
+                    <input id="imgSend" type="image" src="img/icons/send.png">
+                </form>
+                
             </div>
             </div>
             `;

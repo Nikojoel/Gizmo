@@ -16,14 +16,14 @@ body {
     justify-content: space-between;
     box-sizing: border-box;
     position: relative;
-    padding: 0 150px 0 150px;
+    padding: 0 9.3rem 0 9.3rem;
 }
 
 .main {
-    padding: 15px 0 50px 50px;
+    padding: 1rem 0 3.1rem 0;
     background-color: #fff;
     box-sizing: border-box;
-    width: 80%;
+    width: calc(80% - 8rem);
     height: 100%;
     flex-wrap: wrap;
 }
@@ -36,16 +36,17 @@ body {
     position: sticky;
     top: 0;
     background-color: #fff;
-    padding: 50px 0 50px 150px;
+    padding: 3.1rem 0 3.1rem 0;
+    margin-left: 8rem;
 }
 
 .header{
     border-bottom: 1px solid gray;
-    padding: 15px;
+    padding: 1rem;
     background-color: #fff;
     width: 100%;
     text-align: center;
-    height: 80px;
+    height: 5rem;
 }
 
 .footer{
@@ -56,7 +57,7 @@ body {
     right: 0;
     box-sizing: border-box;
     border-top: 1px solid gray;
-    padding: 15px;
+    padding: 1rem;
     background-color: #fff;
 }
 
@@ -95,7 +96,7 @@ body {
 .modelContent {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
+    padding: 1.25rem;
     border: 1px solid #888;
     width: 30%;
     top: 50%;
@@ -111,7 +112,7 @@ body {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: bold;
 }
 
@@ -126,14 +127,14 @@ body {
 .main li {
     display: inline-block;
     vertical-align: top;
-    border-bottom: 1px solid black;
-    padding: 50px 0 16px 0;
-    margin-left: 38px;
+    border-bottom: 1px solid gray;
+    padding: 3.1rem 0 1rem 0;
+    margin-left: 2.3rem;
 }
 
 
 ul {
-    margin: 0;
+    padding-left: 0;
     list-style: none;
 }
 
@@ -142,12 +143,12 @@ ul a {
 }
 
 .profPic {
-    width: 50px;
-    height: 50px;
+    width: 3.1rem;
+    height: 3.1rem;
     border-radius: 50%;
     right: 0;
     float: left;
-    padding: 5px 5px 5px 5px;
+    padding: 0.3rem;
 }
 
 #post:hover,
@@ -159,7 +160,7 @@ ul a {
 
 h1 {
     display: inline-block;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
 }
 
 #bioText {
@@ -168,7 +169,7 @@ h1 {
 }
 
 #bioText h2 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     width: fit-content;
 }
 
@@ -181,7 +182,7 @@ h1 {
     text-decoration: none;
     cursor: pointer;
     display: flex;
-    max-height: 87px;
+    max-height: 5.4rem;
 }
 
 #postDesc {
@@ -203,21 +204,21 @@ h1 {
     float: right;
     display: block;
     padding-right: 20px;
-    padding-top: 15px;
+    padding-top: 1.2rem;
 }
 
 #names {
     font-weight: bold;
     align-items: center;
     display: inline-block;
-    padding-top: 17px;
-    padding-left: 20px;
+    padding-top: 1rem;
+    padding-left: 1.2rem;
 }
 
 #footerLinks {
     float: right;
     display: block;
-    padding-right: 20px;
+    padding-right: 1.2rem;
 }
 
 #postPic {
@@ -231,34 +232,43 @@ h1 {
 
 #thumbNailImg {
     width: 100%;
-    height: 300px;
+    height: 18.75rem;
 }
 
 #postContent {
-    padding: 15px 0 50px 50px;
+    padding: 1rem 0 3.1rem 3.1rem;
 }
 
 
 #userPost {
     display: inline-block;
-    padding-left: 20px;
+    padding-left: 1.2rem;
 }
 
 #postNoComments {
-    display: inline-block;
-    padding-top: 20px;
+
 }
+
+#comments {
+    display: grid;
+    margin-left: 0;
+    width: 100%;
+}
+
 
 #postVotes {
     border-bottom: 1px solid gray;
+    display: inline-flex;
+    width: 100%;
+    float: right;
 }
 
 #search {
     display: flex;
 }
 #searchText {
-    height: 40px;
-    border-radius: 10px;
+    height: 2.5rem;
+    border-radius: 0.6rem;
     border-color: gray;
 
 }
@@ -275,28 +285,28 @@ h1 {
 }
 
 #userNameSize {
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: bold;
-    padding-left: 55px;
-    padding-bottom: 20px;
+    padding-left: 3.4rem;
+    padding-bottom: 1.25rem;
     align-items: center;
     bottom: 0;
 }
 
 #titleSize {
-    font-size: 24px;
+    font-size: 1.5rem;
     margin-top: 0;
-    max-width: 235px;
-    max-height: 60px;
+    max-width: 14.68rem;
+    max-height: 3.75rem;
     justify-content: center;
     align-items: center;
-    padding-top: 5px;
+    padding-top: 0.3rem;
     color: gray;
-    overflow: auto;
+    overflow: hidden;
 }
 
  #stickyList li {
-    padding: 10px 0 0 0;
+    padding: 0.6rem 0 0 0;
 }
 
  #stickyList a {
@@ -304,7 +314,7 @@ h1 {
  }
 
  #profileContent {
-     padding: 15px 0 50px 50px;
+     padding: 0.93rem 0 3.1rem 3.1rem;
  }
 
  #profileInfo {
@@ -321,12 +331,12 @@ h1 {
  }
 
  #logOut {
-     padding-top: 15px;
-     padding-left: 15px;
+     padding-top: 1rem;
+     padding-left: 1rem;
  }
 
  #yourVotes {
-     padding: 15px 0 0 50px;
+     padding: 1rem 0 0 3.1rem;
  }
 
  #voteStyle {
@@ -338,21 +348,27 @@ h1 {
 
  #voteThumb {
      display: inline-block;
-     width: 30px;
-     height: 30px;
-     padding-left: 500px;
+     width: 1.9rem;
+     height: 1.9rem;
  }
 
  #voteHeader {
      background-color: #fefefe;
      margin: 0 auto;
-     padding-left: 20px;
+     padding-left: 1.25rem;
      width: 15%;
      top: 0;
      right: 50%;
  }
 
  #yourVotesText {
-     padding-top: 15px;
-     padding-left: 80px;
+     padding-top: 1rem;
+     padding-left: 5rem;
  }
+
+ #imgSend{
+     width: 1.8rem;
+     height: 1.5rem;
+ }
+
+
