@@ -150,14 +150,14 @@ const checkToken = async () => {
             header.innerHTML =
                 `
                 <div>
-                    <a id="logo" href="index.html"> <img src="img/logo.png" width="76px" height="76px"> </a>
+                    <a id="logo" href="index.html"> <img src="img/logo.png"> </a>
                 </div>
                 <div id="loginProfile">
                     <a id="picAndName" onclick="getProfile()">
                     <img src="${url + "/" + result.user_picture}" class="profPic">
                     <h3>${result.user_name}</h3>
                     </a>
-                    <img id="logOut" src="img/icons/logout.png" width="48px" height="48px" onclick="logOut()">
+                    <img id="logOut" src="img/icons/logout.png"onclick="logOut()">
                 </div>
                 `;
         } catch (e) {
@@ -168,10 +168,10 @@ const checkToken = async () => {
         header.innerHTML =
             `
             <div>
-                <a id="logo" href="index.html"> <img src="img/logo.png" width="76px" height="76px"> </a>
+                <a id="logo" href="index.html"> <img src="img/logo.png" > </a>
             </div>
             <div id="login">
-                <a id="loginImg"><img src="img/icons/profile.png" width="50px" height="50px">Login/Register</a>
+                <a id="loginImg"><img src="img/icons/profile.png">Login/Register</a>
             </div>
         `;
         // Creates the popup functionality
@@ -195,7 +195,7 @@ const showProfile = async (id) => {
                 <h1>${result.user_name}'s profile</h1>
                 <span class="close">&times</span>
                 <h3>@${result.user_name}</h3>
-                <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
+                <img src="${url + "/" + result.user_picture}">
                 <div id="bioTextSmall">
                 <h3>Bio</h3>
                 <i>This bio is empty : (</i>
@@ -210,7 +210,7 @@ const showProfile = async (id) => {
             <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
             <h3>@${result.user_name}</h3>
-            <img src="${url + "/" + result.user_picture}" width="150px" height="200px">
+            <img src="${url + "/" + result.user_picture}">
             <div id="bioTextSmall">
             <h3>Bio</h3>
             <i>${result.user_bio}</i>
@@ -250,26 +250,26 @@ footer.innerHTML =
 aside.innerHTML =
     `
     <div id="newPostBar">
-        <p id="newPost"><img src="img/icons/new_post.png" width="64px" height="64px">New post</p>
+        <p id="newPost"><img src="img/icons/new_post.png">New post</p>
     </div>
     <ul id="stickyList">
         <li id="search">
-            <img src="img/icons/search.png" width="50px" height="50px">
+            <img src="img/icons/search.png">
             <form id="search-form" name="search" enctype="multipart/form-data">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
         </li>
         <li id="home">
-            <a href="index.html"><img src="img/icons/home.png" width="50px" height="50px">Home</a>
+            <a href="index.html"><img src="img/icons/home.png">Home</a>
         </li>
         <li id="profile">
-            <a onclick="getProfile()" "><img src="img/icons/profile.png" width="50px" height="50px">Profile</a>
+            <a onclick="getProfile()" "><img src="img/icons/profile.png" >Profile</a>
         </li>
         <li id="votes">
-            <a onclick="getVotes()"><img src="img/icons/votes.png" width="50px" height="50px">Votes</a>
+            <a onclick="getVotes()"><img src="img/icons/votes.png">Votes</a>
         </li>
         <li id="sort" onclick="showDropDown()">
-            <a><img src="img/icons/sort.png" width="50px" height="50px">Sort</a>
+            <a><img src="img/icons/sort.png">Sort</a>
             <div class="hidden" id="dropDownContent">
                 <a onclick="getMostVoted()">Most voted</a>
                 <a onclick="getTrending()">Trending</a>

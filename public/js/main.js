@@ -30,8 +30,8 @@ const getPosts = async (url, route) => {
                             <p id="userNameSize">by ${it.user_name}</p>
                         </div>
                     </div>
-                    <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)" width="26px" height="26px">${it.count_vote} UPvotes </p>
-                    <p><img src="img/icons/comment.png" width="26px" height="26px">${it.count_comments} comments</p>  
+                    <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)">${it.count_vote} UPvotes </p>
+                    <p><img src="img/icons/comment.png">${it.count_comments} comments</p>  
                  </div>
             </li>
             `;
@@ -60,7 +60,7 @@ const getPost = async (id) => {
                 <p>by ${result.post[0].user_name}</p>
                 <h2>${result.post[0].post_title}</h2>
                     <div id="postPic">
-                        <img src="${url + "/" + result.post[0].post_file}" width="100%">
+                        <img src="${url + "/" + result.post[0].post_file}" >
                     </div>
                 <p><strong>${result.post[0].post_text}</strong></p>
                 <div id="postVotes">
@@ -74,7 +74,7 @@ const getPost = async (id) => {
             </ul>
             
                 <form id="comment-form" enctype="multipart/form-data">
-                    <input type="text" name="comment" placeholder="Comment" required style="width: 60%">
+                    <input type="text" name="comment" placeholder="Comment" required >
                     <input type="hidden" name="post_id" value="${postId}">
                     <input id="imgSend" type="image" src="img/icons/send.png">
                 </form>
@@ -201,7 +201,7 @@ const getProfile = async () => {
                     <h1>${result.user_firstname}'s profile</h1>
                     <h3>@${result.user_name}</h3>
                     <h4>${result.user_firstname} ${result.user_lastname}</h4>
-                    <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
+                    <img src="${url + "/" + result.user_picture}">
                     <h3>Bio</h3>
                     <i>Your bio is empty : (</i>
                     <input type="button" value="Edit profile" onclick="editProfile()">
@@ -214,7 +214,7 @@ const getProfile = async () => {
                <div id="profileContent">
                     <h1>${result.user_firstname}'s profile</h1>
                     <div id="profileInfo">
-                    <img src="${url + "/" + result.user_picture}" width="20%" height="auto">
+                    <img src="${url + "/" + result.user_picture}">
                     <h3>@${result.user_name}</h3>
                     <h4>${result.user_firstname} ${result.user_lastname}</h4>
                     </div>
