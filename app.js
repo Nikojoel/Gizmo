@@ -2,9 +2,7 @@
 const express = require('express');
 const app  = express();
 const cors = require('cors');
-const passport = require('./utils/pass');
 const port = 3000;
-
 
 app.use(cors());
 app.use(express.json());

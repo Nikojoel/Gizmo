@@ -42,14 +42,34 @@ const user_register = async (req, res, next) => {
         ];
         if (await userModel.addUser(params)) {
             params[4] = "";
-            res.json(params);
+            await res.json(params);
             next();
         } else {
             res.status(400).json({error: 'register error'});
         }
     }
 };
+const update_profile = async (req, res, next) => {
 
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log('user create error', errors);
+        res.send(errors.array());
+    } else {
+        const params = [
+            req.body.username,
+            req.body.bio,
+            req.file.filename,
+            req.user.user_id,
+        ];
+        if (await userModel.updateProfile(params)) {
+            await res.json(params);
+            next();
+        } else {
+            res.status(400).json({error: 'register error'});
+        }
+    }
+};
 
 const logout = (req, res) => {
     req.logout();
@@ -60,4 +80,5 @@ module.exports = {
     user_register,
     logout,
     login,
-}
+    update_profile,
+};

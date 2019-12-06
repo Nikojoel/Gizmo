@@ -12,7 +12,7 @@ const get_user = async (req, res) => {
 };
 
 const add_user = async (req, res) => {
-    console.log(req.body);
+
   const params = [
       req.body.name,
       req.body.firstname,
@@ -24,9 +24,14 @@ const add_user = async (req, res) => {
   await res.json(response);
 };
 
+const get_profile = async (req, res) => {
+    const [user] = await userModel.getUser([req.user.user_id]);
+    await res.json(user);
+};
 
 module.exports = {
     get_all_users,
     get_user,
     add_user,
+    get_profile,
 };

@@ -31,10 +31,7 @@ passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey   : process.env.JWT_SECRET
 
-    },
-    (jwtPayload, done) => {
-                 done(null, jwtPayload);
-    }
+    },(jwtPayload, done) => {done(null, jwtPayload);}
 ));
 
 module.exports = passport;
