@@ -22,7 +22,7 @@ const getPosts = async (url, route) => {
             <li>
                 <div>
                     <div id="thumbNail" onclick="getPost(${it.post_id})">
-                        <img id="thumbNailImg" src="${url + "/" + it.post_file}">
+                        <img id="thumbNailImg" src="${url + "/thumbnails/" + it.post_file}">
                     </div>
                     <div id="postProfile" onclick="showProfile(${it.user_id})">
                         <img src="${url + "/" + it.user_picture}" class="profPic">
