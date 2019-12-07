@@ -12,9 +12,9 @@ router.post('/login', authController.login);
 router.get('/logout' , authController.logout);
 router.post('/register',upload.single('profile'),[
     body('username', 'minimum 3 characters').isLength({min: 3}),
-    body('email', 'email is not valid').isEmail(),
-    body('firstname', 'not a valid name').matches('([A-Za-z])'),
-    body('lastname', 'not a valid lastname').matches('([A-Za-z])'),
+    body('email', 'email is not valid').isEmail().isLength({min: 5}),
+    body('firstname', 'not a valid name').matches('([A-Za-z])').isLength({min:2, max: 20}),
+    body('lastname', 'not a valid lastname').matches('([A-Za-z])').isLength({min:2, max: 20}),
     body('password', 'at least one upper case letter').matches('(?=.*[A-Z]).{8,}'),
     sanitizeBody('name').escape(),
 ], authController.user_register);
