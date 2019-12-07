@@ -321,6 +321,10 @@ h1 {
  #stickyList li {
     padding: 0.6rem 0 0 0;
 }
+ #stickyList h3 {
+     display: inline-block;
+     margin: 0.5rem 1rem 0.5rem 2rem
+ }
 
  #stickyList a {
 

@@ -261,16 +261,16 @@ aside.innerHTML =
             </form>
         </li>
         <li id="home">
-            <a href="index.html"><img src="img/icons/home.png">Home</a>
+            <a href="index.html"><img src="img/icons/home.png"><h3>Home</h3></a>
         </li>
         <li id="profile">
-            <a onclick="getProfile()" "><img src="img/icons/profile.png" >Profile</a>
+            <a onclick="getProfile()" "><img src="img/icons/profile.png"><h3>Profile</h3></a>
         </li>
         <li id="votes">
-            <a onclick="getVotes()"><img src="img/icons/votes.png">Votes</a>
+            <a onclick="getVotes()"><img src="img/icons/votes.png"><h3>Votes</h3></a>
         </li>
         <li id="sort" onclick="showDropDown()">
-            <a><img src="img/icons/sort.png">Sort</a>
+            <a><img src="img/icons/sort.png"><h3>Sort</h3></a>
             <div class="hidden" id="dropDownContent">
                 <a onclick="getMostVoted()">Most voted</a>
                 <a onclick="getTrending()">Trending</a>
