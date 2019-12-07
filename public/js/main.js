@@ -75,7 +75,7 @@ const getPost = async (id) => {
             </ul>
             
                 <form id="comment-form" enctype="multipart/form-data">
-                    <input type="text" name="comment" placeholder="Comment" required >
+                    <input id="commentBox" type="text" name="comment" placeholder="Comment" required >
                     <input type="hidden" name="post_id" value="${postId}">
                     <input id="imgSend" type="image" src="img/icons/send.png">
                 </form>

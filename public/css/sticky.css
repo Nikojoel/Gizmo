@@ -388,4 +388,13 @@ h1 {
      height: 1.5rem;
  }
 
+ #commentBox {
+     width: 35rem;
+ }
+
+ #comment-form {
+    margin-top: 3rem;
+     display: flex;
+ }
+
 
