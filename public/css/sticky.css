@@ -404,4 +404,6 @@ h1 {
  #commentBox {
     width: 33rem;
  }
-
+ #github img {
+     width: 2rem;
+ }
