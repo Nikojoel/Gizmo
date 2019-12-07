@@ -237,10 +237,6 @@ h1 {
     height: 24.625rem;
 }
 
-#thumbNailImg {
-    width: 100%;
-    height: 18.75rem;
-}
 
 #postContent {
     margin-left: 3rem;
@@ -322,8 +318,8 @@ h1 {
  }
 
  #profileContent {
-     padding: 0.93rem 0 3.1rem 3.1rem;
-     width: calc(80% - 1rem);
+     width: 50%;
+     display: -webkit-box;
  }
 
  #profileInfo {
@@ -335,8 +331,9 @@ h1 {
  }
 
  #profileBio {
-     display: flex;
+
  }
+
 
  #loginProfile {
      float: right;
