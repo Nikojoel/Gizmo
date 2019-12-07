@@ -30,6 +30,7 @@ const createHeader = async () => {
         </div>     
         `;
         model.style.display = "block";
+
         const loginForm = document.getElementById("login-form");
         // Submit listener for the form
         loginForm.addEventListener("submit", async (evt) => {
@@ -99,9 +100,8 @@ const createHeader = async () => {
                     };
                     // Fetch
                     const response = await fetch(url + "/auth/register", options);
-                    const json = await response.json();
-                    console.log(json);
                     model.style.display = "none";
+
                 } catch (e) {
                     console.log(e);
                 }
@@ -235,7 +235,7 @@ footer.innerHTML =
     <div id="footerLinks">
         <ul>
             <li id="github">
-                <a href="https://github.com/">GitHub</a>
+                <a href="https://github.com/"><img src="img/icons/github_logo.png" alt="GitHub"></a>
             </li>
             <li id="twitter">
                 <a href="https://twitter.com">Twitter</a>
@@ -326,10 +326,10 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 };
                 // Fetch
                 const response = await fetch (url + "/post", options);
-                const result = await response.json();
                 location.reload();
             } catch (e) {
                 console.log(e);
+                alert("Oops, something went wrong. Please try again");
             }
         });
     // Html for when the user isn't logged in
@@ -388,7 +388,6 @@ function editProfile () {
             };
         // Fetch
         const response = await fetch (url + "/auth/update", options);
-        const result = await response.json();
         location.reload();
         } catch (e) {
             console.log(e);

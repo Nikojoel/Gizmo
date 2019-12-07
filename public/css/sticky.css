@@ -95,13 +95,12 @@ body {
 
 .modelContent {
     background-color: #fefefe;
-    margin: 3% auto;
+    margin: 15% auto;
     padding: 1.25rem;
     border: 1px solid #888;
-    width: 20%;
+    width: 30%;
     top: 50%;
     right: 50%;
-    color: gray;
 }
 .modelContent img {
     width: 100%;
@@ -395,15 +394,6 @@ h1 {
  #imgSend{
      width: 1.8rem;
      height: 1.5rem;
- }
-
- #commentBox {
-     width: 35rem;
- }
-
- #comment-form {
-    margin-top: 3rem;
-     display: flex;
  }
 
 
