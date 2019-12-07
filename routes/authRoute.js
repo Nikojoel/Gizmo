@@ -4,7 +4,8 @@ const router = express.Router();
 const {body, sanitizeBody} = require('express-validator');
 const authController = require('../controllers/authController');
 const multer = require('multer');
-const upload = multer ({dest:'uploads/'});
+const imageFilter = require('../utils/multer');
+const upload = multer ({dest:'uploads/', fileFilter: imageFilter.imageFilter});
 const passport = require('../utils/pass')
 
 router.post('/login', authController.login);
