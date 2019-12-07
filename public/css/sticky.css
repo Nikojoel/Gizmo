@@ -408,3 +408,7 @@ h1 {
      width: 2rem;
  }
 
+.footerIcons li{
+    margin-right: 1rem;
+    display: inline-block;
+}
