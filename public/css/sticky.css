@@ -285,9 +285,18 @@ h1 {
 
 #thumbNailVotes {
     flex-wrap: wrap;
-    display: block;
+    display: flex;
     margin: auto;
 }
+
+#thumbUp {
+    margin: auto;
+}
+
+#commentCount {
+    margin: auto;
+}
+
 
 #userNameSize {
     font-size: 1rem;

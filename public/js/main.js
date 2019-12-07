@@ -31,8 +31,10 @@ const getPosts = async (url, route) => {
                             <p id="userNameSize">by ${it.user_name}</p>
                         </div>
                     </div>
-                    <p id="thumbNailVotes"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)">${it.count_vote} UPvotes </p>
-                    <p><img src="img/icons/comment.png">${it.count_comments} comments</p>  
+                    <div id="thumbNailVotes">
+                    <p id="thumbUp"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)">${it.count_vote}  </p>
+                    <p id="commentCount"><img src="img/icons/comment.png">${it.count_comments} </p>  
+                    </div>
                  </div>
             </li>
             `;
