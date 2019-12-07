@@ -233,15 +233,15 @@ footer.innerHTML =
         <a>Developed by Niko Holopainen, Jalmari Espo, Enar Mariinsky</a>
     </div>
     <div id="footerLinks">
-        <ul>
-            <li id="github">
-                <a href="https://github.com/"><img src="img/icons/github_logo.png" alt="GitHub"></a>
+        <ul class="footerIcons">
+            <li>
+                <a href="https://github.com/Nikojoel/Gizmo"><img src="img/icons/github_logo.png" alt="GitHub"></a>
             </li>
-            <li id="twitter">
-                <a href="https://twitter.com">Twitter</a>
+            <li>
+                <a href="https://nodejs.org/en/"><img src="img/icons/nodejs_logo.png" alt="Node-js"></a>
             </li>
-            <li id="instagram">
-                <a href="https://instagram.com">Instagram</a>
+            <li>
+                <a href="https://httpd.apache.org/"><img src="img/icons/apache_logo.png" alt="Apache"></a>
             </li>
         </ul>
     </div>

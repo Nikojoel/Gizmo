@@ -404,6 +404,7 @@ h1 {
  #commentBox {
     width: 33rem;
  }
- #github img {
+ .footerIcons img {
      width: 2rem;
  }
+
