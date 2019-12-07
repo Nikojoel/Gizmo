@@ -95,12 +95,13 @@ body {
 
 .modelContent {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 3% auto;
     padding: 1.25rem;
     border: 1px solid #888;
-    width: 30%;
+    width: 20%;
     top: 50%;
     right: 50%;
+    color: gray;
 }
 .modelContent img {
     width: 100%;
