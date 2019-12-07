@@ -130,7 +130,7 @@ body {
     display: inline-block;
     vertical-align: top;
     border-bottom: 1px solid gray;
-    padding: 3.1rem 0 1rem 0;
+    padding: 1rem 0 1rem 0;
     margin-left: 2.3rem;
 }
 
@@ -233,8 +233,8 @@ h1 {
 }
 
 #thumbNail {
-    width: 300px;
-    height: 300px;
+    width: 18.75rem;
+    height: 24.625rem;
 }
 
 #thumbNailImg {
@@ -295,8 +295,8 @@ h1 {
 #userNameSize {
     font-size: 1rem;
     font-weight: bold;
-    padding-left: 3.4rem;
-    padding-bottom: 1.25rem;
+    padding-left: 0.4rem;
+    padding-bottom: 1rem;
     align-items: center;
     bottom: 0;
 }
@@ -304,8 +304,8 @@ h1 {
 #titleSize {
     font-size: 1.5rem;
     margin-top: 0;
-    max-width: 14.68rem;
-    max-height: 3.75rem;
+    max-width: 18.68rem;
+    height: 3.75rem;
     justify-content: center;
     align-items: center;
     padding-top: 0.3rem;
