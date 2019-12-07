@@ -1,6 +1,11 @@
+* {
+    font-family: 'Solway', serif;
+}
+
 html {
     height: 100%;
     box-sizing: border-box;
+
 }
 body {
     background-color: #fff;
