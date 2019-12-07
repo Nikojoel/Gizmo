@@ -2,7 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({dest: 'uploads/'});
+const imageFilter = require('../utils/multer');
+const upload = multer({dest: 'uploads/', fileFilter: imageFilter.imageFilter});
 const postController = require('../controllers/postController');
 const passport = require('../utils/pass');
 
