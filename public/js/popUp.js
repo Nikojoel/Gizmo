@@ -2,7 +2,7 @@
 // All static element functionality (footer, aside, header) and pop up windows
 
 // Url for fetching
-const url = "http://localhost:3000";
+const url = "https://localhost:8000";
 
 // Static elements
 const model = document.getElementById("popUp");
