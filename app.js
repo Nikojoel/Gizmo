@@ -2,7 +2,6 @@
 const express = require('express');
 const app  = express();
 const cors = require('cors');
-const port = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -20,4 +19,12 @@ app.use('/post', postRoute);
 app.use('/auth', autRoute);
 
 
-app.listen(port);
+if(process.env.SERVER === 'dev_localhost') {
+    console.log('localhost server started.');
+    require('./secure/localhost')(app);
+} else {
+    require('./secure/server')(app);
+    app.listen(process.env.PORT, () => {
+        console.log('secure server app started.');
+    });
+}
