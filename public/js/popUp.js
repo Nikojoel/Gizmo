@@ -250,10 +250,10 @@ footer.innerHTML =
 // Aside element html
 aside.innerHTML =
     `
-    <div id="newPostBar">
-        <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
-    </div>
     <ul id="stickyList">
+        <li id="newPostBar">
+            <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
+        </li>
         <li id="search">
             <img src="img/icons/search.png">
             <form id="search-form" name="search" enctype="multipart/form-data">
