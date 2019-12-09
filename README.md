@@ -1,13 +1,18 @@
-# Gizmo
-create uploads and thumbnails folders by hand
+# Gizmo - Media Sharing Application
+1. After cloning or downloading run `npm install` to install dependencies.
 
-you need to create self signed ssl keys in a 1 folder before the project folder:
+2. Create uploads and thumbnails folders by hand in your IDE or with:
+* `mkdir uploads`
+* `mkdir thumbnails`
 
+3. Generate self signed ssl keys in a 1 folder before the project folder:
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/ssl.PNG)
 
-Create an .env file:
+4. Create an .env file by hand or with `nano .env` or `touch .env` and insert corresponding example data:
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/dotenv.PNG)
+
+5. Run `app.js` with `nodemon app.js` or `node app.js`
 
 
 ## ROUTES
