@@ -55,6 +55,18 @@ const vote = async (req, res) => {
   await res.json(response);
 };
 
+const delete_post = async (req, res) => {
+    console.log('trying to delete... user role req 1 is: ', req.user.user_role );
+    if (req.user.user_role === 1) {
+        const params = [req.params.id];
+        const response = await postModel.deletePost(params);
+        await  res.json(response);
+    } else {
+        res.send('Unauthorized access');
+    }
+
+};
+
 module.exports = {
     get_all_post,
     get_post,
@@ -62,4 +74,5 @@ module.exports = {
     get_liked,
     add_comment,
     vote,
+    delete_post,
 };

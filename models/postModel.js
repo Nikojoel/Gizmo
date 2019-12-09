@@ -116,6 +116,18 @@ const vote = async (params) => {
         return {error: 'db error'};
     }
 };
+const deletePost = async (params) => {
+    try {
+        const [rows] = await promisePool.execute(
+            'DELETE FROM post WHERE post_id = ?;',
+            params,
+        );
+        return rows;
+    } catch (e) {
+        console.log('error', e.message);
+        return {error: 'error in database query'};
+    }
+};
 
 module.exports = {
     getAllPosts,
@@ -124,4 +136,5 @@ module.exports = {
     getLikedPosts,
     addComment,
     vote,
+    deletePost,
 };

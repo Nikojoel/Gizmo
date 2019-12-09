@@ -20,6 +20,6 @@ router.post('/comment', passport.authenticate('jwt', {session: false}) , postCon
 router.post('/vote', passport.authenticate('jwt', {session: false}), postController.vote);
 //router.put('/', postController.update_post);
 
-//router.delete('/:id', postController.delete_post);
+router.delete('/:id',  passport.authenticate('jwt', {session: false}), postController.delete_post);
 
 module.exports = router;
