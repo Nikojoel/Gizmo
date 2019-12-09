@@ -126,6 +126,13 @@ body {
     border-radius: 0;
 }
 
+.modelContent textarea {
+    background-color: white;
+    border-color: black;
+    border-radius: 0.6rem;
+    border-width: 0.1rem;
+}
+
 .close {
     color: #aaa;
     float: right;
@@ -330,7 +337,6 @@ h1 {
     font-size: 1.5rem;
     margin-top: 0;
     max-width: 18.68rem;
-    height: 3.75rem;
     justify-content: center;
     align-items: center;
     padding-top: 0.3rem;
@@ -439,6 +445,8 @@ h1 {
 
 h3 {
     color: black;
+    margin-block-end: 1rem;
+    margin-block-start: 1rem;
 }
 
 #loginImg h3 {
@@ -449,8 +457,11 @@ h3 {
 h5 {
     border-bottom: 1px solid black;
     width: fit-content;
+    margin: 0;
 }
-
+#profileBio {
+    word-break: break-all;
+}
 #profileBio h3 {
     border-bottom: 1px solid black;
     width: fit-content;

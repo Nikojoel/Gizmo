@@ -362,7 +362,7 @@ function editProfile () {
                 <h1>Edit profile</h1>
                 <span class="close">&times</span>
                 <h3>Bio</h3>
-                <input type="text" name="bio" required>
+                <textarea name="bio" required></textarea>
                 <h3>Username</h3>
                 <input type="text" name="username" required>
                 <h3>Picture</h3>
