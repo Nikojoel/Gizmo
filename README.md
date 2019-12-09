@@ -8,7 +8,7 @@
 3. Generate self signed ssl keys in a 1 folder before the project folder:
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/ssl.PNG)
 
-4. Create an .env file `nano .env` or `touch .env` and insert corresponding example data:
+4. Create an .env file by hand or with `nano .env` or `touch .env` and insert corresponding example data:
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/dotenv.PNG)
 
