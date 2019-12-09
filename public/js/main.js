@@ -202,7 +202,9 @@ const getProfile = async () => {
                 `
                 <div id="profileContent">
                     <h1>${result.user_firstname}'s profile</h1>
+                    <h5>Username</h5>
                     <h3>@${result.user_name}</h3>
+                    <h5>Full name</h5>
                     <h4>${result.user_firstname} ${result.user_lastname}</h4>
                     <img src="${url + "/" + result.user_picture}">
                     <h3>Bio</h3>
@@ -218,7 +220,9 @@ const getProfile = async () => {
                     <h1>${result.user_firstname}'s profile</h1>
                     <div id="profileInfo">
                     <img src="${url + "/" + result.user_picture}">
+                    <h5>Username</h5>
                     <h3>@${result.user_name}</h3>
+                    <h5>Full name</h5>
                     <h4>${result.user_firstname} ${result.user_lastname}</h4>
                     <input type="image" id="editProfile" src="img/icons/edit.png" alt="Edit profile" onclick="editProfile()">
                     </div>

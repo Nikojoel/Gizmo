@@ -257,6 +257,10 @@ h1 {
     padding: 1rem 0 3.1rem 3.1rem;
 }
 
+#postContent p {
+    font-weight: bold;
+}
+
 
 #userPost {
     display: inline-block;
@@ -364,11 +368,13 @@ h1 {
  #picAndName {
      display: inline-flex;
      align-items: center;
+     cursor: pointer;
  }
 
  #logOut {
      padding-top: 1rem;
      padding-left: 1rem;
+     cursor: pointer;
  }
 
  #yourVotes {
@@ -391,7 +397,6 @@ h1 {
  #voteHeader {
      background-color: #fefefe;
      margin: 0 auto;
-     width: 15%;
      top: 0;
      right: 50%;
  }
@@ -439,7 +444,17 @@ h3 {
 #loginImg h3 {
     display: inline-block;
     padding: 0 0 0 1rem;
-
 }
+
+h5 {
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+
+#profileBio h3 {
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+
 
 
