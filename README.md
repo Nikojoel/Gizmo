@@ -1,4 +1,4 @@
-# Gizmo
+# Gizmo - Media Sharing Application
 1. After cloning or downloading run `npm install` to install dependencies.
 
 2. Create uploads and thumbnails folders by hand in your IDE or with:
