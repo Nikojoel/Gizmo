@@ -14,8 +14,11 @@
 
 5. Create a database using the `schema.sql` file and add a user. Make sure the `DB_USER`, `DB_PASS` and `DB_NAME` match.
 
+![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/db.png)
+
 6. Run `app.js` with `nodemon app.js` or `node app.js`
 
+![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/nodemon.png)
 
 
 ## ROUTES
