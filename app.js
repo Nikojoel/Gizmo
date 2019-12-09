@@ -9,6 +9,7 @@ app.use(express.urlencoded({parameterLimit: '11111', limit: '10mb', extended: tr
 
 app.use('/thumbnails', express.static('thumbnails'));
 app.use(express.static('uploads'));
+app.use(express.static('public'));
 
 const userRoute = require('./routes/userRoute');
 const postRoute = require('./routes/postRoute');
