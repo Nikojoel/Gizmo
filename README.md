@@ -12,7 +12,10 @@
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/dotenv.PNG)
 
-5. Run `app.js` with `nodemon app.js` or `node app.js`
+5. Create a database using the `schema.sql` file and add a user. Make sure the `DB_USER`, `DB_PASS` and `DB_NAME` match.
+
+6. Run `app.js` with `nodemon app.js` or `node app.js`
+
 
 
 ## ROUTES
