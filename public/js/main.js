@@ -207,7 +207,7 @@ const getProfile = async () => {
                     <img src="${url + "/" + result.user_picture}">
                     <h3>Bio</h3>
                     <i>Your bio is empty : (</i>
-                    <input type="button" value="Edit profile" onclick="editProfile()">
+                    <input type="image" id="editProfile" src="img/icons/edit.png" alt="Edit profile" onclick="editProfile()">
                 </div>
             `;
             // Html when the users bio isn't empty
@@ -220,7 +220,7 @@ const getProfile = async () => {
                     <img src="${url + "/" + result.user_picture}">
                     <h3>@${result.user_name}</h3>
                     <h4>${result.user_firstname} ${result.user_lastname}</h4>
-                    <input id="editProfile" type="button" value="Edit profile" onclick="editProfile()">
+                    <input type="image" id="editProfile" src="img/icons/edit.png" alt="Edit profile" onclick="editProfile()">
                     </div>
                     <div id="profileBio">
                     <h3>Bio</h3>

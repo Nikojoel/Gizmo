@@ -24,7 +24,7 @@ const createHeader = async () => {
                 <h3>Password</h3>
                 <input type="password" name="password" id="passwordText" required>
                 <input type="checkbox" onclick="showPassword()">Show password
-                <input type="submit" value="Login" name="login">
+                <input type="submit" value="Login" name="login" src="img/icons/send.png">
                 <p id="register"><strong>Not registered? Register here</strong></p>
             </form>
         </div>     
@@ -73,7 +73,7 @@ const createHeader = async () => {
                     <h3>First name</h3>
                     <input type="text" name="firstname" required>
                     <h3>Last name</h3>
-                    <input type="text" name="lastname" placeholder="optional" >
+                    <input type="text" name="lastname" required>
                     <h3>Email</h3>
                     <input type="email" name="email" required>
                     <h3>Username</h3>
@@ -172,7 +172,7 @@ const checkToken = async () => {
                 <a id="logo" href="index.html"><img src="img/logo.png" alt="Gizmo logo"></a>
             </div>
             <div id="login">
-                <a id="loginImg"><img src="img/icons/profile.png" alt="login/register picture">Login/Register</a>
+                <a id="loginImg"><img src="img/icons/profile.png" alt="login/register picture"><h3>Login/Register</h3></a>
             </div>
         `;
         // Creates the popup functionality
@@ -251,7 +251,7 @@ footer.innerHTML =
 aside.innerHTML =
     `
     <div id="newPostBar">
-        <p id="newPost"><img src="img/icons/new_post.png">New post</p>
+        <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
     </div>
     <ul id="stickyList">
         <li id="search">
