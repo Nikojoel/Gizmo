@@ -54,10 +54,22 @@ const updateProfile = async (params) => {
             return {error: 'db error'};
     }
 };
+const banUser = async (params) => {
+    console.log(params);
+    try {
+        const [rows] = promisePool.execute(
+            'UPDATE user SET user_name = ?, user_role = ? WHERE user_id = ?', params);
+        return rows;
+    } catch (e) {
+        return {error: 'db error'};
+    }
+};
+
 module.exports = {
     getAllUsers,
     getUser,
     addUser,
     getUserLogin,
     updateProfile,
+    banUser,
 };

@@ -12,9 +12,7 @@ router.post('/', userController.add_user);
 
 router.post('/profile', passport.authenticate('jwt', {session: false}), userController.get_profile);
 
-router.put('/', (req, res) => {
-    res.send('With this endpoint you can modify users.');
-});
+router.put('/:id', passport.authenticate('jwt', {session: false}), userController.ban_user);
 
 router.delete('/', (req, res) => {
     res.send('With this endpoint you can delete users.');

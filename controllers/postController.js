@@ -56,7 +56,6 @@ const vote = async (req, res) => {
 };
 
 const delete_post = async (req, res) => {
-    console.log('trying to delete... user role req 1 is: ', req.user.user_role );
     if (req.user.user_role === 1) {
         const params = [req.params.id];
         const response = await postModel.deletePost(params);

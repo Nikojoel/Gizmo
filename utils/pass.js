@@ -14,6 +14,9 @@ passport.use(new Strategy(
             if (user === undefined) {
                 return done(null, false, {message: 'Incorrect credential.'});
             }
+            if (user.user_role === 3) {
+                return done(null, false, {message: 'user banned'});
+            }
             if (!bcrypt.compareSync(password, user.user_password)) {
                 return done(null, false, {message: 'Incorrect credential.'});
             }

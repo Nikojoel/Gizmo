@@ -27,10 +27,24 @@ const get_profile = async (req, res) => {
     const [user] = await userModel.getUser([req.user.user_id]);
     await res.json(user);
 };
+const ban_user = async (req, res) => {
+    if (req.user.user_role === 1) {
+        const params = [
+            'BANNED' ,
+            3,
+            req.params.id,
+        ];
+        const response = await userModel.banUser(params);
+        await  res.json(response);
+    } else {
+        res.send('Unauthorized access');
+    }
+};
 
 module.exports = {
     get_all_users,
     get_user,
     add_user,
     get_profile,
+    ban_user,
 };

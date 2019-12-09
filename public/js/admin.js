@@ -23,7 +23,7 @@ const fetchPosts = async (url, path) => {
 };
 
 const getOne = async (id) => {
-    const result = await fetchPosts(url, /post/ + id)
+    const result = await fetchPosts(url, /post/ + id);
     console.log(result);
 };
 
@@ -48,7 +48,6 @@ const deletePost = async (id) => {
     };
     try {
         const path = url + '/post/' + id;
-        console.log(path);
         const response = await fetch(path, options);
         const result = await response.json();
         renderPosts();
@@ -60,9 +59,20 @@ const deletePost = async (id) => {
 };
 
 const banUser = async (id) => {
+    if (sessionStorage.getItem('token') === null) {
+        popupbar('not authorized');
+    }
     try {
-        const response = await fetch(url + '/user/' + id);
+        const options = {
+            method: 'put',
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+            },
+        };
+        const path = url + '/user/' + id;
+        const response = await fetch(path, options);
         const result = await response.json();
+        renderPosts();
         popupbar('User ' + result.user_name + ' has been banned');
     }
     catch (e) {
@@ -91,7 +101,4 @@ const renderPosts = async () => {
     })
 };
 
-
-
 renderPosts();
-fetchUsers(url, '/user/15');
