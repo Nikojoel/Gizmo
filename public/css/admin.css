@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.flex_container {
+    width: 70%;
+    margin: auto;
+}
+header {
+    margin: auto;
+    width: 60%;
+}
+li {
+    display: inline-block;
+    text-align: center;
+    margin: 1rem 2rem 1rem 1rem;
+}
+article {
+    background-color: #cccccc;
+    margin: 0.2rem 0.2rem;
+    width: 100%;
+}
+
+ul {
+    display: inline-block;
+}
+img {
+    width: 4rem;
+}
+.buttons {
+
+    float: right;
+}

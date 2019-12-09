@@ -17,6 +17,7 @@ passport.use(new Strategy(
             if (!bcrypt.compareSync(password, user.user_password)) {
                 return done(null, false, {message: 'Incorrect credential.'});
             }
+            delete user.user_email;
             delete user.user_password;
             return done(null, {...user}, {message: 'Logged In Successfully'}); // use spread syntax to create shallow copy to get rid of binary row type
         } catch (err) {
