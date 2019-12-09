@@ -70,6 +70,15 @@ body {
     display: none;
 }
 
+.visible {
+    display: grid;
+    font-size: larger;
+}
+
+.visible a:hover {
+    background-color: rgb(209, 209, 209);
+}
+
 #newPostBar:hover,
 #home:hover,
 #votes:hover,
@@ -193,6 +202,10 @@ h1 {
     font-size: x-large;
 }
 
+#bioTextSmall i {
+    word-break: break-all;
+}
+
 #bioText h2 {
     border-bottom: 1px solid gray;
     width: fit-content;
@@ -209,6 +222,9 @@ h1 {
     display: flex;
     max-height: 5.4rem;
 }
+#postProfile:hover {
+    background-color: rgb(238, 238, 238);
+}
 
 #postDesc {
     display: inline-block;
@@ -216,7 +232,6 @@ h1 {
 
 .dropdown-content {
     display: flex;
-
 }
 
 #logo {
@@ -258,15 +273,16 @@ h1 {
     cursor: pointer;
 }
 
-
 #postContent {
     margin-left: 3rem;
     padding: 1rem 0 3.1rem 3.1rem;
 }
 
-#postContent p {
+#postContent p, img {
     font-weight: bold;
+    cursor: pointer;
 }
+
 
 
 #userPost {
@@ -278,6 +294,15 @@ h1 {
     display: grid;
     margin-left: 0;
     width: 100%;
+}
+
+#comments p {
+    word-break: break-all;
+}
+
+#comments h3 {
+    display: inline-block;
+    cursor: pointer;
 }
 
 
@@ -410,6 +435,7 @@ h1 {
  #yourVotesText {
      padding-top: 1rem;
      padding-left: 5rem;
+     cursor: pointer;
  }
 
  #imgSend{

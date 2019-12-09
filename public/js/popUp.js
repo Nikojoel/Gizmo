@@ -79,7 +79,7 @@ const createHeader = async () => {
                     <h3>Username</h3>
                     <input type="text" name="username" required>
                     <h3>Password</h3>
-                    <input type="password" name="password" id="passwordText" required>
+                    <input type="password" name="password" id="passwordText" placeholder="*One uppercase required" required>
                     <input type="checkbox" onclick="showPassword()">Show password
                     <h3>Profile picture</h3>
                     <input type="file" name="profile" required>
@@ -409,7 +409,12 @@ function showPassword() {
 
 // Sort menu
 function showDropDown() {
-    document.getElementById("dropDownContent").classList.toggle("hidden");
+    const dropDown = document.getElementById("dropDownContent");
+    if (dropDown.className === "hidden") {
+        dropDown.className = "visible";
+    } else if (dropDown.className === "visible") {
+        dropDown.className = "hidden";
+    }
 }
 
 // Displays error pop up when user is not authorized

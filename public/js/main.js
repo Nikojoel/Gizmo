@@ -59,8 +59,8 @@ const getPost = async (id) => {
         main.innerHTML =
             `
             <div id="postContent">
-                <img src="${url + "/" + result.post[0].user_picture}" class="profPic">
-                <p>by ${result.post[0].user_name}</p>
+                <img src="${url + "/thumbnails/" + result.post[0].user_picture}" class="profPic" onclick="showProfile(${result.post[0].post_owner})">
+                <p onclick="showProfile(${result.post[0].post_owner})">by ${result.post[0].user_name}</p>
                 <h2>${result.post[0].post_title}</h2>
                     <div id="postPic">
                         <img src="${url + "/" + result.post[0].post_file}" >
@@ -87,12 +87,16 @@ const getPost = async (id) => {
             `;
         const commentUl = document.getElementById("comments");
         // All comments for the post
+
+        console.log(result);
         result.commets.forEach(it => {
             commentUl.innerHTML +=
             `
             <li>
                 <div>
-                    <img src="${url + "/thumbnails/" + it.user_picture}" class="profPic" <p>${it.comment_text}</p>
+                    <img src="${url + "/thumbnails/" + it.user_picture}" class="profPic" onclick="showProfile(${it.comment_owner_id})">
+                    <h3 onclick="showProfile(${it.comment_owner_id})">${it.user_name}</h3>
+                    <p>${it.comment_text}</p>
                 </div>
             </li>
             `;
@@ -154,7 +158,7 @@ const getVotes = async () => {
                 `
             <h1 id="voteHeader">Your votes</h1>
             <ul>
-            
+                <!-- js creates all content here -->
             </ul>
             `;
             // Html for votes
@@ -165,7 +169,7 @@ const getVotes = async () => {
             <li id="voteStyle">
                 <div>
                     <img src="${url + "/thumbnails/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
-                    <h3 id="yourVotesText">${it.post_title}</h3>
+                    <h3 id="yourVotesText" onclick="getPost(${it.post_id})">${it.post_title}</h3>
                     <img id="voteThumb" src="img/icons/thumb_up.png">
                 </div>
             </li>
