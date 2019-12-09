@@ -15,44 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `comment`
---
-
-DROP TABLE IF EXISTS `comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `comment_owner_id` int(11) NOT NULL,
-  `comment_post_id` int(11) NOT NULL,
-  `comment_text` text NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  KEY `comment_owner_id` (`comment_owner_id`),
-  KEY `comment_post_id` (`comment_post_id`),
-  CONSTRAINT `comment_post_id` FOREIGN KEY (`comment_post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `post`
---
-
-DROP TABLE IF EXISTS `post`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `post` (
-  `post_id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_owner` int(11) NOT NULL,
-  `post_title` varchar(250) NOT NULL,
-  `post_text` text NOT NULL,
-  `post_file` varchar(255) NOT NULL,
-  `post_date` date DEFAULT curdate(),
-  PRIMARY KEY (`post_id`),
-  KEY `post_owner` (`post_owner`),
-  CONSTRAINT `post_owner` FOREIGN KEY (`post_owner`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `role`
@@ -92,9 +54,50 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+
+--
+-- Table structure for table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_owner` int(11) NOT NULL,
+  `post_title` varchar(250) NOT NULL,
+  `post_text` text NOT NULL,
+  `post_file` varchar(255) NOT NULL,
+  `post_date` date DEFAULT curdate(),
+  PRIMARY KEY (`post_id`),
+  KEY `post_owner` (`post_owner`),
+  CONSTRAINT `post_owner` FOREIGN KEY (`post_owner`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_owner_id` int(11) NOT NULL,
+  `comment_post_id` int(11) NOT NULL,
+  `comment_text` text NOT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `comment_owner_id` (`comment_owner_id`),
+  KEY `comment_post_id` (`comment_post_id`),
+  CONSTRAINT `comment_post_id` FOREIGN KEY (`comment_post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Table structure for table `vote`
 --
+
 
 DROP TABLE IF EXISTS `vote`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
