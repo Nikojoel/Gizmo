@@ -2,6 +2,7 @@
 const express = require('express');
 const app  = express();
 const cors = require('cors');
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
@@ -14,10 +15,13 @@ app.use(express.static('public'));
 const userRoute = require('./routes/userRoute');
 const postRoute = require('./routes/postRoute');
 const autRoute = require('./routes/authRoute');
+const adminRoute = require('./routes/adminRoute');
+
 
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 app.use('/auth', autRoute);
+app.use('/admin', adminRoute);
 
 
 if(process.env.SERVER === 'dev_localhost') {

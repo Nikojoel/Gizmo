@@ -7,8 +7,38 @@
     margin: auto;
 }
 header {
-    margin: auto;
+    margin: 2rem auto;
     width: 60%;
+}
+input {
+    display: inline-block;
+    box-sizing: content-box;
+    min-width: 50%;
+    padding: 10px 20px;
+    border: 1px solid #b7b7b7;
+    margin-left: 1rem;
+    border-radius: 3px;
+    font: normal 16px/normal "Times New Roman", Times, serif;
+    color: rgba(0,142,198,1);
+    text-overflow: clip;
+    background: rgba(252,252,252,1);
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+button {
+    display: inline-block;
+    box-sizing: content-box;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    border: none;
+    font: normal 16px/normal "Times New Roman", Times, serif;
+    color: rgba(255,255,255,0.9);
+    text-overflow: clip;
+    background: #e59d32;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
+    text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+    transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 li {
     display: inline-block;
@@ -28,7 +58,6 @@ img {
     width: 4rem;
 }
 .buttons {
-
     float: right;
 }
 

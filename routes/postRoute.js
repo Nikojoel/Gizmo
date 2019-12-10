@@ -18,7 +18,6 @@ router.post('/liked', passport.authenticate('jwt', {session: false}) ,postContro
 router.post('/comment', passport.authenticate('jwt', {session: false}) , postController.add_comment);
 
 router.post('/vote', passport.authenticate('jwt', {session: false}), postController.vote);
-//router.put('/', postController.update_post);
 
 router.delete('/:id',  passport.authenticate('jwt', {session: false}), postController.delete_post);
 
