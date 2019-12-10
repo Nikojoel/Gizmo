@@ -5,14 +5,20 @@
 * `mkdir uploads`
 * `mkdir thumbnails`
 
-3. Generate self signed ssl keys in a 1 folder before the project folder:
+3. Generate self signed ssl keys in 1 folder before the project folder:
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/ssl.PNG)
 
 4. Create an .env file by hand or with `nano .env` or `touch .env` and insert corresponding example data:
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/dotenv.PNG)
 
-5. Run `app.js` with `nodemon app.js` or `node app.js`
+5. Create a database using the `schema.sql` file and add a user. Make sure the `DB_USER`, `DB_PASS` and `DB_NAME` match.
+
+![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/db.png)
+
+6. Run `app.js` with `nodemon app.js` or `node app.js`
+
+![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/nodemon.png)
 
 
 ## ROUTES
