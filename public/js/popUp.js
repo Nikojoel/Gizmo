@@ -23,7 +23,8 @@ const createHeader = async () => {
                 <input type="email" name="username" required>
                 <h3>Password</h3>
                 <input type="password" name="password" id="passwordText" required>
-                <input type="checkbox" onclick="showPassword()">Show password
+                <input type="checkbox" onclick="showPassword()">
+                <label>Show password</label>
                 <input type="submit" value="Login" name="login" src="img/icons/send.png">
                 <p id="register"><strong>Not registered? Register here</strong></p>
             </form>
@@ -80,7 +81,8 @@ const createHeader = async () => {
                     <input type="text" name="username" required>
                     <h3>Password</h3>
                     <input type="password" name="password" id="passwordText" placeholder="*One uppercase required" required>
-                    <input type="checkbox" onclick="showPassword()">Show password
+                    <input type="checkbox" onclick="showPassword()">
+                    <label>Show password</label>
                     <h3>Profile picture</h3>
                     <input type="file" name="profile" required>
                     <input type="submit" value="Register" name="submit">
@@ -255,8 +257,8 @@ aside.innerHTML =
             <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
         </li>
         <li id="search">
-            <img src="img/icons/search.png">
-            <form id="search-form" name="search" enctype="multipart/form-data">
+            <img src="img/icons/search.png" onclick="toggleBar()"><h3 class="visibleBar">Search</h3>
+            <form id="search-form" name="search" enctype="multipart/form-data" class="hidden">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
         </li>
@@ -432,6 +434,30 @@ function errorModel() {
     model.style.display = "block";
     close();
 }
+
+// Toggles display of the search input field
+function toggleBar() {
+    const bar = document.getElementById("search-form");
+    const h3 = document.querySelector("#search h3");
+    // Check that the media query isn't active
+    if (window.innerWidth > 500) {
+        if (bar.className === "hidden") {
+            h3.className = "hidden";
+            bar.className = "visibleBar";
+        } else if (bar.className === "visibleBar") {
+            h3.className = "visibleBar";
+            bar.className = "hidden";
+        }
+    // If in media query
+    } else if (window.innerWidth <= 500) {
+        if (bar.className === "visibleBar") {
+            bar.className = "hidden";
+        } else if (bar.className === "hidden") {
+            bar.className = "visibleBar";
+        }
+    }
+}
+
 
 // Displays trending posts (ordered by recent date and most voted)
 function getTrending() {

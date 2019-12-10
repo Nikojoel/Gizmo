@@ -79,6 +79,12 @@ body {
     background-color: rgb(209, 209, 209);
 }
 
+.visibleBar {
+    display: inline-block;
+    margin: 0.5rem 1rem 0.5rem 2rem;
+    width: 0;
+}
+
 #newPostBar:hover,
 #home:hover,
 #votes:hover,
@@ -89,10 +95,6 @@ body {
     text-decoration: none;
     cursor: pointer;
     background-color: rgb(238, 238, 238);
-}
-
-#postButton {
-    float: right;
 }
 
 .model {
@@ -133,6 +135,8 @@ body {
 }
 .modelContent input[type="file" i] {
     border-radius: 0;
+    margin-block-end: 1rem;
+    width: 100%;
 }
 
 .modelContent textarea {
@@ -322,12 +326,6 @@ h1 {
     border-color: gray;
 }
 
-#search-form {
-    display: inline-block;
-    margin: 0.5rem 0 0.5rem 2rem;
-    width: 0;
-}
-
 #stickyList {
     padding: 20px 0 0 0;
 }
@@ -377,7 +375,12 @@ h1 {
  #stickyList li {
     padding: 1.2rem 0 0 0;
 }
- #stickyList h3 {
+
+ #home h3,
+ #newPostBar h3,
+ #profile h3,
+ #votes h3,
+ #sort h3 {
      display: inline-block;
      margin: 0.5rem 1rem 0.5rem 2rem
  }
@@ -494,6 +497,15 @@ h5 {
     width: fit-content;
 }
 
+input[type="submit" i]:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+
+
+
+
+
 @media only screen and (max-width: 1212px) {
     .container {
         display: flex;
@@ -502,6 +514,12 @@ h5 {
         box-sizing: border-box;
         position: relative;
         padding: 0 1rem 0 1rem;
+    }
+    #editProfile {
+        width: auto;
+    }
+    input[type="submit" i] {
+        margin-block-start: 1rem;
     }
 }
 
@@ -524,6 +542,9 @@ h5 {
         height: 100%;
         flex-wrap: wrap;
     }
+    .modelContent {
+        width: auto;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -537,7 +558,7 @@ h5 {
         margin: 0;
     }
     #searchText {
-        width: 5rem;
+        width: 3rem;
     }
     #stickyList h3 {
         margin: 0;
@@ -563,26 +584,60 @@ h5 {
 }
 
 @media only screen and (max-width: 500px) {
+    .container {
+        padding: 0;
+    }
+    #newPostBar,
+    #profile,
+    #votes,
+    #sort,
+    #search {
+        padding: 0;
+    }
+
     #stickyList {
         display: flex;
+        padding: 0;
+        background-color: #d6d6d6;
     }
-    #stickyList h3 {
+
+    #stickyList li {
+        padding: 0;
+    }
+
+    #home h3,
+    #newPostBar h3,
+    #profile h3,
+    #votes h3,
+    #sort h3,
+    #search h3 {
         display: none;
+    }
+
+    #dropDownContent {
+        background-color: white;
+    }
+    #profileContent {
+        padding: 3rem;
     }
     .main {
         left: 0;
     }
+
     .sidebar {
+        position: fixed;
         width: 100%;
-        padding: 0;
-        margin: 0 2rem 0 2rem;
         height: 0;
+        top: calc(100% - 3rem);
+        right: 0;
+        padding: 0;
     }
-    #search-form {
-        display: block;
+
+    .visibleBar {
+        width: auto;
     }
-    .modelContent {
-        padding: 5rem;
+    .footer {
+        display: none;
     }
 }
 
