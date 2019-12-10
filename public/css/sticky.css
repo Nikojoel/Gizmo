@@ -95,7 +95,8 @@ body {
 #profile:hover,
 #sort:hover,
 #login:hover,
-#register:hover{
+#register:hover,
+#search:hover{
     text-decoration: none;
     cursor: pointer;
     background-color: rgb(238, 238, 238);
@@ -507,8 +508,9 @@ input[type="submit" i]:hover {
 
 
 
-
-
+/*
+Media queries for mobile devices starting @ 1212 px width
+ */
 
 @media only screen and (max-width: 1212px) {
     .container {
@@ -542,7 +544,6 @@ input[type="submit" i]:hover {
         padding: 1rem 1rem 3.1rem 0;
         background-color: #fff;
         box-sizing: border-box;
-        width: calc(75% - 1rem);
         height: 100%;
         flex-wrap: wrap;
     }
@@ -562,7 +563,7 @@ input[type="submit" i]:hover {
         margin: 0;
     }
     #searchText {
-        width: 3rem;
+        width: 4rem;
     }
     #stickyList h3 {
         margin: 0;
@@ -588,6 +589,7 @@ input[type="submit" i]:hover {
 }
 
 @media only screen and (max-width: 500px) {
+
     .container {
         padding: 0;
     }
@@ -621,6 +623,35 @@ input[type="submit" i]:hover {
     #dropDownContent {
         background-color: white;
     }
+
+    #loginImg {
+        display: inline-flex;
+        align-items: center;
+        float: none;
+    }
+
+    #loginImg h3 {
+        padding: 0;
+    }
+
+    #postPic {
+        width: 20rem;
+    }
+
+    #commentBox {
+        margin: 0 0 2rem 0;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #loginProfile {
+        display: block;
+        align-items: center;
+        float: none;
+    }
+
     #profileContent {
         padding: 2rem;
     }
@@ -628,9 +659,17 @@ input[type="submit" i]:hover {
     #voteContent {
         padding: 1rem;
     }
+
+    #postContent {
+        padding: 0;
+        margin: 0 0 0 2rem;
+        width: 100%;
+    }
+
     #voteHeader {
         margin: 2rem;
     }
+
     .main {
         left: 0;
     }
@@ -647,11 +686,20 @@ input[type="submit" i]:hover {
     .visibleBar {
         width: auto;
     }
+
     .hiddenBar {
         display: inline-block;
     }
+
     .footer {
         display: none;
+    }
+
+    .visible {
+        position: absolute;
+        font-size: large;
+        bottom: 5%;
+        left: 75%;
     }
 }
 

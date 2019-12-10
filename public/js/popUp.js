@@ -269,7 +269,7 @@ aside.innerHTML =
             <a onclick="getProfile()" "><img src="img/icons/profile.png"><h3>Profile</h3></a>
         </li>
         <li id="votes">
-            <a onclick="getVotes()"><img src="img/icons/votes.png"><h3>Votes</h3></a>
+            <a onclick="getVotes()"><img src="img/icons/thumb_up.png"><h3>Votes</h3></a>
         </li>
         <li id="sort" onclick="showDropDown()">
             <a><img src="img/icons/sort.png"><h3>Sort</h3></a>
