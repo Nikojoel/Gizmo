@@ -149,9 +149,27 @@ const checkToken = async () => {
             // Fetch
             const response = await fetch (url + "/user/profile", options);
             const result = await response.json();
-            // Html when the user is logged in
-            header.innerHTML =
-                `
+
+            // Html when the user is admin
+            if (`${result.user_role}` === "1") {
+                header.innerHTML =
+                    `
+                <div>
+                    <a id="logo" href="index.html"> <img src="img/logo.png" alt="Gizmo logo"> </a>
+                </div>
+                <div id="loginProfile">
+                    <img src="img/icons/admin.png" onclick="getAdmin()">
+                    <a id="picAndName" onclick="getProfile()">
+                    <img src="${url + "/thumbnails/" + result.user_picture}" class="profPic" alt="user profile pic">
+                    <h3>${result.user_name}</h3>
+                    </a>
+                    <img id="logOut" src="img/icons/logout.png" alt="Logout icon" onclick="logOut()">
+                </div>
+                `;
+            } else {
+                // Html when the user is logged in and not admin
+                header.innerHTML =
+                    `
                 <div>
                     <a id="logo" href="index.html"> <img src="img/logo.png" alt="Gizmo logo"> </a>
                 </div>
@@ -163,6 +181,7 @@ const checkToken = async () => {
                     <img id="logOut" src="img/icons/logout.png" alt="Logout icon" onclick="logOut()">
                 </div>
                 `;
+            }
         } catch (e) {
             console.log(e);
         }
@@ -183,6 +202,24 @@ const checkToken = async () => {
 };
 // Checks user token
 checkToken();
+
+// Admin page
+const getAdmin = async () => {
+    try {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            }
+        };
+        console.log(url);
+        const response = await fetch (url + "/admin", options);
+        const result = await response.json();
+    } catch (e) {
+        console.log(e)
+    }
+};
 
 // Html for the pop up window displaying specific user with the id parameter
 const showProfile = async (id) => {

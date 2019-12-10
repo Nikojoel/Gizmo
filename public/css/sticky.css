@@ -249,6 +249,10 @@ h1 {
     padding-left: 20px;
 }
 
+#adminButton {
+    display: block;
+}
+
 #loginImg {
     display: flex;
     align-items: center;
