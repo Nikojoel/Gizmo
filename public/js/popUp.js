@@ -213,9 +213,11 @@ const getAdmin = async () => {
                 'Content-Type': 'application/json'
             }
         };
-        console.log(url);
-        const response = await fetch (url + "/admin", options);
-        const result = await response.json();
+        const path = url + '/admin';
+        console.log(path);
+        const response = await fetch (path, options);
+        const result = await response.text();
+        document.write(result);
     } catch (e) {
         console.log(e)
     }

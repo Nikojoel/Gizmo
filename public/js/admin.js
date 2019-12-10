@@ -1,5 +1,5 @@
 'use strict';
-const url = 'https://localhost:8000';
+const host = 'https://localhost:8000';
 const html = document.querySelector('div');
 const search = document.querySelector('input');
 const searchButton = document.getElementById('searchButton')
@@ -13,9 +13,9 @@ const popupbar = (msg) => {
     }, 3000);
 };
 
-const fetchPosts = async (url, path) => {
+const fetchPosts = async (host, path) => {
     try {
-        const response = await fetch(url + path);
+        const response = await fetch(host + path);
         return await response.json();
     } catch (e) {
         console.log('failed fetch ', e);
@@ -23,13 +23,13 @@ const fetchPosts = async (url, path) => {
 };
 
 const getOne = async (id) => {
-    const response = await fetch(url + '/post/' + id);
+    const response = await fetch(host + '/post/' + id);
     return await response.json();
 };
 
-const fetchUsers = async (url, path) => {
+const fetchUsers = async (host, path) => {
     try {
-        const response = await fetch(url + path);
+        const response = await fetch(host + path);
         const result = await response.json();
         console.log('getUser results: ', result);
     } catch (e) {
@@ -48,10 +48,9 @@ const deletePost = async (id) => {
     };
     try {
         const path = url + '/post/' + id;
-        const response = await fetch(path, options);
-        const result = await response.json();
-        renderPosts();
-        popupbar('Post ' + result.post_id + ' has been deleted');
+        await fetch(path, options);
+        popupbar('Post has been deleted');
+        renderPosts('/post/search/new');
     } catch (e) {
         console.log(e);
     }
@@ -68,11 +67,10 @@ const banUser = async (id) => {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
             },
         };
-        const path = url + '/user/' + id;
-        const response = await fetch(path, options);
-        const result = await response.json();
-        renderPosts();
-        popupbar('User ' + result.user_name + ' has been banned');
+        const path = host + '/user/' + id;
+        await fetch(path, options);
+        renderPosts('/post/search/new');
+        popupbar('User has been banned');
     }
     catch (e) {
         console.log(e);
@@ -80,7 +78,7 @@ const banUser = async (id) => {
 };
 
 const renderPosts = async (path) => {
-    const result = await fetchPosts(url, path);
+    const result = await fetchPosts(host, path);
     html.innerHTML = '';
     await result.forEach(it => {
         html.innerHTML +=
