@@ -1,5 +1,18 @@
 # Gizmo - Media Sharing Application
 1. After cloning or downloading run `npm install` to install dependencies.
+* ["app-root-path"](https://www.npmjs.com/package/app-root-path)
+* ["bcryptjs"](https://www.npmjs.com/package/bcryptjs)
+* ["cors"](https://www.npmjs.com/package/cors)
+* ["dotenv"](https://www.npmjs.com/package/dotenv)
+* ["express"](https://www.npmjs.com/package/express)
+* ["express-validator"](https://www.npmjs.com/package/express-validator)
+* ["jsonwebtoken"](https://www.npmjs.com/package/jsonwebtoken)
+* ["multer"](https://www.npmjs.com/package/multer)
+* ["mysql2"](https://www.npmjs.com/package/mysql2)
+* ["passport"](https://www.npmjs.com/package/passport)
+* ["passport-jwt"](https://www.npmjs.com/package/passport-jwt)
+* ["passport-local"](https://www.npmjs.com/package/passport-local)
+* ["sharp"](https://www.npmjs.com/package/sharp)
 
 2. Create uploads and thumbnails folders by hand in your IDE or with:
 * `mkdir uploads`
@@ -47,12 +60,16 @@
     - will swith the voted status if used again by user
     
 - #### USER
-  - GET /user
-    - Gets all users
+  
   - GET /user/id
     - Gets one user
   - POST /user
     - Add a user to db
   - POST /user/profile
     - get the profile for logged in user
+  - PUT /user/id
+    - ban user
+- #### ADMIN
+  - POST /admin
+    - gets admin portal html page
   
