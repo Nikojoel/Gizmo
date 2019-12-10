@@ -4,18 +4,13 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const passport = require('../utils/pass');
 
-router.get('/', userController.get_all_users);
-
+// get one user by id
 router.get('/:id', userController.get_user);
 
-router.post('/', userController.add_user);
-
+// get users own profile
 router.post('/profile', passport.authenticate('jwt', {session: false}), userController.get_profile);
 
+// ban user
 router.put('/:id', passport.authenticate('jwt', {session: false}), userController.ban_user);
-
-router.delete('/', (req, res) => {
-    res.send('With this endpoint you can delete users.');
-});
 
 module.exports = router;

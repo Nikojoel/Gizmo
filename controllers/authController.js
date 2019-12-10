@@ -6,6 +6,7 @@ const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
 
+// login function for authenticating user
 const login = (req, res) => {
     passport.authenticate('local', {session: false}, (err, user, info) => {
         if (err || !user) {
@@ -24,6 +25,7 @@ const login = (req, res) => {
     })(req, res);
 };
 
+// registering a new user and adding to db
 const user_register = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -59,8 +61,9 @@ const user_register = async (req, res, next) => {
         }
     }
 };
-const update_profile = async (req, res, next) => {
 
+// updating user profile
+const update_profile = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log('user create error', errors);
@@ -90,6 +93,7 @@ const update_profile = async (req, res, next) => {
     }
 };
 
+// logout a user
 const logout = (req, res) => {
     req.logout();
     res.json({message: 'logout'});

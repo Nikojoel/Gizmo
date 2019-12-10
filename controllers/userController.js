@@ -1,16 +1,13 @@
 'use strict';
 const userModel = require('../models/userModel');
 
-const get_all_users = async (req, res) => {
-    const users = await userModel.getAllUsers();
-    await res.json(users);
-};
-
+// get one user
 const get_user = async (req, res) => {
     const user = await userModel.getUser([req.params.id]);
     await res.json(user[0]);
 };
 
+// add one user
 const add_user = async (req, res) => {
       const params = [
           req.body.name,
@@ -23,10 +20,13 @@ const add_user = async (req, res) => {
       await res.json(response);
 };
 
+// get users own profile
 const get_profile = async (req, res) => {
     const [user] = await userModel.getUser([req.user.user_id]);
     await res.json(user);
 };
+
+// ban a user
 const ban_user = async (req, res) => {
     if (req.user.user_role === 1) {
         const params = [
@@ -42,7 +42,6 @@ const ban_user = async (req, res) => {
 };
 
 module.exports = {
-    get_all_users,
     get_user,
     add_user,
     get_profile,

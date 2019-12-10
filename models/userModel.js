@@ -2,20 +2,13 @@
 const pool = require('../database/db');
 const promisePool = pool.promise();
 
-const getAllUsers = async () => {
-    try {
-        const [rows] = await promisePool.execute('SELECT * FROM user');
-        return rows;
-    } catch (e) {
-        return {error: 'db error'}
-    }
-};
-
+// get one user
 const getUser = async (params) => {
     try{
         const [rows] = await promisePool.execute('SELECT * FROM user WHERE user_id = ?',
             params,
         );
+        delete rows[0].user_email;
         delete rows[0].user_password;
         return rows;
     } catch (e) {
@@ -23,6 +16,7 @@ const getUser = async (params) => {
     }
 };
 
+// add a user into db
 const addUser = async (params) => {
     try {
         const [rows] = await promisePool.execute('INSERT INTO user (user_name, user_email, user_firstname, user_lastname, user_password, user_role, user_picture)  VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -33,6 +27,8 @@ const addUser = async (params) => {
         return {error: 'failed to add to db'};
     }
 };
+
+// get user based of email
 const getUserLogin = async (params) => {
     try {
         const [rows] = await promisePool.execute(
@@ -44,6 +40,7 @@ const getUserLogin = async (params) => {
     }
 };
 
+// update user profile
 const updateProfile = async (params) => {
     try {
         const [rows] = promisePool.execute(
@@ -54,6 +51,8 @@ const updateProfile = async (params) => {
             return {error: 'db error'};
     }
 };
+
+// ban user
 const banUser = async (params) => {
     console.log(params);
     try {
@@ -66,7 +65,6 @@ const banUser = async (params) => {
 };
 
 module.exports = {
-    getAllUsers,
     getUser,
     addUser,
     getUserLogin,

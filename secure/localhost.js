@@ -1,4 +1,5 @@
 'use strict';
+//localhost server for development
 const http = require('http');
 const https = require('https');
 const fs = require('fs');

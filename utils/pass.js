@@ -1,9 +1,11 @@
-// local strategy for username password login
 'use strict';
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
+const passportJWT = require("passport-jwt");
+const JWTStrategy   = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 // local strategy for username password login
 passport.use(new Strategy(
@@ -27,10 +29,8 @@ passport.use(new Strategy(
             return done(err);
         }
     }));
-const passportJWT = require("passport-jwt");
-const JWTStrategy   = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
 
+// jwt strategy
 passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey   : process.env.JWT_SECRET

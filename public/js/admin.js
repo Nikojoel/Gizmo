@@ -1,9 +1,12 @@
+// Admin portal frontend
+
 'use strict';
 const host = 'https://localhost:8000';
 const html = document.querySelector('div');
 const search = document.querySelector('input');
 const searchButton = document.getElementById('searchButton')
 
+// pops up at the bottom of the screen with text
 const popupbar = (msg) => {
     const popup = document.getElementById("popupbar");
     popup.innerText = msg;
@@ -13,6 +16,7 @@ const popupbar = (msg) => {
     }, 3000);
 };
 
+// fetch list of all posts
 const fetchPosts = async (host, path) => {
     try {
         const response = await fetch(host + path);
@@ -22,11 +26,13 @@ const fetchPosts = async (host, path) => {
     }
 };
 
+// fetch one post by id
 const getOne = async (id) => {
     const response = await fetch(host + '/post/' + id);
     return await response.json();
 };
 
+// fetch one user by id
 const fetchUsers = async (host, path) => {
     try {
         const response = await fetch(host + path);
@@ -36,6 +42,8 @@ const fetchUsers = async (host, path) => {
         console.log('failed fetch ', e);
     }
 };
+
+// display one user info
 const renderUser = (u) => {
     const entries = Object.entries(u);
     let list ="";
@@ -51,6 +59,8 @@ const renderUser = (u) => {
         </ul>
         `
 }
+
+// delete one post from db based of id and refresh list
 const deletePost = async (id) => {
     if (sessionStorage.getItem('token') === null) {
         popupbar('not authorized');
@@ -71,6 +81,7 @@ const deletePost = async (id) => {
     }
 };
 
+// ban user from service and refresh list
 const banUser = async (id) => {
     if (sessionStorage.getItem('token') === null) {
         popupbar('not authorized');
@@ -92,6 +103,7 @@ const banUser = async (id) => {
     }
 };
 
+// display list of all posts
 const renderPosts = async (path) => {
     const result = await fetchPosts(host, path);
     html.innerHTML = '';
@@ -110,6 +122,8 @@ const renderPosts = async (path) => {
             </article>`
     })
 };
+
+// display one post
 const renderOne = async (id) => {
     const result = await getOne(id);
     console.log(result)
@@ -136,10 +150,12 @@ const renderOne = async (id) => {
         `
 }
 
+// event listeners for buttons and input field
 searchButton.addEventListener('click', (evt) => {
     const path = '/post/search/' + search.value;
     renderPosts(path)
 });
+
 search.addEventListener('keyup', (evt) => {
     if (evt.key === 'Enter') {
         searchButton.click();

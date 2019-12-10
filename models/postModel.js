@@ -2,6 +2,7 @@
 const pool = require('../database/db.js');
 const promisePool = pool.promise();
 
+// get a list of all posts based on search parameter
 const getAllPosts = async (params) => {
     try {
         if (params == 'top') {
@@ -51,7 +52,7 @@ const getAllPosts = async (params) => {
         return {error: 'db error'}
     }
 };
-
+// get one most based of id
 const getPost = async (params) => {
     try {
         const [rows] = await promisePool.execute(
@@ -73,6 +74,7 @@ const getPost = async (params) => {
     }
 };
 
+// add a new post ro db
 const addPost = async (params) => {
     try {
         const [rows] = await promisePool.execute('INSERT INTO post (post_owner, post_title, post_text, post_file, post_date)  VALUES (?, ?, ?, ?, curdate())',
@@ -84,6 +86,7 @@ const addPost = async (params) => {
     }
 };
 
+// get posts liked by user
 const getLikedPosts = async (params) => {
   try {
       const [rows] = await  promisePool.execute('SELECT vote.*, post.*, user_name, user_picture FROM vote ' +
@@ -95,6 +98,8 @@ const getLikedPosts = async (params) => {
       return {error: 'db error'};
   }
 };
+
+// add a new comment for a post
 const addComment = async (params) => {
     try {
         const [rows] = await promisePool.execute('INSERT INTO comment (comment_owner_id, comment_post_id, comment_text) VALUES (?, ?, ?)',params);
@@ -103,6 +108,8 @@ const addComment = async (params) => {
         return {error: 'failed to add to db'};
     }
 };
+
+// vote for a post
 const vote = async (params) => {
     console.log('voting params', params);
     try {
@@ -116,6 +123,8 @@ const vote = async (params) => {
         return {error: 'db error'};
     }
 };
+
+// delete a post
 const deletePost = async (params) => {
     try {
         const [rows] = await promisePool.execute(
