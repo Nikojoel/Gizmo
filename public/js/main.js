@@ -167,7 +167,7 @@ const getVotes = async () => {
                 ul.innerHTML +=
                     `
             <li id="voteStyle">
-                <div>
+                <div id="voteContent">
                     <img src="${url + "/thumbnails/" + it.post_file}" class="profPic" onclick="getPost(${it.post_id})">
                     <h3 id="yourVotesText" onclick="getPost(${it.post_id})">${it.post_title}</h3>
                     <img id="voteThumb" src="img/icons/thumb_up.png">

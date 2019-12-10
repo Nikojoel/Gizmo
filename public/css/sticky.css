@@ -70,6 +70,10 @@ body {
     display: none;
 }
 
+.hiddenBar {
+    display: none;
+}
+
 .visible {
     display: grid;
     font-size: larger;
@@ -618,7 +622,14 @@ input[type="submit" i]:hover {
         background-color: white;
     }
     #profileContent {
-        padding: 3rem;
+        padding: 2rem;
+    }
+
+    #voteContent {
+        padding: 1rem;
+    }
+    #voteHeader {
+        margin: 2rem;
     }
     .main {
         left: 0;
@@ -635,6 +646,9 @@ input[type="submit" i]:hover {
 
     .visibleBar {
         width: auto;
+    }
+    .hiddenBar {
+        display: inline-block;
     }
     .footer {
         display: none;

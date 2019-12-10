@@ -258,7 +258,7 @@ aside.innerHTML =
         </li>
         <li id="search">
             <img src="img/icons/search.png" onclick="toggleBar()"><h3 class="visibleBar">Search</h3>
-            <form id="search-form" name="search" enctype="multipart/form-data" class="hidden">
+            <form id="search-form" name="search" enctype="multipart/form-data" class="hiddenBar">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
         </li>
@@ -441,19 +441,12 @@ function toggleBar() {
     const h3 = document.querySelector("#search h3");
     // Check that the media query isn't active
     if (window.innerWidth > 500) {
-        if (bar.className === "hidden") {
-            h3.className = "hidden";
+        if (bar.className === "hiddenBar") {
+            h3.className = "hiddenBar";
             bar.className = "visibleBar";
         } else if (bar.className === "visibleBar") {
             h3.className = "visibleBar";
-            bar.className = "hidden";
-        }
-    // If in media query
-    } else if (window.innerWidth <= 500) {
-        if (bar.className === "visibleBar") {
-            bar.className = "hidden";
-        } else if (bar.className === "hidden") {
-            bar.className = "visibleBar";
+            bar.className = "hiddenBar";
         }
     }
 }
