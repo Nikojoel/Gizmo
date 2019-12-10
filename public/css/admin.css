@@ -3,7 +3,7 @@
     margin: 0;
 }
 .flex_container {
-    width: 70%;
+    width: 90%;
     margin: auto;
 }
 header {
@@ -42,8 +42,8 @@ button {
 }
 li {
     display: inline-block;
-    text-align: center;
-    margin: 1rem 2rem 1rem 1rem;
+    margin: 1rem;
+
 }
 article {
     background-color: #cccccc;
@@ -51,17 +51,31 @@ article {
     width: 100%;
 }
 
-ul {
-    display: inline-block;
-}
 img {
     width: 4rem;
 }
-.buttons {
-    float: right;
+.postDetails ul {
+    margin: auto;
 }
-
-
+.postDetails li {
+    display: block;
+}
+.postDetails img {
+    display: block;
+    width: 30%;
+}
+h3 {
+    color: #e59d32;
+}
+h3:hover {
+    color: aqua;
+}
+a {
+    color: #e59d32;
+}
+a:hover {
+    color: aqua;
+}
 /*popup bar for messages*/
 
 #popupbar {
