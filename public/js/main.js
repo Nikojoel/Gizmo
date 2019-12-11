@@ -155,11 +155,12 @@ const getVotes = async () => {
             const response = await fetch(url + "/post/liked", options);
             const result = await response.json();
             main.innerHTML =
-                `
+                `<div class="myvotes">
             <h1 id="voteHeader">Your votes</h1>
             <ul>
                 <!-- js creates all content here -->
             </ul>
+            </div>
             `;
             // Html for votes
             const ul = document.querySelector(".main ul");

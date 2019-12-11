@@ -759,7 +759,9 @@ Media queries for mobile devices starting @ 1212 px width
     .footer {
         display: none;
     }
-
+    .myvotes {
+        display: block;
+    }
     .visible {
         position: absolute;
         font-size: large;
