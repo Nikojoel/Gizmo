@@ -42,7 +42,7 @@ const getAllPosts = async (params) => {
         } else {
             const search = ['%' + params + '%','%' + params + '%'];
             const [rows] = await promisePool.execute(
-            'SELECT post.*, ' +
+            'SELECT post.*, user.*, ' +
                 '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments,'  +
                 '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) AS count_vote ' +
                 'FROM post ' +
