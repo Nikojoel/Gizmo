@@ -242,7 +242,7 @@ const showProfile = async (id) => {
             <div class="modelContent">
                 <h1>${result.user_name}'s profile</h1>
                 <span class="close">&times</span>
-                <h3>@${result.user_name}</h3>
+                <h3>${result.user_name}</h3>
                 <img src="${url + "/" + result.user_picture}">
                 <div id="bioTextSmall">
                 <h3>Bio</h3>
@@ -257,7 +257,7 @@ const showProfile = async (id) => {
         <div class="modelContent">
             <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
-            <h3>@${result.user_name}</h3>
+            <h3>${result.user_name}</h3>
             <img src="${url + "/" + result.user_picture}">
             <div id="bioTextSmall">
             <h3>Bio</h3>
@@ -301,8 +301,8 @@ aside.innerHTML =
         <li id="newPostBar">
             <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
         </li>
-        <li id="search">
-            <img src="img/icons/search.png" onclick="toggleBar()"><h3 class="visibleBar">Search</h3>
+        <li id="search" onclick="toggleBar()">
+            <img src="img/icons/search.png"><h3 class="visibleBar">Search</h3>
             <form id="search-form" name="search" enctype="multipart/form-data" class="hiddenBar">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
@@ -310,14 +310,14 @@ aside.innerHTML =
         <li id="home">
             <a href="index.html"><img src="img/icons/home.png"><h3>Home</h3></a>
         </li>
-        <li id="profile">
-            <a onclick="getProfile()" "><img src="img/icons/profile.png"><h3>Profile</h3></a>
+        <li id="profile" onclick="getProfile()">
+            <img src="img/icons/profile.png"><h3>Profile</h3>
         </li>
-        <li id="votes">
-            <a onclick="getVotes()"><img src="img/icons/thumb_up.png"><h3>Votes</h3></a>
+        <li id="votes" onclick="getVotes()">
+            <img src="img/icons/thumb_up.png"><h3>Votes</h3>
         </li>
         <li id="sort" onclick="showDropDown()">
-            <a><img src="img/icons/sort.png"><h3>Sort</h3></a>
+            <img src="img/icons/sort.png"><h3>Sort</h3>
             <div class="hidden" id="dropDownContent">
                 <a onclick="getMostVoted()">Most voted</a>
                 <a onclick="getTrending()">Trending</a>
@@ -348,7 +348,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 <h1>New post</h1>
                 <span class="close">&times</span>
                 <h3>Title</h3>
-                <input type="text" name="post_title" required>
+                <input type="text" name="post_title" maxlength="50" required>
                 <h3>Text</h3>
                 <textarea name="post_text" required></textarea>
                 <h3>Picture</h3>
@@ -388,7 +388,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
 });
 
 // Used for closing the pop up windows
-function close() {
+const close = () => {
     document.getElementsByClassName("close")[0].addEventListener("click", () => {
         model.style.display = "none";
     });
@@ -398,10 +398,10 @@ function close() {
             model.style.display = "none";
         }
     });
-}
+};
 
 // Html for editing user profile
-function editProfile () {
+const editProfile = () => {
     model.innerHTML =
         `
         <div class="modelContent">
@@ -442,30 +442,30 @@ function editProfile () {
     });
     model.style.display = "block";
     close();
-}
+};
 
 // Used for a checkbox that displays password as normal text
-function showPassword() {
+const showPassword = () => {
     const pwText = document.getElementById("passwordText");
     if (pwText.type === "password") {
         pwText.type = "text";
     } else {
         pwText.type = "password";
     }
-}
+};
 
 // Sort menu
-function showDropDown() {
+const showDropDown = () => {
     const dropDown = document.getElementById("dropDownContent");
     if (dropDown.className === "hidden") {
         dropDown.className = "visible";
     } else if (dropDown.className === "visible") {
         dropDown.className = "hidden";
     }
-}
+};
 
 // Displays error pop up when user is not authorized
-function errorModel() {
+const errorModel = () => {
     model.innerHTML =
     `
     <div class="modelContent">
@@ -478,10 +478,10 @@ function errorModel() {
     `;
     model.style.display = "block";
     close();
-}
+};
 
 // Toggles display of the search input field
-function toggleBar() {
+const toggleBar = () => {
     const bar = document.getElementById("search-form");
     const h3 = document.querySelector("#search h3");
     // Check that the media query isn't active
@@ -494,25 +494,25 @@ function toggleBar() {
             bar.className = "hiddenBar";
         }
     }
-}
+};
 
 
 // Displays trending posts (ordered by recent date and most voted)
-function getTrending() {
+const getTrending = () => {
     getPosts(url, "/post/search/trending");
-}
+};
 
 // Displays new posts (ordered by recent date)
-function getNew() {
+const getNew = () => {
     getPosts(url, "/post/search/new");
-}
+};
 
 // Displays most voted posts (ordered by vote amount)
-function getMostVoted() {
+const getMostVoted = () => {
     getPosts(url, "/post/search/top");
-}
+};
 
 // Displays posts that include any search data
-function getSearch(searchData) {
+const getSearch = (searchData) => {
     getPosts(url, "/post/search/" + searchData);
-}
+};

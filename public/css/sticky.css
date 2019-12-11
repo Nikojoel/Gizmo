@@ -383,6 +383,7 @@ h1 {
     padding-top: 0.3rem;
     color: gray;
     overflow: hidden;
+    max-height: 1.75rem;
 }
 
  #stickyList li {
@@ -520,6 +521,8 @@ h5 {
 input[type="submit" i]:hover {
     background-color: rgb(238, 238, 238);
 }
+
+
 
 /*
 Media queries for mobile devices starting @ 1212 px width
