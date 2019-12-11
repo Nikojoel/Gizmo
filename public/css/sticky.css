@@ -31,7 +31,7 @@ body {
     box-sizing: border-box;
     width: calc(80% - 1rem);
     height: 100%;
-    flex-wrap: wrap;
+    display: inherit;
 }
 
 .sidebar {
@@ -399,9 +399,18 @@ h1 {
      margin: 0.5rem 1rem 0.5rem 2rem
  }
 
- #profileContent {
-     width: 50%;
-     display: -webkit-box;
+ .profileContent {
+     width: 40%;
+     padding-left: 1rem;
+     display: inline-block;
+ }
+ .profileContent img {
+     width: 100%;
+ }
+ .profilebio {
+     display: inline-block;
+     margin-top: 3rem;
+     padding-left: 2rem;
  }
 
  #profileInfo {
@@ -570,7 +579,7 @@ Media queries for mobile devices starting @ 1212 px width
         background-color: #fff;
         box-sizing: border-box;
         height: 100%;
-        flex-wrap: wrap;
+        display: inherit;
     }
 
     .modelContent {
@@ -582,6 +591,17 @@ Media queries for mobile devices starting @ 1212 px width
 @media only screen and (max-width: 900px) {
     #stickyList h3 {
         width: 0;
+    }
+    .main {
+        display: block;
+    }
+    .profileContent {
+        display: block;
+        width: 100%;
+    }
+    .profileBio {
+        display: block;
+        width: 100%;
     }
 }
 
@@ -687,17 +707,23 @@ Media queries for mobile devices starting @ 1212 px width
         float: none;
     }
 
-    #profileContent {
+    .profileContent {
         padding: 2rem;
+        display: block;
+
+    }
+    .profileBio {
+        display: block;
     }
 
-    #profileContent h1 {
+    .profileContent h1 {
         border: none;
     }
 
     #voteContent {
         padding: 1rem;
     }
+
 
     #postContent {
         padding: 0;
