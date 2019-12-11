@@ -242,6 +242,7 @@ const showProfile = async (id) => {
             <div class="modelContent">
                 <h1>${result.user_name}'s profile</h1>
                 <span class="close">&times</span>
+                <h5>Username</h5>
                 <h3>${result.user_name}</h3>
                 <img src="${url + "/" + result.user_picture}">
                 <div id="bioTextSmall">
@@ -257,6 +258,7 @@ const showProfile = async (id) => {
         <div class="modelContent">
             <h1>${result.user_name}'s profile</h1>
             <span class="close">&times</span>
+            <h5>Username</h5>
             <h3>${result.user_name}</h3>
             <img src="${url + "/" + result.user_picture}">
             <div id="bioTextSmall">
@@ -301,15 +303,17 @@ aside.innerHTML =
         <li id="newPostBar">
             <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
         </li>
-        <li id="search" onclick="toggleBar()">
-            <img src="img/icons/search.png"><h3 class="visibleBar">Search</h3>
+        <li id="search">
+            <a onclick="toggleBar()"><img src="img/icons/search.png"><h3 class="visibleBar">Search</h3></a>
             <form id="search-form" name="search" enctype="multipart/form-data" class="hiddenBar">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
         </li>
-        <li id="home">
-            <a href="index.html"><img src="img/icons/home.png"><h3>Home</h3></a>
-        </li>
+        <a href="index.html">
+            <li id="home">
+                <img src="img/icons/home.png"><h3>Home</h3>
+            </li>
+        </a>
         <li id="profile" onclick="getProfile()">
             <img src="img/icons/profile.png"><h3>Profile</h3>
         </li>

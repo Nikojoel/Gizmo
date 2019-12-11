@@ -105,7 +105,7 @@ body {
 
 .model {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     left: 0;
     top: 0;
@@ -520,6 +520,14 @@ h5 {
 
 input[type="submit" i]:hover {
     background-color: rgb(238, 238, 238);
+}
+
+input {
+    padding: 0.25rem;
+}
+
+textarea {
+    padding: 0.25rem;
 }
 
 
