@@ -7,7 +7,7 @@ const passportJWT = require("passport-jwt");
 const JWTStrategy   = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
-// local strategy for username password login
+// local passport strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
         const params = [username];
