@@ -41,9 +41,12 @@ const getAllPosts = async (params) => {
             return rows;
         } else {
             const search = ['%' + params + '%','%' + params + '%'];
-            console.log('searching?', search);
             const [rows] = await promisePool.execute(
-            'SELECT * FROM post JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search
+            'SELECT post.*, ' +
+                '(SELECT COUNT(*) FROM comment WHERE comment_post_id = post_id) AS count_comments,'  +
+                '(SELECT COUNT(*) FROM vote WHERE vote_post_id = post_id AND vote_status = 1) AS count_vote ' +
+                'FROM post ' +
+                'JOIN user ON post_owner = user_id WHERE post_title LIKE ? OR user_name LIKE ?', search
             );
             return rows;
         }
@@ -65,7 +68,7 @@ const getPost = async (params) => {
             params,
         );
         const [comments] = await promisePool.execute(
-            'SELECT COMMENT.*, user.user_name, user.user_picture FROM comment ' +
+            'SELECT comment.*, user.user_name, user.user_picture FROM comment ' +
             'JOIN user ON comment_owner_id = user.user_id WHERE comment_post_id = ?',
             params);
         return {post:rows, commets: comments};
