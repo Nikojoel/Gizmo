@@ -490,7 +490,6 @@ h1 {
     width: 10%;
 }
 
-
 h3 {
     color: black;
     margin-block-end: 1rem;
@@ -507,10 +506,12 @@ h5 {
     width: fit-content;
     margin: 0;
 }
+
 #profileBio {
     word-break: break-all;
     margin-top: 1rem;
 }
+
 #profileBio h3 {
     border-bottom: 1px solid black;
     width: fit-content;
@@ -519,8 +520,6 @@ h5 {
 input[type="submit" i]:hover {
     background-color: rgb(238, 238, 238);
 }
-
-
 
 /*
 Media queries for mobile devices starting @ 1212 px width
@@ -535,16 +534,17 @@ Media queries for mobile devices starting @ 1212 px width
         position: relative;
         padding: 0 1rem 0 1rem;
     }
+
     #editProfile {
         width: auto;
     }
+
     input[type="submit" i] {
         margin-block-start: 1rem;
     }
 }
 
 @media only screen and (max-width: 1040px) {
-
     .container {
         display: flex;
         flex-wrap: wrap;
@@ -561,6 +561,7 @@ Media queries for mobile devices starting @ 1212 px width
         height: 100%;
         flex-wrap: wrap;
     }
+
     .modelContent {
         width: auto;
     }
@@ -577,9 +578,11 @@ Media queries for mobile devices starting @ 1212 px width
     #search-form {
         margin: 0;
     }
+
     #searchText {
         width: 4rem;
     }
+
     #stickyList h3 {
         margin: 0;
     }
@@ -613,6 +616,7 @@ Media queries for mobile devices starting @ 1212 px width
     .container {
         padding: 0;
     }
+
     #newPostBar,
     #profile,
     #votes,
