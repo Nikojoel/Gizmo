@@ -301,8 +301,8 @@ aside.innerHTML =
         <li id="newPostBar">
             <a id="newPost"><img src="img/icons/new_post.png"><h3>New post</h3></a>
         </li>
-        <li id="search">
-            <img src="img/icons/search.png" onclick="toggleBar()"><h3 class="visibleBar">Search</h3>
+        <li id="search" onclick="toggleBar()">
+            <img src="img/icons/search.png"><h3 class="visibleBar">Search</h3>
             <form id="search-form" name="search" enctype="multipart/form-data" class="hiddenBar">
                 <input id="searchText" type="text" placeholder="Search..." required>
             </form>
@@ -310,14 +310,14 @@ aside.innerHTML =
         <li id="home">
             <a href="index.html"><img src="img/icons/home.png"><h3>Home</h3></a>
         </li>
-        <li id="profile">
-            <a onclick="getProfile()" "><img src="img/icons/profile.png"><h3>Profile</h3></a>
+        <li id="profile" onclick="getProfile()">
+            <img src="img/icons/profile.png"><h3>Profile</h3>
         </li>
-        <li id="votes">
-            <a onclick="getVotes()"><img src="img/icons/thumb_up.png"><h3>Votes</h3></a>
+        <li id="votes" onclick="getVotes()">
+            <img src="img/icons/thumb_up.png"><h3>Votes</h3>
         </li>
         <li id="sort" onclick="showDropDown()">
-            <a><img src="img/icons/sort.png"><h3>Sort</h3></a>
+            <img src="img/icons/sort.png"><h3>Sort</h3>
             <div class="hidden" id="dropDownContent">
                 <a onclick="getMostVoted()">Most voted</a>
                 <a onclick="getTrending()">Trending</a>
@@ -348,7 +348,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 <h1>New post</h1>
                 <span class="close">&times</span>
                 <h3>Title</h3>
-                <input type="text" name="post_title" required>
+                <input type="text" name="post_title" maxlength="50" required>
                 <h3>Text</h3>
                 <textarea name="post_text" required></textarea>
                 <h3>Picture</h3>
