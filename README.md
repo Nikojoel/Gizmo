@@ -1,4 +1,10 @@
 # Gizmo - Media Sharing Application
+
+#### Only accessible with Metropolia VPN
+[Deployed project](https://10.114.34.120/app/index.html)
+
+---
+
 1. After cloning or downloading run `npm install` to install dependencies.
 * ["app-root-path"](https://www.npmjs.com/package/app-root-path)
 * ["bcryptjs"](https://www.npmjs.com/package/bcryptjs)
@@ -32,9 +38,6 @@
 6. Run `app.js` with `nodemon app.js` or `node app.js`
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/nodemon.png)
-
-#### Only accessible with Metropolia VPN
-[Deployed project](https://10.114.34.120/app/index.html)
 
 ## ROUTES
 
