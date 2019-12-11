@@ -33,7 +33,7 @@ const getPosts = async (url, route) => {
                     </div>
                     <div id="thumbNailVotes">
                     <p id="thumbUp"><img src="img/icons/thumb_up.png" onclick="vote(${it.post_id}, 1)">${it.count_vote}  </p>
-                    <p id="commentCount"><img src="img/icons/comment.png">${it.count_comments} </p>  
+                    <p id="commentCount"><img src="img/icons/comment.png" onclick="getPost(${it.post_id})">${it.count_comments} </p>  
                     </div>
                  </div>
             </li>

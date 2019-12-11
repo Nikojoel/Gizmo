@@ -72,15 +72,15 @@ const createHeader = async () => {
                     <h1>New user</h1>
                     <span class="close">&times</span>
                     <h3>First name</h3>
-                    <input type="text" name="firstname" required>
+                    <input type="text" name="firstname" placeholder="*2 letters" required>
                     <h3>Last name</h3>
-                    <input type="text" name="lastname" required>
+                    <input type="text" name="lastname" placeholder="*2 letters" required>
                     <h3>Email</h3>
                     <input type="email" name="email" required>
                     <h3>Username</h3>
                     <input type="text" name="username" required>
                     <h3>Password</h3>
-                    <input type="password" name="password" id="passwordText" placeholder="*One uppercase required" required>
+                    <input type="password" name="password" id="passwordText" placeholder="*1 uppercase, 3 numbers" required>
                     <input type="checkbox" onclick="showPassword()">
                     <label>Show password</label>
                     <h3>Profile picture</h3>
@@ -102,8 +102,14 @@ const createHeader = async () => {
                     };
                     // Fetch
                     const response = await fetch(url + "/auth/register", options);
-                    model.style.display = "none";
-
+                    const result = await response.json();
+                    // Check that input is correct
+                    if (result[0].msg) {
+                        alert("Registering failed. Try again");
+                    } else {
+                        alert("Register succesful");
+                        model.style.display = "none";
+                    }
                 } catch (e) {
                     console.log(e);
                 }
@@ -344,7 +350,7 @@ document.getElementById("newPostBar").addEventListener("click", () => {
                 <h3>Title</h3>
                 <input type="text" name="post_title" required>
                 <h3>Text</h3>
-                <input type="text" name="post_text" required>
+                <textarea name="post_text" required></textarea>
                 <h3>Picture</h3>
                 <input type="file" name="post_file" required>
                 <input type="submit" value="Post" id="postButton">

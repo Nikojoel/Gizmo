@@ -137,8 +137,14 @@ body {
     background-color: white;
     border-color: black;
     border-radius: 0.6rem;
-    border-width: 0.1rem;
+    width: 60%;
 }
+
+.modelContent input[type="submit" i],
+.modelContent input[type="checkbox" i] {
+    width: auto;
+}
+
 .modelContent input[type="file" i] {
     border-radius: 0;
     margin-block-end: 1rem;
@@ -150,7 +156,14 @@ body {
     border-color: black;
     border-radius: 0.6rem;
     border-width: 0.1rem;
+    width: 60%;
 }
+
+#login-form input,
+#register-form input {
+    width: auto;
+}
+
 
 .close {
     color: #aaa;
@@ -394,8 +407,13 @@ h1 {
      width: 80%;
      display: inline-block;
  }
+
  #profileInfo img {
      width: 100%;
+ }
+
+ #profileInfo h5 {
+     margin-block-start: 1rem;
  }
 
  #loginProfile {
@@ -491,6 +509,7 @@ h5 {
 }
 #profileBio {
     word-break: break-all;
+    margin-top: 1rem;
 }
 #profileBio h3 {
     border-bottom: 1px solid black;
@@ -657,6 +676,10 @@ Media queries for mobile devices starting @ 1212 px width
         padding: 2rem;
     }
 
+    #profileContent h1 {
+        border: none;
+    }
+
     #voteContent {
         padding: 1rem;
     }
@@ -701,6 +724,10 @@ Media queries for mobile devices starting @ 1212 px width
         font-size: large;
         bottom: 5%;
         left: 75%;
+    }
+
+    #voteStyle {
+        width: auto;
     }
 }
 
