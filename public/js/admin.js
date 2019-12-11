@@ -110,7 +110,7 @@ const renderPosts = async (path) => {
     await result.forEach(it => {
         html.innerHTML +=
             `<article>
-                <ul>
+                <ul class="inline">
                 <li><button onclick="deletePost(${it.post_id})">delete</button></li>
                 <li><button onclick="banUser(${it.user_id})">BAN USER</button></li>
                 <li><img src="./thumbnails/${it.post_file}"/></li>
