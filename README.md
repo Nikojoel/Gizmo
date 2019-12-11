@@ -39,6 +39,7 @@
 
 ![Image description](https://github.com/Nikojoel/Gizmo/blob/dev/docs/nodemon.png)
 
+---
 ## ROUTES
 
 - #### AUTH
