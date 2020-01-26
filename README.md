@@ -2,8 +2,9 @@
 
 #### Only accessible with Metropolia VPN
 [Deployed project on metropolia centos server](https://10.114.34.120/app/index.html)
-#### Public acess on aws
+#### Public access on aws
 [Deployed project on aws ec2](http://ec2-18-196-239-85.eu-central-1.compute.amazonaws.com:3000/)
+
 ---
 
 1. After cloning or downloading run `npm install` to install dependencies.
