@@ -50,22 +50,22 @@
   - GET /auth/logout
     - Logout the user
   - POST /auth/register
-    - add user to db
+    - Add user to db
   - PUT /auth/update
-    - update the user
+    - Update the user
   
 - #### POST
   - GET /post/search/:search  
-    - use new/top/trending to get sorted list of posts
+    - Use new/top/trending to get sorted list of posts
   - GET /post/:id
-    - get a single post by id
+    - Get a single post by id
   - POST /post
-    - will return newest posts
+    - Will return newest posts
   - POST /post/liked
     - Get list of liked posts by logged in user
   - POST /post/vote
-    - vote the selected post
-    - will switch the voted status if used again by user
+    - Vote the selected post
+    - Will switch the voted status if used again by user
     
 - #### USER
   
@@ -74,10 +74,10 @@
   - POST /user
     - Add a user to db
   - POST /user/profile
-    - get the profile for logged in user
+    - Get the profile for logged in user
   - PUT /user/id
-    - ban user
+    - Ban user
 - #### ADMIN
   - POST /admin
-    - gets admin portal html page
+    - Gets admin portal html page
   
