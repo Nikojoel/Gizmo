@@ -65,7 +65,7 @@
     - Get list of liked posts by logged in user
   - POST /post/vote
     - vote the selected post
-    - will swith the voted status if used again by user
+    - will switch the voted status if used again by user
     
 - #### USER
   
