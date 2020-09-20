@@ -1,9 +1,9 @@
 # Gizmo - Media Sharing Application
 
 #### Only accessible with Metropolia VPN
-[Deployed project on metropolia centos server](https://10.114.34.120/app/index.html)
-#### Public access on aws
-[Deployed project on aws ec2](http://ec2-18-196-239-85.eu-central-1.compute.amazonaws.com:3000/)
+[Deployed project on Metropolia centos server](https://10.114.34.120/app/index.html)
+### Description
+The intent of this project is to create a Full Stack media sharing application
 
 ---
 
