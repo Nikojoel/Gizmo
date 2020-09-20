@@ -5,9 +5,11 @@
 
 ---
 
-
 ### Description
 The intent of this project is to create a Full Stack media sharing application
+
+---
+
 1. After cloning or downloading run `npm install` to install dependencies.
 <details>
   <summary>Check all dependencies</summary>
