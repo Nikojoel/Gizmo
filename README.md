@@ -2,11 +2,12 @@
 
 #### Only accessible with Metropolia VPN
 [Deployed project on Metropolia centos server](https://10.114.34.120/app/index.html)
-### Description
-The intent of this project is to create a Full Stack media sharing application
 
 ---
 
+
+### Description
+The intent of this project is to create a Full Stack media sharing application
 1. After cloning or downloading run `npm install` to install dependencies.
 <details>
   <summary>Check all dependencies</summary>
