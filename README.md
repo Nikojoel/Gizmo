@@ -8,19 +8,23 @@ The intent of this project is to create a Full Stack media sharing application
 ---
 
 1. After cloning or downloading run `npm install` to install dependencies.
-* ["app-root-path"](https://www.npmjs.com/package/app-root-path)
-* ["bcryptjs"](https://www.npmjs.com/package/bcryptjs)
-* ["cors"](https://www.npmjs.com/package/cors)
-* ["dotenv"](https://www.npmjs.com/package/dotenv)
-* ["express"](https://www.npmjs.com/package/express)
-* ["express-validator"](https://www.npmjs.com/package/express-validator)
-* ["jsonwebtoken"](https://www.npmjs.com/package/jsonwebtoken)
-* ["multer"](https://www.npmjs.com/package/multer)
-* ["mysql2"](https://www.npmjs.com/package/mysql2)
-* ["passport"](https://www.npmjs.com/package/passport)
-* ["passport-jwt"](https://www.npmjs.com/package/passport-jwt)
-* ["passport-local"](https://www.npmjs.com/package/passport-local)
-* ["sharp"](https://www.npmjs.com/package/sharp)
+<details>
+  <summary>Check all dependencies</summary>
+  
+- ["app-root-path"](https://www.npmjs.com/package/app-root-path)
+- ["bcryptjs"](https://www.npmjs.com/package/bcryptjs)
+- ["cors"](https://www.npmjs.com/package/cors)
+- ["dotenv"](https://www.npmjs.com/package/dotenv)
+- ["express"](https://www.npmjs.com/package/express)
+- ["express-validator"](https://www.npmjs.com/package/express-validator)
+- ["jsonwebtoken"](https://www.npmjs.com/package/jsonwebtoken)
+- ["multer"](https://www.npmjs.com/package/multer)
+- ["mysql2"](https://www.npmjs.com/package/mysql2)
+- ["passport"](https://www.npmjs.com/package/passport)
+- ["passport-jwt"](https://www.npmjs.com/package/passport-jwt)
+- ["passport-local"](https://www.npmjs.com/package/passport-local)
+- ["sharp"](https://www.npmjs.com/package/sharp)
+</details>
 
 2. Create uploads and thumbnails folders by hand in your IDE or with:
 * `mkdir uploads`
